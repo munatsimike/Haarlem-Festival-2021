@@ -10,7 +10,7 @@
 	$date = $_GET['date'] ?? null;
 ?>
 		<?php startblock('title')?>
-		 	<h2>Dance Festival Jazz<h2>
+		 	<h2>Festival Jazz<h2>
 		<?php endblock('title') ?>
 
 		<?php startblock('main') ?>
@@ -63,10 +63,10 @@
 	  });
 
 	  $('.trash').click(function(event){
-		alert($(this).attr('class').split(" ", 1));
 		const $row = $(this).closest('tr');
 		const $id = $.trim($row.find('.id').val());
 		$row.remove();
+
 	  });
 	 
 	  $('.add-to-cart-btn').click(function (){
