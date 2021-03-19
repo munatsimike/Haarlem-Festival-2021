@@ -21,7 +21,7 @@
             if (Cart::cartItems() !== []) {                    
                 foreach (Cart::cartItems() as $item) {
             echo  "<tr>
-                        <td>$item->id</td>
+                        <td class = 'id'>$item->id</td>
                         <td>$item->description</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
@@ -31,7 +31,7 @@
                         <td>€ $item->unitPrice</td>
                         <td>€ $item->subTotal</td>
                         <td>
-                            <a href='#' class='trash btn btn-danger btn-sm'>
+                            <a href='#' class='trash btn btn-danger btn-sm' name ='trash'>
                             <i class='bi bi-trash-fill' style='font-size: 1.2rem; color: white;'></i>
                             </a>
                         </td>

@@ -62,15 +62,19 @@
 		
 	  });
 
-	  $('.trash').click(function(event){
-		const $row = $(this).closest('tr');
-		const $id = $.trim($row.find('.id').text());
-		alert($id);
-		$row.remove();
-
-	  });
 	 
-	  $('.add-to-cart-btn').click(function (){
+	  $('.add-to-cart-btn, .trash').click(function (event){
+
+		 if ($(this).attr('name') === 'trash') {
+			const $row = $(this).closest('tr');
+			const $id = $.trim($row.find('.id').text());
+
+			$cartItem = JSON.stringify({'id':$id});
+			$action = 'deleteCartItem';
+			$row.remove();
+		 }
+
+		 if ($(this).attr('name') === 'cart-btn') {
 			const $row = $(this).closest('tr');
 			const $description = $.trim($row.find('.description').text());
 			const $price = $.trim($row.find('.price').text()).substr(1);
@@ -78,10 +82,12 @@
 			const $quantity = $.trim($row.find('.quantity').val());
 
 			$cartItem = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
+			$action = 'addToCart';
+		 }
 		
 		$.ajax({
 				type : 'post',
-				url : 'Controllers/CartController/CartController.php?action=addToCart',
+				url : 'Controllers/CartController/CartController.php?action='+$action,
 				data : {'cartItem': $cartItem},
 			}).done(function () {
 				location.reload();

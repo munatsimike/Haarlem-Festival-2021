@@ -34,9 +34,9 @@ class Cart
 
     public function deleteCartItem(int $id) : void
     {
-      $this->cartItems = self::cartItems();
+      $this->cartItems = [];
       foreach($this->cartItems as $item){
-            if ($id === $item->id) {
+            if ($id == $item->id) {
                 unset($item);
                 break;
             }
@@ -51,14 +51,4 @@ class Cart
         } 
         $_SESSION['cartItems'] = $this->cartItems; 
     } 
-     
-    public static function deleteItem($id) : void
-    {
-        foreach ($this->cartItems as $item) 
-        {
-            if ($item->id === $id) {
-                unset($item);
-            }
-         }
-    }   
 }

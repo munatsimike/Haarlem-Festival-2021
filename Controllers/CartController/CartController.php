@@ -10,29 +10,28 @@ $redirectLoc = '../../index.php';
 // Insert item to cart 
 
 // check if it's an ajax request
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') { 
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_REQUEST['cartItem'])) { 
-        if ($_REQUEST['action'] === 'addToCart') {
-        $cartItem = json_decode($_REQUEST['cartItem'], true); 
-        $price = floatval($cartItem['price']);
-        $quantity = intval($cartItem['quantity']);
-        $id = intval($cartItem['id']);
-        $subTotal = 0;
-        
-        $cart->addToCart(new CartItem($id, $cartItem['description'], $quantity, $price)); 
-         
-    } elseif ($_REQUEST['action'] == 'deleteCartItem') { 
-        
-        $id = strval($_REQUEST['id']);
-        $cart->deleteCartItem($id); 
-         
-    } elseif ($_REQUEST['action'] == 'updatItemQuantity') { 
 
         $cartItem = json_decode($_REQUEST['cartItem'], true); 
-        // Remove item from cart 
-        $cart->updatItemQuantity($_REQUEST['cartItem']); 
-        // Redirect to cart page 
-        $redirectLoc = 'viewCart.php'; 
+
+        if ($_REQUEST['action'] === 'addToCart') {
+            $price = floatval($cartItem['price']);
+            $quantity = intval($cartItem['quantity']);
+            $id = intval($cartItem['id']);
+            $subTotal = 0;
+        
+            $cart->addToCart(new CartItem($id, $cartItem['description'], $quantity, $price)); 
+         
+        } elseif ($_REQUEST['action'] === 'deleteCartItem') { 
+            $id = intval($cartItem['id']);
+            $cart->deleteCartItem($id); 
+         
+        } elseif ($_REQUEST['action'] === 'updatItemQuantity') { 
+            // Remove item from cart 
+            $cart->updatItemQuantity($_REQUEST['cartItem']); 
+            // Redirect to cart page 
+            $redirectLoc = 'viewCart.php'; 
     }
 } 
 }
