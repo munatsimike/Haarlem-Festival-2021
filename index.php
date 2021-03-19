@@ -64,7 +64,8 @@
 
 	  $('.trash').click(function(event){
 		const $row = $(this).closest('tr');
-		const $id = $.trim($row.find('.id').val());
+		const $id = $.trim($row.find('.id').text());
+		alert($id);
 		$row.remove();
 
 	  });
