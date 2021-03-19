@@ -41,7 +41,8 @@
 <script>
   $(function(){
 
-	$('#icart').hover(function(event){
+	// show cart modal
+	$('#icart').click(function(event){
 		 event.preventDefault();
 		$('#cartModal').modal('show');
 	  });
@@ -62,18 +63,20 @@
 		
 	  });
 
-	 
 	  $('.add-to-cart-btn, .trash').click(function (event){
 
+		//delete an item
 		 if ($(this).attr('name') === 'trash') {
 			const $row = $(this).closest('tr');
 			const $id = $.trim($row.find('.id').text());
-
+			
 			$cartItem = JSON.stringify({'id':$id});
 			$action = 'deleteCartItem';
-			$row.remove();
+			$row.hide();
+			
 		 }
 
+		 // add item to cart
 		 if ($(this).attr('name') === 'cart-btn') {
 			const $row = $(this).closest('tr');
 			const $description = $.trim($row.find('.description').text());

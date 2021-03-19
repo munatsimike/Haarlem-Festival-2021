@@ -34,12 +34,13 @@ class Cart
 
     public function deleteCartItem(int $id) : void
     {
-      $this->cartItems = [];
-      foreach($this->cartItems as $item){
-            if ($id == $item->id) {
-                unset($item);
-                break;
+      $arr = self::cartItems();
+      foreach($arr as $item){
+            if ($item->id === $id) {
+                continue;
             }
+
+            $this->cartItems[] = $item;
       }
       $this->updateCart();
     }
@@ -51,4 +52,5 @@ class Cart
         } 
         $_SESSION['cartItems'] = $this->cartItems; 
     } 
+
 }
