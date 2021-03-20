@@ -34,11 +34,11 @@
 						</thead>
 
 						<?php
-						$tax = Cart::cartTotal() * $_SESSION['taxRate'];
-						$total = $tax + Cart::cartTotal();
+						$tax = Cart::getCartTotal() * $_SESSION['taxRate'];
+						$total = $tax + Cart::getCartTotal();
 						$_SESSION['total'] = $total;
 						$_SESSION['tax'] = $tax;
-						foreach (Cart::cartItems() as $item) {
+						foreach (Cart::getCartItems() as $item) {
 						echo  "<tr>
 								<td>$item->quantity</td>
 								<td>$item->description</td>
@@ -51,7 +51,7 @@
 						<tr class='no-bottom-border'>
 							<td colspan ='2'></td>
 							<td>SubTotal</td>
-							<td><h6><?php echo "€".(Cart::cartTotal())?></h6></td>
+							<td><h6><?php echo "€".(Cart::getCartTotal())?></h6></td>
 						</tr>
 
 						<tr class='no-bottom-border'>

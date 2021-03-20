@@ -1,8 +1,8 @@
 <?php
 require '../../myAutoLoader.php';
 
-if (Cart::cartTotal() !== null && $_SESSION['customer'] !== null) {
-    $cartTotal = Cart::cartTotal(); // total before tax;
+if (Cart::getCartTotal() !== null && $_SESSION['customer'] !== null) {
+    $cartTotal = Cart::getCartTotal(); // total before tax;
     $customer = $_SESSION['customer'];
   }else {
     header("location: ../../index.php");
@@ -10,7 +10,7 @@ if (Cart::cartTotal() !== null && $_SESSION['customer'] !== null) {
  
   //save transaction
   $transaction = new TransactionController();
-  $transactionId = $transaction->storeTransaction(new Transaction(Cart::cartItems(), $customer));
+  $transactionId = $transaction->storeTransaction(new Transaction(Cart::getCartItems(), $customer));
   
   //send  pdf invoice 
   mail("$customer->email","My subject", "hi");
@@ -79,8 +79,8 @@ $pdf->Cell(30,5,'Total (Euro)',1,1,'C');
 
 $pdf->setFont('Arial','',11);
 // display items
-if (Cart::cartItems() !== []) {
-  foreach (Cart::cartItems() as $row) {
+if (Cart::getCartItems() !== []) {
+  foreach (Cart::getCartItems() as $row) {
     $pdf->Cell(10, 5, $row->quantity, 1, 0, 'C');
     $pdf->Cell(134, 5, $row->description, 1, 0);
     $pdf->Cell(20, 5, number_format($row->unitPrice, 2), 1, 0, 'C');

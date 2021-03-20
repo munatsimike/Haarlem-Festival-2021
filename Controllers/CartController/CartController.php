@@ -11,25 +11,25 @@ $redirectLoc = '../../index.php';
 
 // check if it's an ajax request
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') { 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_REQUEST['cartItem'])) { 
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_REQUEST['var'])) { 
 
-        $cartItem = json_decode($_REQUEST['cartItem'], true); 
+        $var = json_decode($_REQUEST['var'], true); 
 
         if ($_REQUEST['action'] === 'addToCart') {
-            $price = floatval($cartItem['price']);
-            $quantity = intval($cartItem['quantity']);
-            $id = intval($cartItem['id']);
+            $price = floatval($var['price']);
+            $quantity = intval($var['quantity']);
+            $id = intval($var['id']);
             $subTotal = 0;
         
-            $cart->addToCart(new CartItem($id, $cartItem['description'], $quantity, $price)); 
+            $cart->addToCart(new CartItem($id, $var['description'], $quantity, $price)); 
          
         } elseif ($_REQUEST['action'] === 'deleteCartItem') { 
-            $id = intval($cartItem['id']);
+            $id = intval($var['id']);
             $cart->deleteCartItem($id); 
          
         } elseif ($_REQUEST['action'] === 'updatItemQuantity') { 
             // Remove item from cart 
-            $cart->updatItemQuantity($_REQUEST['cartItem']); 
+            $cart->updatItemQuantity($_REQUEST['var']); 
             // Redirect to cart page 
             $redirectLoc = 'viewCart.php'; 
     }
