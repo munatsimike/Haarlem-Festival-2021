@@ -70,10 +70,10 @@
 			const $row = $(this).closest('tr');
 			const $id = $.trim($row.find('.id').text());
 			
-			$cartItem = JSON.stringify({'id':$id});
+			$var = JSON.stringify({'id':$id});
 			$action = 'deleteCartItem';
 			$row.hide();
-			
+			$error = "Failed to remove item from cart";
 		 }
 
 		 // add item to cart
@@ -84,18 +84,20 @@
 			const $id = $.trim($row.find('.id').val());
 			const $quantity = $.trim($row.find('.quantity').val());
 
-			$cartItem = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
+			$var = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
 			$action = 'addToCart';
+			$error = "Failed to add item to cart";
 		 }
 		
 		$.ajax({
 				type : 'post',
 				url : 'Controllers/CartController/CartController.php?action='+$action,
-				data : {'cartItem': $cartItem},
+				data : {'var': $var},
 			}).done(function () {
 				location.reload();
+				}
 			}).fail(function (jqXHR, textStatus, errorMessage) {
-				alert('Failed to add item to cart');
+				alert($error);
 			})
         });
 	  });

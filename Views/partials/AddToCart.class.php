@@ -19,7 +19,7 @@ class AddToCart
             "<div class ='input-group'>";
                 
             //display add to cart btn
-            if (in_array($row->id, array_column(Cart::cartItems(), 'id'))) {
+            if (in_array($row->id, array_column(Cart::getCartItems(), 'id'))) {
             echo  "<button class ='added-to-cart-btn' type='button' name = 'cart-btn'>
                     <span> <i class ='bi bi-cart4'style='font-size: 1.2rem'></i> </span> Added to Cart</button>";
 

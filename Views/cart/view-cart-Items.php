@@ -18,8 +18,8 @@
           </thead>
           <tbody>
           <?php
-            if (Cart::cartItems() !== []) {                    
-                foreach (Cart::cartItems() as $item) {
+            if (Cart::getCartItems() !== []) {                    
+                foreach (Cart::getCartItems() as $item) {
             echo  "<tr>
                         <td class = 'id'>$item->id</td>
                         <td>$item->description</td>
@@ -46,14 +46,14 @@
         <div class="row">
             <div class='col-9'></div>
             <div class='col-3'>
-              <h5>Total:<span class="price"><?php echo '€'. Cart::cartTotal()?></span></h5>
+              <h5>Total:<span class="price"><?php echo '€'. Cart::getCartTotal()?></span></h5>
             </div>
         </div>
       </div>
       <div class="modal-footer border-top-0 d-flex justify-content-between">
         <button type="button" onclick="location.href='../../index.php'" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <?php
-          if (Cart::cartItems() !== []) {
+          if (Cart::getCartItems() !== []) {
            echo '<button onclick="location.href=\'Views/paymentViews/checkout-form.php\'" type="button" class="btn btn-success">Checkout</button>';
 
           }
