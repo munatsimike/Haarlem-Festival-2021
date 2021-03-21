@@ -13,7 +13,7 @@ class EventOption
 								</td>
 								<input type ='hidden' class ='id'  value = '$row->id'>
 								<td width='14%' class = 'description'>
-									$row->artist <br>".
+									$row->title <br>".
 									date('D d M Y', strtotime($row->date)).' | '."<i class='bi-alarm' style='color:#cc6011'></i>"." ".$row->start.' - '.$row->end."<br>".
 									' '.$row->venue.
 								"</td>

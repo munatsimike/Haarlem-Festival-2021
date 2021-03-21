@@ -1,6 +1,17 @@
 <?php	
 	 class JazzTicket extends Ticket
 	{
-		
+		public string $artist;
+
+		public function __construct(int $id, float $price , string $date, string $start, string $end, string $venue, string $seats, string $artist)
+		{
+			parent::__construct($id, $price , $date, $start, $end, $venue, $seats);
+			$this->artist = $artist;
+		}
+
+		private function getTitle() : string
+		{
+			return $artist
+		}
 	}		
 ?>

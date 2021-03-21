@@ -9,7 +9,6 @@ abstract class Venue
     public function __construct(string $name, int $seats, string $address = "")
     {
         $this->name = $name;
-        $this->seats = $seats;
         $this->address = $address;
     }
 }

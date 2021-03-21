@@ -25,7 +25,7 @@
 
 		public function updateNumberOfSeats(int $ticketId , int $quantity) : void
 		{
-				$this->pdo->prepare("UPDATE jazz_ticket SET seats = (seats - :quantity) WHERE id = :id")
+				$this->pdo->prepare("UPDATE event SET seats = (seats - :quantity) WHERE id = :id")
 				      	  ->execute(['id'=>$ticketId, 'quantity'=>$quantity]);
 		}
 	}
