@@ -10,7 +10,7 @@
 			string $this->artist = $artist;
 		}
 
-		private function getTitle() : string
+		public function getTitle() : string
 		{
 			$title = "";
 			foreach ($djs as $key->$dj) {

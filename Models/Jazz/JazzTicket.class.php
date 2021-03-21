@@ -9,9 +9,9 @@
 			$this->artist = $artist;
 		}
 
-		private function getTitle() : string
+		public function getTitle() : string
 		{
-			return $artist
+			return $artist;
 		}
 	}		
 ?>
