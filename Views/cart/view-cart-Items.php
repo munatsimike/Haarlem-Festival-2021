@@ -22,7 +22,7 @@
                 foreach (Cart::getCartItems() as $item) {
             echo  "<tr>
                         <td class = 'id'>$item->id</td>
-                        <td>$item->title</td>
+                        <td>$item->description</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
                               <input type='number' class ='quantity' value=$item->quantity />
@@ -51,7 +51,6 @@
         </div>
       </div>
       <div class="modal-footer border-top-0 d-flex justify-content-between">
-        <button type="button" onclick="location.href='../../index.php'" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <?php
           if (Cart::getCartItems() !== []) {
            echo '<button onclick="location.href=\'/Views/paymentViews/checkout-form.php\'" type="button" class="btn btn-success">Checkout</button>';

@@ -14,7 +14,7 @@
 			<?php emptyblock('main')?>
 		</div>
 		<div>
-			<?php include 'view-cart-items.php'?>
+			<?php include 'cart/view-cart-items.php'?>
 		</div>
 		<div id='footer' class = "mt-4">
 			<?php startblock('footer') ;
