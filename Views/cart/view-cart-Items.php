@@ -9,7 +9,7 @@
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">Description</th>
+              <th scope="col">Title</th>
               <th scope="col">Qty</th>
               <th scope="col">Price</th>
               <th scope="col">Total</th>
@@ -22,7 +22,7 @@
                 foreach (Cart::getCartItems() as $item) {
             echo  "<tr>
                         <td class = 'id'>$item->id</td>
-                        <td>$item->description</td>
+                        <td>$item->title</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
                               <input type='number' class ='quantity' value=$item->quantity />

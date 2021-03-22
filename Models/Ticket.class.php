@@ -11,9 +11,9 @@
 		public int $seats;
 
 
-		public function __construct(int $id, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
+		public function __construct(int $ID, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
 		{ 
-			$this->id = $id;
+			$this->ID = $ID;
 			$this->price = $price;
 			$this->date = $date;
 			$this->start = $start;
