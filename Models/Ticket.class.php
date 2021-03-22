@@ -7,14 +7,12 @@
 		public string $date;
 		public string $start = "";
 		public string $end = "";
-		public string $venue;
-		public string $address;
+		public Venue $venue;
 		public int $seats;
 
 
-		public function __construct(string $title, int $id, float $price , string $date, string $start, string $end, string $venue, string $seats) 
+		public function __construct(int $id, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
 		{ 
-			$this->title = $title;
 			$this->id = $id;
 			$this->price = $price;
 			$this->date = $date;

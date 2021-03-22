@@ -13,9 +13,9 @@ class EventOption
 								</td>
 								<input type ='hidden' class ='id'  value = '$row->ID'>
 								<td width='14%' class = 'description'>
-									$row->artist <br>".
+								" . $row->getTitle() . " <br>".
 									date('D d M Y', strtotime($row->date)).' | '."<i class='bi-alarm' style='color:#cc6011'></i>"." ".$row->start.' - '.$row->end."<br>".
-									' '.$row->venue.
+									' '.$row->venue->name.
 								"</td>
 								<td width= '2%' class='price'>
 								€ $row->price
@@ -70,7 +70,7 @@ class EventOption
 			echo "<h5 class = 'dateHeading'>".date('D d M Y', strtotime($date))."</h5>";
 			foreach($tickets as $row) {
 				if ($date === $row->date) {
-			echo "<p class = 'timetablerow'>$row->artist: $row->start - $row->end <br> $row->venue</p>";
+			echo "<p class = 'timetablerow'>$row->artist: $row->start - $row->end <br> " . $row->venue->name . "</p>";
 				}
 			}
 		}

@@ -8,7 +8,7 @@ class Connection
   private const SERVER   =  "mysql:host=localhost;dbname=hfitteam4_db";
   private const USERNAME =  "root";
   private const PASSWORD =  "";
-  private const OPTIONS  =  [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_CLASS];
+  private const OPTIONS  =  [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
 
   public static function DBConnection() : PDO
   {

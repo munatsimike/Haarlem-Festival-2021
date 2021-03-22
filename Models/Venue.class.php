@@ -1,11 +1,11 @@
 <?php
-abstract class Venue
+class Venue
 {
 
-    private string $name;
-    private string $address;
+    public string $name;
+    public string $address;
 
-    public function __construct(string $name, string $address = "")
+    public function __construct(string $name, string $address)
     {
         $this->name = $name;
         $this->address = $address;

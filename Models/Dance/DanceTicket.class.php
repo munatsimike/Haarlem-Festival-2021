@@ -2,9 +2,9 @@
 	 class DanceTicket extends Ticket
 	{
 		public string $session;
-		public string $djs = [];
+		public array $djs = [];
 
-		public function __construct(int $id, float $price , string $date, string $start, string $end, string $venue, string $seats)
+		public function __construct(int $id, float $price , string $date, string $start, string $end, Venue $venue, string $seats, string $session, array $djs)
 		{
 			parent::__construct(getTitle(), $id, $price , $date, $start, $end, $venue, $seats);
 			string $this->artist = $artist;
