@@ -65,12 +65,12 @@
 		 // add item to cart
 		 if ($(this).attr('name') === 'cart-btn') {
 			const $row = $(this).closest('tr');
-			const $title = $.trim($row.find('.title').text());
+			const $description = $.trim($row.find('.description').text());
 			const $price = $.trim($row.find('.price').text()).substr(1);
 			const $id = $.trim($row.find('.id').val());
 			const $quantity = $.trim($row.find('.quantity').val());
 
-			$var = JSON.stringify({'id':$id, 'description':$title, 'quantity':$quantity,  'price':$price});
+			$var = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
 			$action = 'addToCart';
 			$error = "Failed to add item to cart";
 		 }
