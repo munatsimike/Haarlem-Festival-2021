@@ -2,7 +2,7 @@
 	include_once '../base.php';
 
 	try {
-		$tickets = JazzController::jazzController()->fetchJazzTickets();
+		$tickets = JazzEventController::jazzController()->fetchJazzTickets();
 	} catch (ConnectionFailedExecption $mesg) {
 
 	}

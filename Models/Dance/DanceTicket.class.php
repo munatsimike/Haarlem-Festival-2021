@@ -14,10 +14,10 @@
 		{
 			$title = "";
 			foreach ($djs as $key->$dj) {
-				if($key>0){ $title += " / "; }
-				$title += $dj;
+				if($key>0){ $title .= " / "; }
+				$title .= $dj;
 			}  
-			return $title + " | " + $session;
+			return $title . " | " . $session;
 		}
 	}		
 ?>
