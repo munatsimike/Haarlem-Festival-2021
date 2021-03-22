@@ -54,7 +54,7 @@
         <button type="button" onclick="location.href='../../index.php'" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <?php
           if (Cart::getCartItems() !== []) {
-           echo '<button onclick="location.href=\'Views/paymentViews/checkout-form.php\'" type="button" class="btn btn-success">Checkout</button>';
+           echo '<button onclick="location.href=\'/Views/paymentViews/checkout-form.php\'" type="button" class="btn btn-success">Checkout</button>';
 
           }
         ?>

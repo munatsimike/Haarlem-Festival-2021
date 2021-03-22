@@ -56,7 +56,6 @@ li a {
   text-align: center;
   padding: 18px  18px;
   text-decoration: none;
-
 }
 
 li a:hover {
@@ -75,6 +74,7 @@ li a:hover {
 	   border-style:solid;
      border-color:#cc6611;
 }
+
 .flex-container-HaarlemIndex .article1 img
 {
 	  max-width:99% ;
@@ -94,15 +94,15 @@ li a:hover {
 	 padding: 12px 12px;
 	 margin-top: 50px;
 	 margin-bottom:0px;
-	 margin-left:20% ;
-
+	 margin-left:20%
 }
+
  .flex-container-HaarlemIndex .article1 input:hover {
 	 color :#cc6011;
 	 background-color: #fff;
 	 border:solid 2px #cc6011;
-
 }
+
 /***************haarlem food*************/
  .flex-container-HaarlemFood ,.flex-container-HaarlemIndex ,.flex-container-reservation{
 }

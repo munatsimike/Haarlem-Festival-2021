@@ -1,104 +1,61 @@
-<?php
-	include_once 'Views\base.php';
+  <?php 
+        include_once 'Views/base.php';
+        startblock('main') 
+  ?>
 
-	try {
-		$tickets = JazzEventController::jazzController()->fetchJazzTickets();
-	} catch (ConnectionFailExecption $mesg) {
+  <h3>A beautiful historic city center</h3>
+  <p class="introduction">
+ famous museums, shops,
+restaurants and the beach around the corner: welcome to Haarlem,
+the city that has everything. From hidden courtyards from bygone times to trendy concept stores. From medieval church to terrace on the water. From Dutch Masters to French star chefs. From antique market to pop concert. Fancy a memorable day out? Visit Haarlem and be surprised by the sights, boutiques and picturesque squares, by the old and contemporary artists, the Burgundian atmosphere and the rich history.
+</p>
+       <section class="flex-container-HaarlemIndex">
 
-	}
+          <article class="article1" style="height:150px ;width:30;">
+               <img src="Img/Dance.jps" alt="product 1"  title ="image of rubiks  cub"/>
+        <h3> Haarlem Dance</h3>
+       <p>
+        type : french,dutch, german
+        location : holland
+        rating : 5 stars
+        opening time : 15:30 - 18:10
+       </p>
+       <input type="submit" value="Reserve Now" />
+           </article>
 
-	$date = $_GET['date'] ?? null;
-?>
-		<?php startblock('title')?>
-		 	<h2>Festival Jazz<h2>
-		<?php endblock('title') ?>
+           <article class="article1">
+               <img src="Img/Fris.png" alt="product 2" title ="image of castle game"/>
+       <h3> Haarelm Jazz</h3>
+       <p>
+        type : french,dutch, german
+        location : holland
+        rating : 5 stars
+        opening time : 15:30 - 18:10
+       </p>
+       <input type="submit" value="Reserve Now" />
+           </article>
 
-		<?php startblock('main') ?>
-			<div class = "row justify-content-center m-3">
-				<?php EventOption::displayEventDates($tickets)?>
-			</div>
-			<div class = "row justify-content-center">
-				<div class = "col-7 single-tickets">
-					<?php EventOption::displayTickets(isset($date) ? EventOption::filterTickets($tickets, $date) : $tickets);?>
-				</div>
-			<div class = "timeTable col-3 ml-4">
-				<div class = "row justify-content-center mt-3 ">
-					<h4>Promo Tickets 80% Off</h4>
-				</div>
-				<div class = "row p-3">
-				  	<?php //EventOption::displayMultipleEventTickets()?>
-				</div>
-				<hr size = "30" noshade> 
-					<div class = "row justify-content-center mt-3">
-						<h4>Jazz Time Table</h4>
-					</div>
-					<div class = "row pl-4" >
-						<?php EventOption::displayTimeTable($tickets);?>
-					</div>
-				</div>
-			</div>
-		<?php endblock('main') ?>
-<script>
-  $(function(){
+           <article class="article1">
+               <img src="Img/Dance.jpg" alt=" product 3"  title ="image of super mario"/>
+       <h3> Haarlem History</h3>
+       <p>
+        type : french,dutch, german
+        location : holland
+        rating : 5 stars
+        opening time : 15:30 - 18:10
+       </p>
+       <input type="submit" value="Reserve Now" />
+           </article>
 
-	// show cart modal
-	$('#icart').click(function(event){
-		 event.preventDefault();
-		$('#cartModal').modal('show');
-	  });
-
-	  // check for valid quantity. greater than 0 and less than available seats
-	  $('.quantity').change(function(){
-		const $row = $(this).closest('tr');
-		const seats = $row.find('.seats').text();
-	  	const qty = $(this).val();
-
-		if (qty > seats) {
-			$(this).val(seats);
-		}
-		
-		if (qty <= 0) {
-			$(this).val(1);
-		}
-		
-	  });
-
-	  $('.add-to-cart-btn, .trash').click(function (event){
-
-		//delete an item
-		 if ($(this).attr('name') === 'trash') {
-			const $row = $(this).closest('tr');
-			const $id = $.trim($row.find('.id').text());
-			
-			$var = JSON.stringify({'id':$id});
-			$action = 'deleteCartItem';
-			$row.hide();
-			$error = "Failed to remove item from cart";
-		 }
-
-		 // add item to cart
-		 if ($(this).attr('name') === 'cart-btn') {
-			const $row = $(this).closest('tr');
-			const $description = $.trim($row.find('.description').text());
-			const $price = $.trim($row.find('.price').text()).substr(1);
-			const $id = $.trim($row.find('.id').val());
-			const $quantity = $.trim($row.find('.quantity').val());
-
-			$var = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
-			$action = 'addToCart';
-			$error = "Failed to add item to cart";
-		 }
-		
-		$.ajax({
-				type : 'post',
-				url : 'Controllers/CartController/CartController.php?action='+$action,
-				data : {'var': $var},
-			}).done(function () {
-				location.reload();
-				}
-			}).fail(function (jqXHR, textStatus, errorMessage) {
-				alert($error);
-			})
-        });
-	  });
-</script>
+           <article class="article1">
+               <img src="Img/h.jpg" alt=" product 4"  title ="image of poker"/>
+       <h3> Haarlem Food</h3>
+       <p>
+        type : french,dutch, german
+        location : holland
+        rating : 5 stars
+        opening time : 15:30 - 18:10
+       </p>
+       <input type="submit" value="Reserve Now" />
+           </article>
+<?php endblock('main') ?>

@@ -1,82 +1,104 @@
 <?php
-	include_once 'myAutoLoader.php';
-	$jazzTickets = JazzEventController::jazzController()->fetchJazzTickets();
-	require_once 'views/header.php';
-	
+	include_once 'Views\base.php';
+
+	try {
+		$tickets = JazzEventController::jazzController()->fetchJazzTickets();
+	} catch (ConnectionFailExecption $mesg) {
+
+	}
+
+	$date = $_GET['date'] ?? null;
 ?>
- 	<body>
-	 	<div class = "card border-1">
-		 <div class = " row mt-2 justify-content-center"><h2>Haarlem Festival Jazz<h2></div>
-		    <div class = "row justify-content-center m-3">
-			<?php
-				$evenDates = array_unique(array_map(function($row){
-					return $row->date;
-				}, $jazzTickets));
-				echo "<a href='#' class = 'btn btn-md mr-3 text-white' role='button'>All Tickets</a>";
-				foreach($evenDates as $date){
-				 	echo "<a href='#' class = 'btn btn-md mr-3 text-white' role='button'>".date('D d M Y', strtotime($date))."</a>";
-				}
-			 ?>
+		<?php startblock('title')?>
+		 	<h2>Festival Jazz<h2>
+		<?php endblock('title') ?>
+
+		<?php startblock('main') ?>
+			<div class = "row justify-content-center m-3">
+				<?php EventOption::displayEventDates($tickets)?>
 			</div>
-		 	<div class = "row justify-content-center">
-			 <div class = "col-7 single-tickets">
-		<?php
-			echo"<form class= 'ticketForm' action' = 'index.php' method = post>
-			<table id ='myTable'>";
-			foreach ($jazzTickets as $row) {
-					echo "<tr class = 'ticket'>
-							<td width='20%'>
-								$row->artist <br>".
-								date('D d M Y', strtotime($row->date)).' | '.$row->start.' - '.$row->end."<br>".
-								$row->venue.
-							"</td>
-							<td width= '2%' class = 'price'>
-								€ $row->price
-							</td>
-							<td width='4%'>
-								<section>
-									<div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
-									<input type='number' class ='quantity' id='number' value='1' size='4' class ='quantity' />
-										 Seats: $row->seats
-									<div class='value-button' id='increase' onclick='increaseValue()' value='Increase Value'></div>
-								</section>
-								<input id ='add-to-cart-btn' type='submit' value='Add to Cart' name = 'cart-btn'>
-							</td>
-						</tr>";
-			}
-				echo"</table>
-				</form>";
-		?>
-		</div>
-		<div class = "col-3 ml-4">
-		 <div class = "row justify-content-center mt-2">
-		  	<h4>Jazz TimeTable</h4>
-		 </div>
-		 <div class = "row">
-		 
-		 </div>
-			<div class = "row pl-5">
-				<?php
-				foreach($evenDates as $date) {
-					echo "<h5>".date('D d M Y', strtotime($date))."</h5>";
-					foreach($jazzTickets as $row) {
-						if ($date === $row->date) {
-					echo "<p class = 'timetablerow'>$row->start - $row->end $row->artist</p>";
-						}
-					}
-				}
-				?>
-		</div>
-		</div>
-		</div>
-		</div>
- 	</body>
-</html>
+			<div class = "row justify-content-center">
+				<div class = "col-7 single-tickets">
+					<?php EventOption::displayTickets(isset($date) ? EventOption::filterTickets($tickets, $date) : $tickets);?>
+				</div>
+			<div class = "timeTable col-3 ml-4">
+				<div class = "row justify-content-center mt-3 ">
+					<h4>Promo Tickets 80% Off</h4>
+				</div>
+				<div class = "row p-3">
+				  	<?php //EventOption::displayMultipleEventTickets()?>
+				</div>
+				<hr size = "30" noshade> 
+					<div class = "row justify-content-center mt-3">
+						<h4>Jazz Time Table</h4>
+					</div>
+					<div class = "row pl-4" >
+						<?php EventOption::displayTimeTable($tickets);?>
+					</div>
+				</div>
+			</div>
+		<?php endblock('main') ?>
 <script>
   $(function(){
-	  $('.quantity').change(function(){
-	  	const qty = $(this).val();
-	  	$(this).val(Math.max(1, qty));
+
+	// show cart modal
+	$('#icart').click(function(event){
+		 event.preventDefault();
+		$('#cartModal').modal('show');
 	  });
-  });
+
+	  // check for valid quantity. greater than 0 and less than available seats
+	  $('.quantity').change(function(){
+		const $row = $(this).closest('tr');
+		const seats = $row.find('.seats').text();
+	  	const qty = $(this).val();
+
+		if (qty > seats) {
+			$(this).val(seats);
+		}
+		
+		if (qty <= 0) {
+			$(this).val(1);
+		}
+		
+	  });
+
+	  $('.add-to-cart-btn, .trash').click(function (event){
+
+		//delete an item
+		 if ($(this).attr('name') === 'trash') {
+			const $row = $(this).closest('tr');
+			const $id = $.trim($row.find('.id').text());
+			
+			$var = JSON.stringify({'id':$id});
+			$action = 'deleteCartItem';
+			$row.hide();
+			$error = "Failed to remove item from cart";
+		 }
+
+		 // add item to cart
+		 if ($(this).attr('name') === 'cart-btn') {
+			const $row = $(this).closest('tr');
+			const $description = $.trim($row.find('.description').text());
+			const $price = $.trim($row.find('.price').text()).substr(1);
+			const $id = $.trim($row.find('.id').val());
+			const $quantity = $.trim($row.find('.quantity').val());
+
+			$var = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
+			$action = 'addToCart';
+			$error = "Failed to add item to cart";
+		 }
+		
+		$.ajax({
+				type : 'post',
+				url : 'Controllers/CartController/CartController.php?action='+$action,
+				data : {'var': $var},
+			}).done(function () {
+				location.reload();
+				}
+			}).fail(function (jqXHR, textStatus, errorMessage) {
+				alert($error);
+			})
+        });
+	  });
 </script>

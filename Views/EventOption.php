@@ -11,9 +11,9 @@ class EventOption
 						echo "<tr class='ticket'>
 								<td class='ticketImage' width = '6%'>
 								</td>
-								<input type ='hidden' class ='id'  value = '$row->id'>
+								<input type ='hidden' class ='id'  value = '$row->ID'>
 								<td width='14%' class = 'description'>
-									$row->title <br>".
+									$row->artist <br>".
 									date('D d M Y', strtotime($row->date)).' | '."<i class='bi-alarm' style='color:#cc6011'></i>"." ".$row->start.' - '.$row->end."<br>".
 									' '.$row->venue.
 								"</td>
@@ -37,9 +37,9 @@ class EventOption
 
 	public static function displayEventDates(array $tickets) : void
 	{
-		echo "<a href='index.php' class = 'btn btn-md mr-3 event-date' role='button'>All Tickets</a>";
+		echo "<a href='jazz.php' class = 'btn btn-md mr-3 event-date' role='button'>All Tickets</a>";
 		foreach(self::eventDates($tickets) as $date){
-			echo "<a href='index.php?date=$date' class = 'btn btn-md mr-3 event-date' role='button'>".date('D d M Y', strtotime($date))."</a>";
+			echo "<a href='jazz.php?date=$date' class = 'btn btn-md mr-3 event-date' role='button'>".date('D d M Y', strtotime($date))."</a>";
 		}
 	}
 
