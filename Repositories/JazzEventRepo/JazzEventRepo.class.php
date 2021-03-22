@@ -15,12 +15,14 @@
 		{
 			// fetches JazzTickets from database
 			if ($this->pdo instanceof PDO) {
-				return createJazzTickets($this->pdo
-					->query("	SELECT E.ID, E.price, E.date, E.start, E.end, artist, E.seats, V.venue, V.address FROM jazz_ticket AS J 
-								JOIN event AS E ON E.ID = J.event_id
-								JOIN venue AS V ON V.venue = E.venue_id
-								ORDER BY date,start")
-					->fetchAll(PDO::FETCH_ASSOC));
+				return createJazzTickets
+				(
+					$this->pdo->query("	SELECT E.ID, E.price, E.date, E.start, E.end, artist, E.seats, V.venue, V.address FROM jazz_ticket AS J 
+										JOIN event AS E ON E.ID = J.event_id
+										JOIN venue AS V ON V.venue = E.venue_id
+										ORDER BY date,start")
+										->fetchAll(PDO::FETCH_ASSOC)
+				);
 			}
 			throw ConnectionFailureException::database();
 		}
