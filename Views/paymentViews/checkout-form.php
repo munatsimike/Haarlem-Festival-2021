@@ -1,5 +1,5 @@
 <?php
-	require '../../myAutoLoader.php';
+	require $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
 ?>
 <!DOCTYPE html>
 <html>
