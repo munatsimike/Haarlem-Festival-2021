@@ -41,7 +41,7 @@
 						foreach (Cart::getCartItems() as $item) {
 						echo  "<tr>
 								<td>$item->quantity</td>
-								<td>$item->description</td>
+								<td>" . $item->title . "/n" . $item->description . "</td>
 								<td>€ $item->unitPrice</td>
 								<td>€ $item->subTotal</td>
 							</tr>";

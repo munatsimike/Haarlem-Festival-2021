@@ -22,7 +22,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUEST
             $id = intval($var['id']);
             $subTotal = 0;
         
-            $cart->addToCart(new CartItem($id, $var['description'], $quantity, $price)); 
+            $cart->addToCart(new CartItem($id, $var['title'], $quantity, $price)); 
          
         } elseif ($_REQUEST['action'] === 'deleteCartItem') { 
             $id = intval($var['id']);
