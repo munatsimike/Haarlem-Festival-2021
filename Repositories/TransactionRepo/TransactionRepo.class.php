@@ -3,13 +3,13 @@
 	{
 		private PDO $pdo;
 		private CustomerRepo $customerRepo;
-		private JazzEventRepo $jazzRepo;
+		private JazzRepo $jazzRepo;
 
 		public function __construct()
 		{
 			$this->pdo = Connection::DBConnection();
 			$this->customerRepo = new CustomerRepo();
-			$this->jazzRepo = new JazzEventRepo();
+			$this->jazzRepo = new JazzRepo();
 		}
 
 		public function storeTransaction(Transaction $transaction) : int

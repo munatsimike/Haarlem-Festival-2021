@@ -1,5 +1,5 @@
 <?php	
-	 class JazzEventRepo
+	 class JazzRepo
 	{
 		private PDO $pdo;
 
@@ -29,7 +29,7 @@
 			$tickets = [];
 			foreach($assocList as $row){
 				$venue = new Venue($row['venue'], $row['address']);
-				$tickets[] = new JazzEventTicket($row['ID'], $row['price'], $row['date'], $row['start'], $row['end'], $venue, $row['seats'], $row['artist']);
+				$tickets[] = new JazzTicket($row['ID'], $row['price'], $row['date'], $row['start'], $row['end'], $venue, $row['seats'], $row['artist']);
 			}
 			return $tickets;
 		}
