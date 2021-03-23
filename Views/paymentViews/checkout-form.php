@@ -73,7 +73,7 @@
 					    <h4 class="mb-2 mt-2">Customer Details</h4>
 					</div>
 					<p>Details provided to this form will appear on the invoice that will be sent to the provided email address</p>
-					<form action = "checkout.php" id = "checkout-form" method = "POST">
+					<form action = "../../Service/paymentGateway.php" id = "checkout-form" method = "POST">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstName">First name</label>

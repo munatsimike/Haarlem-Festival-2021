@@ -1,5 +1,5 @@
 <?php
-require '../../myAutoLoader.php';
+require_once '../myAutoLoader.php';
 
 if (Cart::getCartTotal() !== null && $_SESSION['customer'] !== null) {
     $cartTotal = Cart::getCartTotal(); // total before tax;

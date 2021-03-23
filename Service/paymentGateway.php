@@ -1,7 +1,7 @@
 <?php
 session_start();
-require '../../myAutoLoader.php';
-require_once ("../../Service/mollie/vendor/autoload.php");
+require '../Views/myAutoLoader.php';
+require_once ("mollie/vendor/autoload.php");
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $_SESSION['customer'] = new Customer(trim($_POST['firstName']), trim($_POST['lastName']), trim($_POST['email']));
