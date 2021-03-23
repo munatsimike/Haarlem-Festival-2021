@@ -14,7 +14,7 @@
 			<?php emptyblock('main')?>
 		</div>
 		<div>
-			<?php include 'view-cart-items.php'?>
+			<?php include 'cart/view-cart-items.php'?>
 		</div>
 		<div id='footer' class = "mt-4">
 			<?php startblock('footer') ;
@@ -28,33 +28,35 @@
   $(function(){
 
 	// show cart modal
-	$('#icart').click(function(event){
-		 event.preventDefault();
+	$('#icart').click(function($event){
+		 $event.preventDefault();
 		$('#cartModal').modal('show');
 	  });
 
 	  // check for valid quantity. greater than 0 and less than available seats
 	  $('.quantity').change(function(){
 		const $row = $(this).closest('tr');
-		const seats = $row.find('.seats').text();
-	  	const qty = $(this).val();
+		const $seats = $row.find('.seats').text();
+	  	const $qty = $(this).val();
 
-		if (qty > seats) {
-			$(this).val(seats);
+		if ($qty > $seats) {
+			$(this).val($seats);
+			alert("not enough tickets available");
 		}
 		
-		if (qty <= 0) {
+		if ($qty <= 0) {
 			$(this).val(1);
 		}
 		
 	  });
 
-	  $('.add-to-cart-btn, .trash').click(function (event){
+	  $('.add-to-cart-btn, .trash').click(function ($event){
+
+		const $row = $(this).closest('tr');
+		const $id = $.trim($row.find('.id').val());
 
 		//delete an item
 		 if ($(this).attr('name') === 'trash') {
-			const $row = $(this).closest('tr');
-			const $id = $.trim($row.find('.id').text());
 			
 			$var = JSON.stringify({'id':$id});
 			$action = 'deleteCartItem';
@@ -64,13 +66,11 @@
 
 		 // add item to cart
 		 if ($(this).attr('name') === 'cart-btn') {
-			const $row = $(this).closest('tr');
 			const $title = $.trim($row.find('.title').text());
 			const $price = $.trim($row.find('.price').text()).substr(1);
-			const $id = $.trim($row.find('.id').val());
 			const $quantity = $.trim($row.find('.quantity').val());
 
-			$var = JSON.stringify({'id':$id, 'description':$title, 'quantity':$quantity,  'price':$price});
+			$var = JSON.stringify({'id':$id, 'title':$title, 'quantity':$quantity,  'price':$price});
 			$action = 'addToCart';
 			$error = "Failed to add item to cart";
 		 }

@@ -5,6 +5,7 @@ class CartItem
     public int $id = 0;
     public float $unitPrice = 0;
     public string $title = '';
+    public string $description = '';
     public int  $quantity = 0;
     public float $subTotal = 0;
 

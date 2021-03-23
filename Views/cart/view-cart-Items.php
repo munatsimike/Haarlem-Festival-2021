@@ -8,7 +8,7 @@
         <table class="table table-image">
           <thead>
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col"></th>
               <th scope="col">Title</th>
               <th scope="col">Qty</th>
               <th scope="col">Price</th>
@@ -19,9 +19,10 @@
           <tbody>
           <?php
             if (Cart::getCartItems() !== []) {                    
-                foreach (Cart::getCartItems() as $item) {
+                foreach (Cart::getCartItems() as $key=>$item) {
             echo  "<tr>
-                        <td class = 'id'>$item->id</td>
+                        <input type ='hidden' class ='id'  value = '$item->id'>
+                        <td>". ($key+1) ."</td>
                         <td>$item->title</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
@@ -51,7 +52,6 @@
         </div>
       </div>
       <div class="modal-footer border-top-0 d-flex justify-content-between">
-        <button type="button" onclick="location.href='../../index.php'" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <?php
           if (Cart::getCartItems() !== []) {
            echo '<button onclick="location.href=\'/Views/paymentViews/checkout-form.php\'" type="button" class="btn btn-success">Checkout</button>';
