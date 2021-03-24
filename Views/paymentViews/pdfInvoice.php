@@ -10,11 +10,8 @@ if (Cart::getCartTotal() !== null && $_SESSION['customer'] !== null) {
  
   //save transaction
   $transaction = new TransactionController();
-  $transactionId = $transaction->storeTransaction(new Transaction(Cart::getCartItems(), $customer));
+  $transactionId = $transaction->storeTransaction(new Transaction(Cart::getCartItems()));
   
-  //send  pdf invoice 
-  mail("$customer->email","My subject", "hi");
-
   // display pdf invoice
 require_once('../../Service/fpdf/fpdf.php');
 //create fpdf object with parameters
@@ -25,7 +22,7 @@ $pdf->addPage();
 $pdf->setFont('Arial','B',16);
 // add cell(width,height,text,border,endline,align)
 $pdf->Cell(130,5,'Haarlem Festival',0,0);
-$pdf->Cell(59,5,'Invoice',0,1); // end of line
+$pdf->Cell(59,5,'Receipt',0,1); // end of line
 
 //set font to regular , arial ,12pt
 $pdf->setFont('Arial','',11);
@@ -37,7 +34,7 @@ $pdf->Cell(25,5,'Date:',0,0);
 $pdf->Cell(34,5, date("d-m-Y"),0,1);
 
 $pdf->Cell(130,5,'Netherlands',0,0);
-$pdf->Cell(25,5,'Invoice #',0,0);
+$pdf->Cell(25,5,'Receipt #',0,0);
 $pdf->Cell(34,5,$transactionId,0,1);
 
 $pdf->Cell(130,5,'Phone [+31 774 163 923]',0,0);
@@ -82,11 +79,12 @@ $pdf->setFont('Arial','',11);
 if (Cart::getCartItems() !== []) {
   foreach (Cart::getCartItems() as $row) {
     $pdf->Cell(10, 5, $row->quantity, 1, 0, 'C');
-    $pdf->Cell(134, 5, $row->description, 1, 0);
+    $pdf->Cell(134, 5, $row->title, 1, 0);
     $pdf->Cell(20, 5, number_format($row->unitPrice, 2), 1, 0, 'C');
     $pdf->Cell(30, 5, number_format($row->subTotal, 2), 1, 1, 'R');
   }
 }
+// add qrcode to the invoice
   $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($transactionId), 138, 34, 30, 30, "png");
 
 // summary
@@ -107,8 +105,15 @@ $pdf->Cell(30,5,number_format($_SESSION['total'], 2),1,1, 'R');
 $pdf->Cell(189,15,'',0,1);
 $pdf->Cell(130,5,'NB:',0,1);
 $pdf->Cell(130,5,'Visit www.haarlemfestival.com/tickets to print your ticket(s)',0,1);
+
+// email receipt to the customer
+$sender = new ReceiptSender($customer->email, $customer->firstName, $pdf->Output("", "S"));
+$sender->sendReceipt();
+
+// display receipt to the browser
 $pdf->Output();
 
+// destroy all sessions
 session_unset();
 
  ?>

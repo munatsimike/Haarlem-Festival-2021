@@ -35,7 +35,7 @@
 
 						<?php
 						$tax = Cart::getCartTotal() * $_SESSION['taxRate'];
-						$total = $tax + Cart::getCartTotal();
+						$total = $tax + Cart::getCartTotal(); 
 						$_SESSION['total'] = $total;
 						$_SESSION['tax'] = $tax;
 						foreach (Cart::getCartItems() as $item) {

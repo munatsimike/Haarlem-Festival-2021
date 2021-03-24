@@ -22,8 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             header("Location: " . $payment->getCheckoutUrl(), true, 303);
 
         } catch (ApiException $msg) {
-            header("location: checkout-form.php");
+            header("location: ../Views/paymentViews/checkout-form.php");
     }
-
 }
     ?>

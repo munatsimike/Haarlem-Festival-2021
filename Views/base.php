@@ -14,7 +14,10 @@
 			<?php emptyblock('main')?>
 		</div>
 		<div>
-			<?php include 'cart/view-cart-items.php'?>
+			<?php 
+				include 'cart/view-cart-items.php';
+				include 'login/login-registration.php';
+			?>
 		</div>
 		<div id='footer' class = "mt-4">
 			<?php startblock('footer') ;
@@ -25,12 +28,19 @@
 	</body>
 </html>
 <script>
-  $(function(){
-
-	// show cart modal
-	$('#icart').click(function($event){
+  $(function(){	  
+	// show cart ,loginmodal or login
+	$('#icart, #login, .footer').click(function($event){
 		 $event.preventDefault();
-		$('#cartModal').modal('show');
+
+		 if ($(this).attr('id') ==='login') {
+			$('#login-registration').modal('show');
+		 } else if ($(this).attr('class') === 'footer') {
+			$('#login').toggle();
+		 } else {
+			$('#cartModal').modal('show');
+		 }
+
 	  });
 
 	  // check for valid quantity. greater than 0 and less than available seats
@@ -87,6 +97,7 @@
 				alert($error);
 			})
         });
+
 	  });
 </script>
 
