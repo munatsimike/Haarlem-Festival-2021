@@ -51,7 +51,7 @@
             </div>
         </div>
       </div>
-      <div class="modal-footer border-top-0 d-flex justify-content-between">
+      <div class="modal-footer border-top-0 d-flex justify-content-right">
         <?php
           if (Cart::getCartItems() !== []) {
            echo '<button onclick="location.href=\'/Views/paymentViews/checkout-form.php\'" type="button" class="btn btn-success">Checkout</button>';

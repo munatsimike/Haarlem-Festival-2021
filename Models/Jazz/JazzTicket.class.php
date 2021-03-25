@@ -1,5 +1,5 @@
 <?php	
-	 class JazzEventTicket extends Ticket
+	 class JazzTicket extends Ticket
 	{
 		public string $artist;
 		

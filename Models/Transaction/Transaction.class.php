@@ -2,11 +2,9 @@
 class Transaction
 {
     public $cartItems = [];
-    public Customer $customer;
 
-    public function __construct(array $cartItems, Customer $customer)
+    public function __construct(array $cartItems)
     {
         $this->cartItems = $cartItems;
-        $this->customer = $customer;
     }
 }
