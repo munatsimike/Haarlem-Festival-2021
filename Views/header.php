@@ -19,8 +19,7 @@ $link_address = "";
 		<li><a href="">EN</a></li>
 		<li><a href="<?php echo $link_address;?>/Views/cart/view-cart-items.php" title="View Cart" id="icart"> <?php echo "<span>".count($_SESSION['cartItems'])."<i class='bi bi-cart4'style='font-size: 1.6rem'></i>";
 					?></a></li>
-		<li><a href="<?php echo $link_address;?>/UI/Food_UI.php">Food</a></li>
-		<li><a href="<?php echo $link_address;?>/UI/Dance_UI.php">Dance</a></li>
+		<li><a href="<?php echo $link_address;?>/Views/dance/dance.php">Dance</a></li>
 		<li><a href="<?php echo $link_address;?>/Views/jazz/jazz.php">Jazz</a></li>
 		<li><a href="/index.php">Home</a></li>
 	</ul>

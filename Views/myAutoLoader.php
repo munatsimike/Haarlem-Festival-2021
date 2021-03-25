@@ -5,9 +5,9 @@ function autoload($className)
 {
     $fileFound = false;
     //list comma separated directory name
-    $directories = ['
-                    UI', 'Models/Jazz', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', "Enums", "Exceptions",
-                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/TransactionController',
+    $directories = [
+                    'Models/Jazz', 'Models/Dance', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', 'Controllers/DanceController', "Enums", "Exceptions",
+                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Repositories/DanceRepo', 'Controllers/TransactionController',
                     'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service'
                    ];
     //list of comma separated file format
