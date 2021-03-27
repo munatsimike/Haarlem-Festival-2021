@@ -66,7 +66,11 @@
 			const $price = $.trim($row.find('.price').text()).substr(1);
 			const $quantity = $.trim($row.find('.quantity').val());
 
+<<<<<<< HEAD
+			$var = JSON.stringify({'id':$id, 'description':$description, 'quantity':$quantity,  'price':$price});
+=======
 			$var = JSON.stringify({'id':$id, 'title':$title, 'quantity':$quantity,  'price':$price});
+>>>>>>> 962c2553cd02a9dd0f4528b90f2d5de097e6d6dc
 			$action = 'addToCart';
 			$error = "Failed to add item to cart";
 		 }
