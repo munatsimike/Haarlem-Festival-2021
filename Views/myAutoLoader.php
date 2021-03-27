@@ -5,10 +5,10 @@ function autoload($className)
 {
     $fileFound = false;
     //list comma separated directory name
-    $directories = ['
-                    UI', 'Models/Jazz', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', "Enums", "Exceptions",
-                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/TransactionController',
-                    'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service'
+    $directories = [
+                    'Controllers/VolunteerController', 'Models/Jazz', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', "Enums", "Exceptions",
+                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/TransactionController', 'Models/Volunteer',
+                    'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service', 'Repositories/VolunteerRepo'
                    ];
     //list of comma separated file format
     $fileExtensions = ['%s.php', '%s.class.php'];

@@ -29,22 +29,9 @@
 </html>
 <script>
   $(function(){	  
-	// show cart ,loginmodal or login
-	$('#icart, #login, .footer').click(function($event){
-		 $event.preventDefault();
-
-		 if ($(this).attr('id') ==='login') {
-			$('#login-registration').modal('show');
-		 } else if ($(this).attr('class') === 'footer') {
-			$('#login').toggle();
-		 } else {
-			$('#cartModal').modal('show');
-		 }
-
-	  });
-
+	
 	  // check for valid quantity. greater than 0 and less than available seats
-	  $('.quantity').change(function(){
+	  $('.quantity').change(function() {
 		const $row = $(this).closest('tr');
 		const $seats = $row.find('.seats').text();
 	  	const $qty = $(this).val();
@@ -60,8 +47,7 @@
 		
 	  });
 
-	  $('.add-to-cart-btn, .trash').click(function ($event){
-
+	  $('.add-to-cart-btn, .trash').click(function ($event) {
 		const $row = $(this).closest('tr');
 		const $id = $.trim($row.find('.id').val());
 
@@ -97,6 +83,52 @@
 				alert($error);
 			})
         });
+
+		// show cart ,loginmodal or login
+	$('#icart, #login, .footer').click(function($event){
+		 $event.preventDefault();
+
+		 if ($(this).attr('id') ==='login') {
+			$('#login-registration').modal('show');
+		 } else if ($(this).attr('class') === 'footer') {
+			$('#login').toggle();
+		 } else {
+			$('#cartModal').modal('show');
+		 }
+
+	  });
+
+		// validate login and registration
+		$("#registration").validate({
+		// Specify validation rules
+		rules: {
+			userName: "required",
+			password: "required",
+			phone: "required",
+
+			email: {
+				required: true,
+				email: true
+			},
+
+			confirm_email: {
+				required: true,
+				equalTo: "#email"
+			},
+		},
+		// Specify validation error messages
+		messages: {
+				userName: "Please enter your first name",
+				password: "Please enter your last name",
+				phone: "Emails do not match"
+		},
+
+		// Make sure the form is submitted to the destination defined
+		submitHandler: function(form) {
+		form.submit();
+		}
+
+	});
 
 	  });
 </script>
