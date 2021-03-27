@@ -15,6 +15,5 @@ class CartItem
         $this->unitPrice = $unitPrice;
         $this->description = $description;
         $this->quantity = $quantity;
-        $this->subTotal = $quantity * $unitPrice;
     }
 }
