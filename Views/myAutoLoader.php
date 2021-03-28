@@ -8,7 +8,8 @@ function autoload($className)
     $directories = [
                     'Controllers/VolunteerController', 'Models/Jazz', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', "Enums", "Exceptions",
                     'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/TransactionController', 'Models/Volunteer',
-                    'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service', 'Repositories/VolunteerRepo'
+                    'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service', 'Repositories/VolunteerRepo', 'Models/BundleTicket',
+                    'Controllers/BundleTicketController', 'Repositories/BundleTicketRepo'
                    ];
     //list of comma separated file format
     $fileExtensions = ['%s.php', '%s.class.php'];

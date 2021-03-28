@@ -10,16 +10,32 @@
 		public Venue $venue;
 		public int $seats;
 
+		public function __construct()
+    	{
+			$arguments = func_get_args();
+			$numberOfArguments = func_num_args();
 
-		public function __construct(int $ID, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
-		{ 
+			if (method_exists($this, $fun='__construct'.$numberOfArguments)) {
+				call_user_func_array(array($this, $fun), $arguments);
+			}
+    	}
+
+		public function __construct3(int $ID, float $price , string $seats)
+		{
 			$this->ID = $ID;
 			$this->price = $price;
+			$this->seats = $seats;
+
+		}
+
+		public function __construct7(int $ID, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
+		{ 
+			$this->__construct3($ID, $price , $seats);
+
 			$this->date = $date;
 			$this->start = $start;
 			$this->end = $end;
 			$this->venue = $venue;
-			$this->seats = $seats;
 		} 
 
 		abstract public function getTitle();

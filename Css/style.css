@@ -12,9 +12,6 @@ p.introduction,h3{
 	margin-top:15px;
 	text-align:center;
 }
- h3{
-color:#cc6011;
-}
 
 /******* header **************/
 .header {
@@ -164,9 +161,19 @@ li a:hover {
 	 margin-left:20% ;
 }
 
+/**************************TimeTable**************************/
+/*timetablespacing padding and line height*/
+.eventsProgram td {
+  padding: 12px;
+  line-height: 12px;
+}
+
+.eventsProgram:hover {
+  background-color: #FAF8F3;
+}
 /**************************Ticket**************************/
-/*all tickets spacing padding and line height*/
-td {
+/*single tickets spacing padding and line height*/
+.ticket td {
   padding: 15px;
   line-height: 22px;
 }
@@ -197,6 +204,7 @@ button.added-to-cart-btn:focus, .event-date:focus, .quantity:focus, .cancel-btn:
 
 h5.dateHeading {
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .quantity {
