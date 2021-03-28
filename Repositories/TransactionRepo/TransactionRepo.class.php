@@ -16,16 +16,12 @@
 		{	// get customer id;
 			$customerId = $this->customerRepo->createCustomerId(); 
 		
-			//$this->pdo->query("INSERT INTO transaction (customerId) VALUES ($customerId)");
-			//$transactionId = intval($this->pdo->lastInsertId());
-			
+			foreach ($transaction->cartItems as $item) {
+			$this->pdo->prepare("INSERT INTO transaction(customer_Id, event_Id, quantity) VALUES (:customerId, :eventId, :quantity)")
+					 ->execute(['customerId'=>$customerId, 'eventId'=>$item->id, 'quantity'=>$item->quantity]);
 
-			//foreach ($transaction->cartItems as $item) {
-			//$this->pdo->prepare("INSERT INTO transaction(quantity, ticketId, transactionId) VALUES (:quantity, :ticketId, :transactionId)")
-				//	 ->execute(['quantity'=>$item->quantity, 'ticketId'=>$item->id, 'transactionId'=>$transactionId]);
-
-			 // $this->jazzRepo->updateNumberOfSeats($item->id, $item->quantity);
-			//}
+			  $this->jazzRepo->updateNumberOfSeats($item->id, $item->quantity);
+			}
 
 			return $customerId;
 		}

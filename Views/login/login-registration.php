@@ -14,8 +14,10 @@
             </div>
             <div class="modal-body">
                 <div class="tab-content">
+
                     <div id="login-form" class="tab-pane fade in active">
                         <form action="/">
+                            <input type="hidden" name="form-name" value = "login">
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
@@ -30,8 +32,10 @@
                             <button type="submit" class="btn btn-default">Login</button>
                         </form>
                     </div>
+
                     <div id="registration-form" class="tab-pane fade">
-                        <form action="/">
+                        <form action = '/Service/Login-Registration/Login-Registration.php' id="registration" method = "POST">
+                            <input type="hidden" name="form-name" value = "registration">
                             <div class="form-group">
                                 <label for="name">Your Name:</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
@@ -50,9 +54,6 @@
 
                 </div>
             </div>
-<!--                                    <div class="modal-footer">-->
-<!--                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-<!--                                    </div>-->
         </div>
     </div>
 </div>
