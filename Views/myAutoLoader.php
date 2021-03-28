@@ -7,7 +7,7 @@ function autoload($className)
     //list comma separated directory name
     $directories = [
                     'Models/Jazz', 'Models/Dance', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', 'Controllers/DanceController', "Enums", "Exceptions",
-                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Repositories/DanceRepo', 'Controllers/TransactionController',
+                    'Models', 'Views', 'Controllers', 'Config', 'Repositories', 'Repositories/JazzRepo', 'Repositories/DanceRepo', 'Controllers/TransactionController',
                     'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service'
                    ];
     //list of comma separated file format

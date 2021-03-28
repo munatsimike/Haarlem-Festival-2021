@@ -23,14 +23,14 @@
             echo  "<tr>
                         <input type ='hidden' class ='id'  value = '$item->id'>
                         <td>". ($key+1) ."</td>
-                        <td>$item->title</td>
+                        <td>$item->description</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
                               <input type='number' class ='quantity' value=$item->quantity />
                           <div class='value-button' id='increase' onclick='increaseValue()' value='Increase Value'></div>
                         </td>
                         <td>€ $item->unitPrice</td>
-                        <td>€ $item->subTotal</td>
+                        <td>€ " . $item->getSubTotal() . "</td>
                         <td>
                             <a href='#' class='trash btn btn-danger btn-sm' name ='trash'>
                             <i class='bi bi-trash-fill' style='font-size: 1.2rem; color: white;'></i>

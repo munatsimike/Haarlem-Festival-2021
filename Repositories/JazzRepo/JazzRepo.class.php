@@ -1,15 +1,6 @@
 <?php	
-	 class JazzRepo
+	 class JazzRepo extends EventRepo
 	{
-		private PDO $pdo;
-
-		public function __construct()
-		{ 
-			//gets database connection instance from Connection class
-			try{
-				$this->pdo = Connection::DBConnection();
-			} catch (ConnectionFailureException $errorMsg) {}
-		}
 
 		public function fetchJazzTickets() : array
 		{
@@ -32,12 +23,6 @@
 				$tickets[] = new JazzTicket($row['ID'], $row['price'], $row['date'], $row['start'], $row['end'], $venue, $row['seats'], $row['artist']);
 			}
 			return $tickets;
-		}
-
-		public function updateNumberOfSeats(int $ticketId , int $quantity) : void
-		{
-				$this->pdo->prepare("UPDATE event SET seats = (seats - :quantity) WHERE id = :id")
-				      	  ->execute(['id'=>$ticketId, 'quantity'=>$quantity]);
 		}
 	}
 

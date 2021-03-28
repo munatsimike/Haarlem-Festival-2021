@@ -70,7 +70,7 @@ class EventOption
 			echo "<h5 class = 'dateHeading'>".date('D d M Y', strtotime($date))."</h5>";
 			foreach ($tickets as $row) {
 				if ($date === $row->date) {
-			echo "<p class = 'timetablerow'>$row->artist: $row->start - $row->end <br> " . $row->venue->name . "</p>";
+			echo "<p class = 'timetablerow'>" . $row->getTitle(). ": $row->start - $row->end <br> " . $row->venue->name . "</p>";
 				}
 			}
 		}
