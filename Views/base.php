@@ -33,23 +33,32 @@
 	  // check for valid quantity. greater than 0 and less than available seats
 	  $('.quantity').change(function() {
 		const $row = $(this).closest('tr');
-		const $seats = $row.find('.seats').text();
+		const $seats = parseInt($row.find('.seats').text());
 	  	const $qty = $(this).val();
 
 		if ($qty > $seats) {
 			$(this).val($seats);
 			alert("not enough tickets available");
-		}
-		
-		if ($qty <= 0) {
+		} 
+		else if ($qty <= 0) {
 			$(this).val(1);
 		}
 		
 	  });
 
-	  $('.add-to-cart-btn, .trash').click(function ($event) {
+	  $('.add-to-cart-btn, .trash, .cartQuantity').click(function ($event) {
 		const $row = $(this).closest('tr');
 		const $id = $.trim($row.find('.id').val());
+
+		//change quantity
+		 if ($(this).attr('name') === 'cartQuantity') {
+			
+			const $qty = $.trim($row.find('.cartQuantity').val());
+			const $cartId = $.trim($row.find('.cartId').val());
+			$action = 'updateItemQuantity';
+			$error = "something went wrong";
+			$var = JSON.stringify({'cartId':$cartId, 'quantity':$qty});
+		 }
 
 		//delete an item
 		 if ($(this).attr('name') === 'trash') {
@@ -65,7 +74,7 @@
 			const $title = $.trim($row.find('.title').text());
 			const $price = $.trim($row.find('.price').text()).substr(1);
 			const $quantity = $.trim($row.find('.quantity').val());
-
+			
 			$var = JSON.stringify({'id':$id, 'title':$title, 'quantity':$quantity,  'price':$price});
 			$action = 'addToCart';
 			$error = "Failed to add item to cart";
