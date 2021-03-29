@@ -16,7 +16,7 @@ class Cart
     {
         $total = 0;
         foreach ($_SESSION['cartItems'] as $item) { 
-            $total += $item->subTotal;
+            $total += $item->getSubTotal();
         }  
         return $total;
     }

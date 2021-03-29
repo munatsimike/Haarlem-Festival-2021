@@ -7,7 +7,6 @@ class CartItem
     public string $title = '';
     public string $description = '';
     public int  $quantity = 0;
-    public float $subTotal = 0;
 
     public function __construct(int $id, string $description, int $quantity, float $unitPrice)
     {
@@ -15,5 +14,9 @@ class CartItem
         $this->unitPrice = $unitPrice;
         $this->description = $description;
         $this->quantity = $quantity;
+    }
+
+    public function getSubTotal() : float{
+        return $this->quantity * $this->unitPrice;
     }
 }

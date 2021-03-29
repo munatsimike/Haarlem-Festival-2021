@@ -14,10 +14,12 @@
 		public function getTitle() : string
 		{
 			$title = "";
-			foreach ($this->djs as $key->$dj) {
-				if($key>0){ $title .= " / "; }
-				$title .= $dj['name'];
-			}  
+			if(!empty($this->djs)){
+				foreach ($this->djs as $key=>$dj) {
+					if($key>0){ $title .= " / "; }
+					$title .= $dj;
+				}  
+			}else{return "no djs";}
 			return $title . " | " . $this->session;
 		}
 	}		

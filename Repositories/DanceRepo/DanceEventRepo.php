@@ -1,15 +1,6 @@
 <?php	
-	 class DanceEventRepo
+	 class DanceEventRepo extends EventRepo
 	{
-		private PDO $pdo;
-
-		public function __construct()
-		{ 
-			//gets database connection instance from Connection class
-			try{
-				$this->pdo = Connection::DBConnection();
-			} catch (ConnectionFailureException $errorMsg) {}
-		}
 
 		public function fetchDanceTickets() : array
 		{
@@ -23,15 +14,18 @@
 			throw ConnectionFailureException::database();
 		}
 
-		public function fetchDJs($id) : array
+		private function fetchTicketDJs(int $id) : array
 		{
 			// fetches djs of given ticket from database
 			if ($this->pdo instanceof PDO) {
-				return $this->pdo->query("	SELECT dj.name FROM dance_ticket AS D 
-											JOIN dj_dance AS DD ON DD.dance_id = D.ID
-											JOIN dj ON DD.DJ_id = dj.ID
-											WHERE D.ID = $id
-											ORDER BY dj.ID")->fetchAll(PDO::FETCH_BOTH);
+				print($id);
+				$stmt = $this->pdo->prepare("	SELECT dj.name FROM dj_dance AS DD
+												JOIN dj ON DD.DJ_id = dj.ID
+												WHERE DD.dance_id = :id
+												ORDER BY dj.ID");
+				$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+				$stmt->execute();
+				return $stmt->fetchAll(PDO::FETCH_COLUMN);
 			}
 			throw ConnectionFailureException::database();
 		}
@@ -40,18 +34,12 @@
 		{
 			// converts pdo array to DanceTickets array
 			$tickets = [];
-			foreach($assocList as $row){
-				$djs = $this->fetchDJs($row['ID']);
+			foreach($assocList as $key=>$row){
+				$djs = $this->fetchTicketDJs($row['ID']);
 				$venue = new Venue($row['venue'], $row['address']);
 				$tickets[] = new DanceTicket($row['ID'], $row['price'], $row['date'], $row['start'], $row['end'], $venue, $row['seats'], $row['session'], $djs);
 			}
 			return $tickets;
-		}
-
-		public function updateNumberOfSeats(int $ticketId , int $quantity) : void
-		{
-				$this->pdo->prepare("UPDATE event SET seats = (seats - :quantity) WHERE id = :id")
-				      	  ->execute(['id'=>$ticketId, 'quantity'=>$quantity]);
 		}
 	}
 
