@@ -16,7 +16,7 @@
 		<div>
 			<?php 
 				include 'cart/view-cart-items.php';
-				include 'login/login-registration.php';
+				include 'CMS/login.php';
 			?>
 		</div>
 		<div id='footer' class = "mt-4">
