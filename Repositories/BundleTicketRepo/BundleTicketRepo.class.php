@@ -11,18 +11,18 @@
 			} catch (ConnectionFailureException $errorMsg) {}
 		}
 
-		public function fetchJazzBundleTickets() : array
+		public function fetchBundleTickets($eventType) : array
 		{
 			// converts pdo array to jazzTickets array
 			$Bundletickets = [];
-			foreach($this->fetchBundleTickets(EventName::JAZZ) as $row) {
+			foreach($this->fetchTickets($eventType) as $row) {
 				$Bundletickets[] = new BundleTicket($row['ID'], $row['price'], $row['seats'], $row['title']);
 			}
 
 			return $Bundletickets;
 		}
 
-		private function fetchBundleTickets(string $event) : array
+		private function fetchTickets(string $event) : array
 		{
 			// fetches JazzTickets from database
 			if ($this->pdo instanceof PDO) {

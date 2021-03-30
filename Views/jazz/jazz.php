@@ -3,7 +3,7 @@
 
 	try {
 		$tickets = JazzController::jazzController()->fetchJazzTickets();
-		$BundleTickets = BundleTicketController::bundleTicketController()->fetchJazzBundleTickets();
+		$BundleTickets = BundleTicketController::bundleTicketController()->fetchBundleTickets(EventName::JAZZ);
 	} catch (ConnectionFailedExecption $mesg) {
 
 	}
@@ -25,7 +25,7 @@
 
 				<div class = "col-4 ml-4">
 					<div class = "timeTable row justify-content-center mt-3 ">
-						<h3>Promo Tickets 80% Off</h3>
+						<h3>Promo Tickets</h3>
 						<div class = "row p-4">
 						<?php EventOption::displayMultipleEventTickets($BundleTickets)?>
 					</div>

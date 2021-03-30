@@ -9,10 +9,10 @@
 			$this->repo ?? $this->repo = new BundleTicketRepo();
 		}
 
-		public function fetchJazzBundleTickets() : array
+		public function fetchBundleTickets($eventType) : array
 		{
 			try {
-				return $this->repo->fetchJazzBundleTickets();
+				return $this->repo->fetchBundleTickets($eventType);
 
 			} catch (ConnectionFailureException $msg) {
 					
