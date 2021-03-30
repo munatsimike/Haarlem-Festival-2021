@@ -104,43 +104,29 @@
 			})
         });
 
-		// show cart ,loginmodal or login
-	$('#icart, #login, .footer').click(function($event){
+		// show cart ,login or login
+	$('.footer').click(function($event){
 		 $event.preventDefault();
 
-		 if ($(this).attr('id') ==='login') {
-			$('#login-registration').modal('show');
-		 } else if ($(this).attr('class') === 'footer') {
-			$('#login').toggle();
-		 } else {
-			$('#cartModal').modal('show');
+	    if ($(this).attr('class') === 'footer') {
+			$('#login-icon').toggle();
 		 }
-
 	  });
 
 		// validate login and registration
-		$("#registration").validate({
+		$("#login").validate({
 		// Specify validation rules
 		rules: {
-			userName: "required",
-			password: "required",
-			phone: "required",
-
 			email: {
 				required: true,
 				email: true
 			},
-
-			confirm_email: {
-				required: true,
-				equalTo: "#email"
-			},
+			password: "required"
 		},
 		// Specify validation error messages
 		messages: {
-				userName: "Please enter your first name",
-				password: "Please enter your last name",
-				phone: "Emails do not match"
+				email: "Please enter a valid email",
+				password: "Please enter your password"
 		},
 
 		// Make sure the form is submitted to the destination defined

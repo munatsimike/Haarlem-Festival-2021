@@ -1,6 +1,6 @@
 
-<!-- Login / Register Modal-->
-<div class="modal fade" id="login-registration" role="dialog">
+<!-- Login --->
+<div class="modal fade" id="volunteer-login" role="dialog">
   <div class="modal-dialog modal-m">
     <div class="modal-content">
         <div class="modal-body">
@@ -13,11 +13,11 @@
             <div class="row justify-content-center">
                  <div class = "row"><h5 class="modal-title">Volunteer Login</h5></div>
             </div>
-                    <form action = "/Service/CMS/Login-Registration.php" method = "POST">
+                    <form action = "/Service/CMS/Login-Registration.php" id = "login" method = "POST">
                         <input type="hidden" name="form-name" value = "login">
                         <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Volunteer username" name="username">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email" placeholder="Volunteer email" name="email">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>

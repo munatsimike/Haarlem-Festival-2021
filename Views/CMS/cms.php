@@ -49,8 +49,33 @@ if ( ! isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	</body>
 </html>
 <script>
-		$(function() {
-			
-			
-		});
+$(function() {
+	$("#checkout-form").validate({
+		// Specify validation rules
+		rules: {
+			firstName: "required",
+			lastName: "required",
+			email: {
+				required: true,
+				email: true
+			},
+			confirm_email: {
+				required: true,
+				equalTo: "#email"
+			},
+		},
+		// Specify validation error messages
+		messages: {
+				firstName: "Please enter your first name",
+				lastName: "Please enter your last name",
+				confirm_email: "Emails do not match"
+		},
+
+		// Make sure the form is submitted to the destination defined
+		submitHandler: function(form) {
+		form.submit();
+		}
+
+	});
+});
 </script>
