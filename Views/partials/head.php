@@ -8,4 +8,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../../Css/style.css" type="text/css">
+<script type="text/javascript" src= "/Service/NotifIt/js/notifIt.js"></script>
+<link rel="stylesheet" type="text/css" href="/Service/NotifIt/css/notifIt.css">
 <title>Haarlem festival</title>

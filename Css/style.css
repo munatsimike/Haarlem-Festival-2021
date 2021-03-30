@@ -15,7 +15,6 @@ p.introduction,h3{
 
 /******* header **************/
 .header {
-  padding: 80px;
   background-image: url("../Img/hi.jpg");
   height: 300px;
   background-repeat: no-repeat;
@@ -351,18 +350,13 @@ article{
   color: #F00;
 }
 
-.checkout-btn{
-border-color:#ff9800;
-background-color: #ff9800;
-}
-
 .cancel-btn{
  background-color:#fff;
- border-color:#696969;
+ border-color:#007DFF;
  color: #ff980;
 }
 
-.timeTable, .customer-details {
+.timeTable {
    background-color: #AB987A !important;
    border-radius: 8px;
  }
@@ -416,4 +410,13 @@ background-color: #ff9800;
 
 .modal-footer {
   padding-top: 0rem;
+}
+/***********************glyphicons*************************************************/
+.icons {
+  color:#007DFF;
+  font-size:2em;
+}
+
+#logoutIcon{
+    font-size:1em;
 }

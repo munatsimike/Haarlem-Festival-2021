@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             "value" => "$amount"
         ],
         "description" => "Haarlem Festival Payment",
-        "redirectUrl" => "http://localhost/Views/paymentViews/pdfInvoice.php",
+        "redirectUrl" => "http://localhost/Views/paymentViews/payment-confirmation.php",
     ]);
 
         try {

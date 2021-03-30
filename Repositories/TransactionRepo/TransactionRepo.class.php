@@ -1,13 +1,12 @@
 <?php	
-	 class TransactionRepo
+	 class TransactionRepo extends EventRepo
 	{
-		private PDO $pdo;
 		private CustomerRepo $customerRepo;
 		private JazzRepo $jazzRepo;
 
 		public function __construct()
 		{
-			$this->pdo = Connection::DBConnection();
+			parent::__construct();
 			$this->customerRepo = new CustomerRepo();
 			$this->jazzRepo = new JazzRepo();
 		}

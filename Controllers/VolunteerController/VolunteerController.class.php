@@ -11,12 +11,20 @@
 
 		public function storeVolunteer(Volunteer $volunteer) : void
 		{
-			$this->repo->storeVolunteer($volunteer);
+			try {
+				$this->repo->storeVolunteer($volunteer);
+			} catch (PDOException $errorMsg) {
+				throw $errorMsg;
+			}
 		}
 
 		public function IsUsernamePasswordValid(Volunteer $volunteer) : bool
 		{
-			return $this->repo->IsUsernamePasswordValid($volunteer);
+			try {
+				return $this->repo->IsUsernamePasswordValid($volunteer);
+			} catch (PDOException $errorMsg) {
+				throw $errorMsg;
+			}
 		}
 	
 		public static function VolunteerController() : VolunteerController

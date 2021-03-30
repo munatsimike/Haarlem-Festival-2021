@@ -6,7 +6,11 @@ $link_address = "";
 ?>
 <html>
 	<head>
-		<?php include 'partials/head.php'?>
+		<?php
+		 include 'partials/head.php';
+		 require_once 'alert.php';
+		?>
+
 		<title>Haarlem festival</title>
 	</head>
 	<img class="Logoright" src="/Img/logo.png" alt="logo"  title ="logo"/>
