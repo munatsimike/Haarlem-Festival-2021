@@ -19,20 +19,21 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUEST
         if ($_REQUEST['action'] === 'addToCart') {
             $price = floatval($var['price']);
             $quantity = intval($var['quantity']);
+            $seats = $var['seats'];
             $id = intval($var['id']);
             $subTotal = 0;
         
-            $cart->addToCart(new CartItem($id, $var['title'], $quantity, $price)); 
+            $cart->addToCart(new CartItem($id, $var['title'], $quantity, $price, $seats)); 
          
         } elseif ($_REQUEST['action'] === 'deleteCartItem') { 
             $id = intval($var['id']);
             $cart->deleteCartItem($id); 
          
         } elseif ($_REQUEST['action'] === 'updateItemQuantity') { 
-            $cart = []
+            $cart = [];
             foreach($this->cart as $item){
-                if($item->id == intval($var['cartId']){
-                    $cart[] = new CartItem($item->id, $item->description, intval($var['quantity'], $item->price);
+                if($item->id == intval($var['cartId'])){
+                    $cart[] = new CartItem($item->id, $item->description, intval($var['quantity']), $item->price);
                 }
                 else{
                     $cart[] = new CartItem($item->id, $item->description, $item->quantity, $item->price);

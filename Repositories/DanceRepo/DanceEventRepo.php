@@ -18,7 +18,6 @@
 		{
 			// fetches djs of given ticket from database
 			if ($this->pdo instanceof PDO) {
-				print($id);
 				$stmt = $this->pdo->prepare("	SELECT dj.name FROM dj_dance AS DD
 												JOIN dj ON DD.DJ_id = dj.ID
 												WHERE DD.dance_id = :id
