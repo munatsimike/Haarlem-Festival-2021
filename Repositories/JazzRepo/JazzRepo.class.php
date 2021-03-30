@@ -1,7 +1,6 @@
 <?php	
 	 class JazzRepo extends EventRepo
 	{
-
 		public function fetchJazzTickets() : array
 		{
 			// fetches JazzTickets from database

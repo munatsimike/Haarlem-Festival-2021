@@ -11,7 +11,10 @@ if ( ! isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 ?>
 <html>
 	<head>
-		<?php include '../partials/head.php'?>
+		<?php 
+			require_once '../partials/head.php'; 
+			require_once '../alert.php';
+		?>
 		<title>Haarlem festival CMS</title>
 	</head>
 	<img class="Logoright" src="/Img/logo.png" alt="logo"  title ="logo"/>
@@ -22,12 +25,32 @@ if ( ! isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	</ul>
 		<header class="header">
 		<!--for background image-->
-		<!-- the good header -->
+			<?php
+			// check if volunteer acc is created and display appropriate message
+				if (isset($_SESSION['registration'])) {
+				   if ($_SESSION['registration'] === true) {
+						echo "<script> showAlert('Success ! Account successfully created','success');</script>";
+				   }else {
+					   // log exception message to email;
+						error_log($_SESSION['registration'], 1, "hfestival21@gmail.com");
+						echo "<script> showAlert('Internal error ! account not created contact support','error');</script>";
+				   }
+					unset($_SESSION['registration']);
+				} 
+			?>
 		</header>
 	<body>
+			 
 		<?php 
-		require_once "logoutModal.php"; 
-		require_once "registration.php";
+		require_once "logout-modal.php"; 
+		/// account registration form
+		require_once "registration-modal.php"; 
 		?>
 	</body>
 </html>
+<script>
+		$(function() {
+			
+			
+		});
+</script>

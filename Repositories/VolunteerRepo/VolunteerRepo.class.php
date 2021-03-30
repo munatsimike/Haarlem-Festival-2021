@@ -1,16 +1,6 @@
 <?php	
-	 class VolunteerRepo
+	 class VolunteerRepo extends EventRepo
 	{
-		private PDO $pdo;
-
-		public function __construct()
-		{ 
-			//gets database connection instance from Connection class
-			try{
-				$this->pdo = Connection::DBConnection();
-			} catch (ConnectionFailureException $errorMsg) {}
-		}
-		
 		// Check if volunteer username exist
 		public function usernameExist(string $username) : bool
 		{
@@ -32,12 +22,12 @@
 				$this->pdo->prepare("INSERT INTO volunteer (username, password, email, status, phone) VALUES (:username, :password, :email, :status, :phone)")
 						->execute(['username' => $volunteer->username, 'password' => $volunteer->password, 'email' => $volunteer->email, 'status' => 'active', 'phone' => $volunteer->phoneNumber]);
 			} catch (PDOException $e) {
-
+				throw $e;
 			}
 		}
 
 		public function IsUsernamePasswordValid(Volunteer $volunteer) : bool
-		{			
+		{
 			if ($this->usernameExist($volunteer->username)) {
 				$stmt = $this->pdo->prepare("SELECT password FROM volunteer WHERE username = :username");
 				$stmt->execute(['username' => "$volunteer->username"]);

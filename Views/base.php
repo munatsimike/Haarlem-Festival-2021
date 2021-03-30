@@ -3,7 +3,17 @@
 
 	include 'ti.php';
 	require_once 'header.php';
-
+	// display login error 
+	if (isset($_SESSION['validCredentials'])) {
+		if ( $_SESSION['validCredentials'] === false) {
+			echo "<script> showAlert('Error ! Login failed invalid credentials','error');</script>";
+		} else {
+			// send exception error to email
+			error_log($_SESSION['validCredentials'], 1, "hfestival21@gmail.com");
+			echo "<script> showAlert('Error ! Internal server error If the problem persist contact support','error');</script>";
+		}
+		unset($_SESSION['validCredentials']);
+	}
 ?>
 	<body>
 		<div class = "card border-0">
@@ -16,7 +26,7 @@
 		<div>
 			<?php 
 				include 'cart/view-cart-items.php';
-				include 'CMS/login.php';
+				include 'CMS/login-modal.php';
 			?>
 		</div>
 		<div id='footer' class = "mt-4">

@@ -16,10 +16,10 @@
 				70%
 			</div>
 			</div class="row justify-content-center">
-				<h2>Checkout Form</h2>
+				<h2>Haarlem Festival</h2>
 			</div>
 			<div class="row justify-content-center">
-				<div class ='col-md-5 order-md-3'>
+				<div class ='col-md-5 order-md-1'>
 					<div class="row justify-content-center">
 						<h2>Your Cart</h2>
 					</div>
@@ -41,9 +41,8 @@
 						foreach (Cart::getCartItems() as $item) {
 						echo  "<tr>
 								<td>$item->quantity</td>
-								<td>" . $item->title . "/n" . $item->description . "</td>
+								<td>" . $item->title . "" . $item->description . "</td>
 								<td>€ $item->unitPrice</td>
-								<td>€ $item->subTotal</td>
 							</tr>";
 							}
 						?>
@@ -68,9 +67,12 @@
 					</table>
 				</div>	
 				<div class="col-md-1 order-md-2"></div>
-				<div class="customer-details col-md-4 order-md-1 mb-4">
+				<div class="customer-details col-md-4 order-md-2 mb-4">
+					<div class="row justify-content-center">
+					    <h3 class="mb-2 mt-2">Checkout Form</h3>
+					</div>
 				    <div class="row justify-content-center">
-					    <h4 class="mb-2 mt-2">Customer Details</h4>
+					    <h5 class="mb-2 mt-2">Your Details</h5>
 					</div>
 					<p>Details provided to this form will appear on the invoice that will be sent to the provided email address</p>
 					<form action = "../../Service/paymentGateway.php" id = "checkout-form" method = "POST">
@@ -94,7 +96,7 @@
 							<label for="confirm-email">Confirm Email</label>
 							<input type="email" name="confirm_email" id="confirm-email" class="form-control" id="confirm-email" placeholder="you@example.com">
 						</div>
-						<button class="btn text-white btn-lg btn-block checkout-btn" type="submit">Continue to checkout</button>
+						<button class="btn text-white btn-lg btn-block btn-primary" type="submit">Continue to checkout</button>
 						<button onclick ="location.href='../../index.php'" class="btn btn-lg btn-block mb-3 cancel-btn" type="button">Cancel</button>
 					</form>
 				</div>

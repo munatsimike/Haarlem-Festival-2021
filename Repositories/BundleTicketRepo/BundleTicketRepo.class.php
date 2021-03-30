@@ -1,15 +1,6 @@
 <?php	
-	 class BundleTicketRepo
+	 class BundleTicketRepo extends EventRepo
 	{
-		private PDO $pdo;
-
-		public function __construct()
-		{ 
-			//gets database connection instance from Connection class
-			try{
-				$this->pdo = Connection::DBConnection();
-			} catch (ConnectionFailureException $errorMsg) {}
-		}
 
 		public function fetchBundleTickets($eventType) : array
 		{
