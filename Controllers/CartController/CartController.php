@@ -28,11 +28,17 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUEST
             $id = intval($var['id']);
             $cart->deleteCartItem($id); 
          
-        } elseif ($_REQUEST['action'] === 'updatItemQuantity') { 
-            // Remove item from cart 
-            $cart->updatItemQuantity($_REQUEST['var']); 
-            // Redirect to cart page 
-            $redirectLoc = 'viewCart.php'; 
+        } elseif ($_REQUEST['action'] === 'updateItemQuantity') { 
+            $cart = []
+            foreach($this->cart as $item){
+                if($item->id == intval($var['cartId']){
+                    $cart[] = new CartItem($item->id, $item->description, intval($var['quantity'], $item->price);
+                }
+                else{
+                    $cart[] = new CartItem($item->id, $item->description, $item->quantity, $item->price);
+                }
+            }
+            $this->cart = $cart;
     }
 } 
 }
