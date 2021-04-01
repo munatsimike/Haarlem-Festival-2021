@@ -98,7 +98,6 @@
 				data : {'var': $var},
 			}).done(function () {
 				//alert(http_response_code);
-				location.reload();
 			}).fail(function (jqXHR, textStatus, errorMessage) {
 				alert($error);
 			})

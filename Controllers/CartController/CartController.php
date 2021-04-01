@@ -33,10 +33,10 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUEST
             $cart = [];
             foreach($this->cart as $item){
                 if($item->id == intval($var['cartId'])){
-                    $cart[] = new CartItem($item->id, $item->description, intval($var['quantity']), $item->price);
+                    $cart[] = new CartItem($item->id, $item->description, intval($var['quantity']), $item->price, $item->seats);
                 }
                 else{
-                    $cart[] = new CartItem($item->id, $item->description, $item->quantity, $item->price);
+                    $cart[] = new CartItem($item->id, $item->description, $item->quantity, $item->price, $item->seats);
                 }
             }
             $this->cart = $cart;
