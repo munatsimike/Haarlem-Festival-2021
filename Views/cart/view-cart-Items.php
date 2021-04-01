@@ -1,4 +1,4 @@
-<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
@@ -39,7 +39,7 @@
                   </tr>";
                     }
             } else { 
-                    echo "<tr><td colspan='5'><p><span><i class='bi bi-info-circle-fill text-info' style='font-size: 1.8rem'></i></span> Your cart is empty, add items .....</p></td>";
+                    echo "<tr><td colspan='5'><p><span><i class='bi bi-info-circle-fill icons'></i></span> Your cart is empty, add items .....</p></td>";
                 }
             ?>
           </tbody>

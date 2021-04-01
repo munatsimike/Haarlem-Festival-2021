@@ -1,5 +1,5 @@
 <?php
-class CustomerRepo extends EventRepo
+class CustomerRepo extends Repo
 {
     public function createCustomerId() : int
     {               

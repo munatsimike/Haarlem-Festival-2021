@@ -1,5 +1,5 @@
 <?php	
-	 class EventRepo
+	 class Repo
 	{
 		protected PDO $pdo;
 

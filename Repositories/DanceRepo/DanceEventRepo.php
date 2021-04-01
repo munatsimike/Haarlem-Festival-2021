@@ -1,5 +1,5 @@
 <?php	
-	 class DanceEventRepo extends EventRepo
+	 class DanceEventRepo extends Repo
 	{
 
 		public function fetchDanceTickets() : array

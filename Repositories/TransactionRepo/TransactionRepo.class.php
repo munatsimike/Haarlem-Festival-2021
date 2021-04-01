@@ -1,5 +1,5 @@
 <?php	
-	 class TransactionRepo extends EventRepo
+	 class TransactionRepo extends Repo
 	{
 		private CustomerRepo $customerRepo;
 		private JazzRepo $jazzRepo;

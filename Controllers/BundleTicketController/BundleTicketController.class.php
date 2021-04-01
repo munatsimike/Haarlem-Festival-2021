@@ -9,7 +9,7 @@
 			$this->repo ?? $this->repo = new BundleTicketRepo();
 		}
 
-		public function fetchBundleTickets($eventType) : array
+		public function fetchBundleTickets(EventName $eventType) : array
 		{
 			try {
 				return $this->repo->fetchBundleTickets($eventType);

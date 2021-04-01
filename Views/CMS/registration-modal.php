@@ -1,5 +1,5 @@
 <!-- Login / Register Modal-->
-<div class="modal fade" id="registration" role="dialog">
+<div class="modal fade" id="registration-modal" role="dialog">
   <div class="modal-dialog modal-m">
     <div class="modal-content">
         <div class="modal-body">
@@ -11,37 +11,33 @@
                     <div class="row justify-content-center">
                         <div class = "row"><h5 class="modal-title">Create Volunteer Account</h5></div>
                     </div>
-                     <form action="/Service/CMS/Login-Registration.php" method = "POST">
+                     <form action="/Service/CMS/admin.php" id ="registration-form" method = "POST">
                             <input type="hidden" name="form-name" value = "registration">
                             <div class="form-group">
-                                <label for="username">Username:</label>
-                                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                                <label for="email">Email:</label>
+                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                                <span id="response"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm_email">Confirm Email:</label>
+                                <input type="text" class="form-control" id="confirm_email" placeholder="Confirm email" name="confirm_email">
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password:</label>
                                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                             </div>
-
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter email address" name="email">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone">Phone:</label>
-                                <input type="number" class="form-control" id="phone" placeholder="Enter phone number" name="phone">
-                            </div>
-
+ 
                             <div class="form-group">
                                 <label for="employee-type">Employee Type:</label>
                                 <select name="employee-type" id="employee-type">
                                     <option value="regular">Regular</option>
-                                    <option value="manager">Manager</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">Create account</button>
+                            <button id = "submitbtn" type="submit" class="btn btn-primary btn-block">Create account</button>
                         </form>
                 </div>
             </div>

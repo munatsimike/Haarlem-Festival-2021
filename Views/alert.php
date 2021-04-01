@@ -7,7 +7,7 @@
                     type: alertType,
                     position: 'center',
                     timeout: 6000,
-                    width: 500,
+                    width: 600,
                     height: 60
                 });
             }

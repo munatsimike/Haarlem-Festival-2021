@@ -26,6 +26,15 @@
 				throw $errorMsg;
 			}
 		}
+
+		public function isEmailAvailable(Volunteer $volunteer) : bool
+		{
+			try {
+				return $this->repo->isEmailAvailable($volunteer);
+			} catch (PDOException $errorMsg) {
+				throw $errorMsg;
+			}
+		}
 	
 		public static function VolunteerController() : VolunteerController
 		{

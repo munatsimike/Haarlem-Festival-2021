@@ -1,5 +1,5 @@
 <?php	
-	 class JazzRepo extends EventRepo
+	 class JazzRepo extends Repo
 	{
 		public function fetchJazzTickets() : array
 		{

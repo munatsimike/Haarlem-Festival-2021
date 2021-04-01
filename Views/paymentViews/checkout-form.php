@@ -1,12 +1,23 @@
 <?php
-	require $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
+	require_once $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
+	if ( ! isset($_SESSION)) session_start();
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php include_once '../partials/head.php'?>
-		<title>payment</title>
+		<?php require_once '../partials/head.php';
+			 require_once '../alert.php';
+		?>
+
+		<title>checkout form</title>
 	</head>
+	<header>
+		<?php
+			if (isset($_SESSION['paymentError'])) {
+				echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
+			}	unset($_SESSION['paymentError']);
+		?>
+	</header>
 	<body >
 	  	<div class='container-fluid'>
 			<div class="py-2 text-center">
@@ -78,12 +89,12 @@
 					<form action = "../../Service/paymentGateway.php" id = "checkout-form" method = "POST">
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="firstName">First name</label>
-								<input type="text" name = "firstName" class="form-control" id="firstName" placeholder="" value="">
+								<label for="firstname">First name</label>
+								<input type="text" name = "firstname" class="form-control" id="firstname" placeholder="" value="">
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="lastName">Last name</label>
-								<input type="text" name ="lastName" class="form-control" id="lastName" placeholder="" value="">
+								<label for="lastname">Last name</label>
+								<input type="text" name ="lastname" class="form-control" id="lastname" placeholder="" value="">
 							</div>
 						</div>
 
@@ -109,8 +120,8 @@ $(function() {
 	$("#checkout-form").validate({
 		// Specify validation rules
 		rules: {
-			firstName: "required",
-			lastName: "required",
+			firstname: "required",
+			lastname: "required",
 			email: {
 				required: true,
 				email: true
@@ -122,8 +133,8 @@ $(function() {
 		},
 		// Specify validation error messages
 		messages: {
-				firstName: "Please enter your first name",
-				lastName: "Please enter your last name",
+				firstname: "Please enter your first name",
+				lastname: "Please enter your last name",
 				confirm_email: "Emails do not match"
 		},
 

@@ -6,9 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $redirectToPage = "../../Views/CMS/cms.php";
 
-    if ($_POST['form-name'] === FormName::LOGIN) {
-
-       $volunteer = (new Volunteer(trim($_POST['username']), trim($_POST['password'])));
+    if (isset($_POST['form-name']) && $_POST['form-name'] === FormName::LOGIN()->getValue()) {
+       $volunteer = (new Volunteer(trim($_POST['email']), trim($_POST['password'])));
        try {
             $result = VolunteerController::VolunteerController()->IsUsernamePasswordValid($volunteer);
        } catch (Exception $errorMsg) {
@@ -24,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Store data in session variables
             $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $volunteer->username;
+            $_SESSION["email"] = $volunteer->email;
             header("Location: $redirectToPage");
 
        } else {
@@ -32,16 +31,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              $_SESSION['validCredentials'] = false;
              header("Location: $redirectToPage");
        }
-
-    } else {
+    } 
+    
+    if (isset($_POST['form-name']) && $_POST['form-name'] === FormName::REGISTRATION()->getValue()) {
         try {
-            VolunteerController::VolunteerController()->storeVolunteer(new Volunteer(trim($_POST['username']), password_hash(trim($_POST['password']), PASSWORD_DEFAULT), trim($_POST['email']), intval(trim($_POST['phone']))));
+            VolunteerController::VolunteerController()->storeVolunteer(new Volunteer(trim($_POST['email']), password_hash(trim($_POST['password']), PASSWORD_DEFAULT), trim($_POST['employee-type'])));
             $_SESSION['registration'] = true;
         } catch (PDOException $msg) {
             $_SESSION['registration'] = $msg;
         } finally {
             header("Location: $redirectToPage");
         }
+    }
+
+    if (isset($_REQUEST['email'])) {
+       $isEmailAvailable = VolunteerController::VolunteerController()->isEmailAvailable(new Volunteer($_REQUEST['email']));
+       die(json_encode($isEmailAvailable));
     }
 
 } else {
