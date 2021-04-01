@@ -39,7 +39,7 @@
                   </tr>";
                     }
             } else { 
-                    echo "<tr><td colspan='5'><p><span><i class='bi bi-info-circle-fill text-info' style='font-size: 1.8rem'></i></span> Your cart is empty, add items .....</p></td>";
+                    echo "<tr><td colspan='5'><p><span><i class='bi bi-info-circle-fill icons'></i></span> Your cart is empty, add items .....</p></td>";
                 }
             ?>
           </tbody>

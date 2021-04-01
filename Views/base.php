@@ -124,8 +124,12 @@
 		},
 		// Specify validation error messages
 		messages: {
-				email: "Please enter a valid email",
-				password: "Please enter your password"
+				email: {
+					email: "Enter a valid email",
+					require: "Enter your email"
+				},
+
+				password: "Enter your password"
 		},
 
 		// Make sure the form is submitted to the destination defined

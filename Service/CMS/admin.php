@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Store data in session variables
             $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $volunteer->username;
+            $_SESSION["email"] = $volunteer->email;
             header("Location: $redirectToPage");
 
        } else {

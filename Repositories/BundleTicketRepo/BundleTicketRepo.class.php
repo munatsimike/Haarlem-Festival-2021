@@ -1,5 +1,5 @@
 <?php	
-	 class BundleTicketRepo extends EventRepo
+	 class BundleTicketRepo extends Repo
 	{
 
 		public function fetchBundleTickets(EventName $eventType) : array

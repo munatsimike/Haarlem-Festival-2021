@@ -1,5 +1,5 @@
 <?php	
-	 class VolunteerRepo extends EventRepo
+	 class VolunteerRepo extends Repo
 	{
 		// Check if volunteer username exist
 		public function isEmailAvailable(Volunteer $volunteer) : bool
@@ -12,8 +12,8 @@
 		// save new volunteer
 		public function storeVolunteer(Volunteer $volunteer) : void
 		{
-				$this->pdo->prepare("INSERT INTO volunteer (email, password, employee_type, status) VALUES (:email, :password, :employee_type, :status)")
-						   ->execute(['email' => $volunteer->email, 'password' => $volunteer->password, 'employee_type' => $volunteer->employeeType, 'status' => 'active']);
+				$this->pdo->prepare("INSERT INTO volunteer (email, password, employee_type) VALUES (:email, :password, :employee_type)")
+						   ->execute(['email' => $volunteer->email, 'password' => $volunteer->password, 'employee_type' => $volunteer->employeeType]);
 		}
 
 		public function IsUsernamePasswordValid(Volunteer $volunteer) : bool

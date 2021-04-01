@@ -206,6 +206,13 @@ h5.dateHeading {
   margin-top: 20px;
 }
 
+#loggedEmail {
+    padding: 18px  18px;
+    width:17em;
+    text-align: center;
+    color: #fff;
+}
+
 .quantity {
    width:60px;
 }

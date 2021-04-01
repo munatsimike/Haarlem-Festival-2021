@@ -37,7 +37,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">Create account</button>
+                            <button id = "submitbtn" type="submit" class="btn btn-primary btn-block">Create account</button>
                         </form>
                 </div>
             </div>
