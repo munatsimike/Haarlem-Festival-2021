@@ -40,6 +40,14 @@
 <script>
   $(function(){	  
 	
+	// highlight active page on the nav menu
+	$('#nav li a').each(function () {
+			path = $(this).prop('href');
+            if (path == window.location.href && path.substr(-1) != "#") {
+                $(this).addClass('active');
+            }
+        });
+
 	  // check for valid quantity. greater than 0 and less than available seats
 	  $('.quantity').change(function() {
 		const $row = $(this).closest('tr');

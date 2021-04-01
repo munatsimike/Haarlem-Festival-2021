@@ -26,7 +26,7 @@ if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
         </div>
         <div class="modal-body text-center">
           <?php
-           echo "<p>Payment was processed successfuly. A receipt was sent to ".$_SESSION['customer']->email."</p>
+           echo "<p>Payment was processed successfuly. A receipt will be sent to ".$_SESSION['customer']->email."</p>
                  <P>Thank you for your purchase.</p>";
             ?>
         </div>
