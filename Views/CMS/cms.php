@@ -21,7 +21,7 @@ if ( ! isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	<ul>
 		<li><a href="#" data-target="#logoutModal" data-toggle = "modal" > <?php echo"Logout"." "."<i class='bi bi-box-arrow-right' style='font-size: 1.6rem'></i>";?></a></li>
 		<li><a href="#"> <?php echo "<span>".$_SESSION['username']." "."<i class='bi bi-person-circle' style='font-size: 1.6rem'></i>";?></a></li>
-		<li><a href="#"  data-target="#registration" data-toggle = "modal" >Add Volunteer</a></li>
+		<li><a href="#"  data-target="#registration-modal" data-toggle = "modal" >Add Volunteer</a></li>
 	</ul>
 		<header class="header">
 		<!--for background image-->
@@ -50,15 +50,16 @@ if ( ! isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 </html>
 <script>
 $(function() {
-	$("#checkout-form").validate({
+
+	$("#registration-form").validate({
 		// Specify validation rules
 		rules: {
-			firstName: "required",
-			lastName: "required",
+			password: "required",
 			email: {
 				required: true,
 				email: true
 			},
+
 			confirm_email: {
 				required: true,
 				equalTo: "#email"
@@ -66,16 +67,42 @@ $(function() {
 		},
 		// Specify validation error messages
 		messages: {
-				firstName: "Please enter your first name",
-				lastName: "Please enter your last name",
+				password: "Please enter your password",
+				email: "Please enter a valid email",
 				confirm_email: "Emails do not match"
 		},
-
 		// Make sure the form is submitted to the destination defined
 		submitHandler: function(form) {
 		form.submit();
 		}
-
 	});
+
+	$("#email").change(function(){
+
+		const email = $(this).val().trim();
+		
+		if(email.length === 0){
+			$('#response').empty();
+			return;
+		}
+
+		$.ajax({
+			url: '../../Service/CMS/admin.php',
+			type: 'post',
+			data: {'email': email},
+		}).done(function (response, status, xhr) {
+
+			if(JSON.parse(response)) {
+				$('#response').addClass("error");
+				$('#response').text('Email is taken');
+			} else {
+				$('#response').addClass("form_success");
+				$('#response').text('Email is available');
+			}
+        }).fail(function (jqXHR, textStatus, errorMessage) {
+             alert(errorMessage);
+        })
+	});
+
 });
 </script>

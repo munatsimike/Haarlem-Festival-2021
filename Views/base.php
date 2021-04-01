@@ -91,7 +91,6 @@
 			$error = "Failed to add item to cart";
 		 }
 		
-		$url = 
 		$.ajax({
 				type : 'post',
 				url : '/Controllers/CartController/CartController.php?action='+$action,

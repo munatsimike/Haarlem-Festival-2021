@@ -3,7 +3,7 @@
 
 	try {
 		$tickets = JazzController::jazzController()->fetchJazzTickets();
-		$BundleTickets = BundleTicketController::bundleTicketController()->fetchBundleTickets(EventName::JAZZ);
+		$BundleTickets = BundleTicketController::bundleTicketController()->fetchBundleTickets(EventName::JAZZ());
 	} catch (ConnectionFailedExecption $mesg) {
 
 	}

@@ -431,3 +431,21 @@ article{
   display: none;
   font-size: 1.2em;
 }
+/**********************forms*******************************************/
+select {
+        width: 100px;
+        margin: 10px;
+        height: 27px;
+        border: 1px solid #ced4da;
+        outline-color: #64BFFF;
+        outline-style:inherit;
+    }
+select: focus{
+  background-color: #fff;
+   border-color: #80bdff;
+}
+
+.form_success {
+font-size: 1em;
+color: 	#32CD32;
+}

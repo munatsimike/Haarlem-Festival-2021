@@ -1,9 +1,12 @@
 <?php
+require_once "Enum.php";
+use MyCLabs\Enum\Enum;
 
- class FormName extends Enum
+
+ Final class FormName extends Enum
 {
-    const LOGIN = "login";
-    const REGISTRATION = "registration";
+    private const LOGIN = "login";
+    private const REGISTRATION = "registration";
 }
 
 ?>

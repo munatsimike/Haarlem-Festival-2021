@@ -13,7 +13,7 @@
             <div class="row justify-content-center">
                  <div class = "row"><h5 class="modal-title">Volunteer Login</h5></div>
             </div>
-                    <form action = "/Service/CMS/Login-Registration.php" id = "login" method = "POST">
+                    <form action = "/Service/CMS/admin.php" id = "login" method = "POST">
                         <input type="hidden" name="form-name" value = "login">
                         <div class="form-group">
                             <label for="email">Email:</label>

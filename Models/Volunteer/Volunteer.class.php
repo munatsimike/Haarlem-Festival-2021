@@ -1,10 +1,9 @@
 <?php
 class Volunteer
 {
-    public string $username;
+    public string $employeeType;
     public string $password;
     public string $email;
-    public int $phoneNumber;
 
     public function __construct()
     {
@@ -16,21 +15,20 @@ class Volunteer
         }
     }
 
-    public function __construct1(string $username)
+    public function __construct1(string $email)
     {
-        $this->username = $username;
+        $this->email = $email;
     }
 
-    public function __construct2(string $username, string $password)
+    public function __construct2(string $email, string $password)
     {
-        $this->__construct1($username);
+        $this->__construct1($email);
         $this->password = $password;
     }
 
-    public function __construct4(string $username, string $password, string $email, int $phoneNumber)
+    public function __construct3(string $email, string $password, string $employeeType)
     {
-        $this->__construct2($username, $password);
-        $this->email = $email;
-        $this->phoneNumber = $phoneNumber;
+        $this->__construct2($email, $password);
+        $this->employeeType = $employeeType;
     }
 }
