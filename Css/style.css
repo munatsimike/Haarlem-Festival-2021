@@ -13,6 +13,10 @@ p.introduction,h3{
 	text-align:center;
 }
 
+.introHeading {
+  margin-top:15px;
+	text-align:center;
+}
 /******* header **************/
 .header {
   background-image: url("../Img/hi.jpg");
@@ -36,7 +40,6 @@ ul {
 
 img{
 width:100%;
-
 }
 
 li {
@@ -61,42 +64,39 @@ li a:hover {
 /******* the home page **************/
 .flex-container-HaarlemIndex .article1
 {
-	 min-width:23% ;
-     width:23% ;
-     padding-bottom:0px;
-     margin-bottom:10px;
-     max-height:32%;
-	   border-width:2px;
-	   border-style:solid;
-     border-color:#cc6611;
+	 min-width:23%;
+	 width:23%;
+	 padding-bottom:0px;
+	 margin-bottom:10px;
+	 max-height:32%;
+	 border-width:2px;
+	 border-style:solid;
+	 border-color: #cc6611;
 }
 
-.flex-container-HaarlemIndex .article1 img
+.eventImg
 {
-	  max-width:99% ;
-     width:99% ;
-     margin-bottom:4px;
-     margin-top:4px;
-     height:20%;
-     background-size: contain;
-     background-position: 100% 100%;
-     background-repeat: no-repeat;
-}
- .flex-container-HaarlemIndex .article1 input {
-     max-width:50% ;
-     width:50% ;
-	 color :#fff;
-	 background-color:#cc6011;
-	 padding: 12px 12px;
-	 margin-top: 50px;
-	 margin-bottom:0px;
-	 margin-left:20%
+	   max-width: 100%;
+	   margin-bottom:4px;
+	   margin: 4px;
+	   background-size: contain;
+	   background-position: 100% 100%;
+	   background-repeat: no-repeat;
 }
 
- .flex-container-HaarlemIndex .article1 input:hover {
-	 color :#cc6011;
-	 background-color: #fff;
-	 border:solid 2px #cc6011;
+.introParagraph{
+  padding: 12px;
+}
+ .flex-container-HaarlemIndex .article1 a {
+     width:50%;
+     color :#ffff;
+     background-color:#cc6011;
+     padding: 10px 10px;
+     margin:auto;
+     display:block;
+     margin-bottom: 20px;
+     margin-top: 20px;
+     border: #ff9800;
 }
 
 /***************haarlem food*************/
@@ -319,7 +319,6 @@ article{
 	 padding: 12px 12px;
 	 margin-top: 50px;
 	 margin-left:20% ;
-
 }
  .flex-container-HaarlemFood .article1 h3 {
 	 color :#cc6011;
@@ -329,12 +328,8 @@ article{
 	 text-align:left;
 	 padding-left :5px;
 }
- .flex-container-HaarlemFood .article1 input:hover {
-	 color :#cc6011;
-	 background-color: #fff;
-	 border:solid 2px #cc6011;
 
-}
+
 .searchClass{
 	padding :20px;
 }
