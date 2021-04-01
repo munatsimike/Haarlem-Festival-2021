@@ -3,7 +3,7 @@
         startblock('main') 
   ?>
 
-  <h3>A beautiful historic city center</h3>
+  <h2 class = "introHeading">Haarelm Festival - 2021</h2>
   <p class="introduction">
  famous museums, shops,
 restaurants and the beach around the corner: welcome to Haarlem,
@@ -11,51 +11,59 @@ the city that has everything. From hidden courtyards from bygone times to trendy
 </p>
        <section class="flex-container-HaarlemIndex">
 
-          <article class="article1" style="height:150px ;width:30;">
-               <img src="Img/Dance.jps" alt="product 1"  title ="image of rubiks  cub"/>
-        <h3> Haarlem Dance</h3>
-       <p>
-        type : french,dutch, german
-        location : holland
-        rating : 5 stars
-        opening time : 15:30 - 18:10
+          <article class="article1">
+              <div class = "eventImg">
+                <img src="Img/d22.jpg" alt="product 1"  title ="image of rubiks  cub"/>
+            </div>
+        <h3>Dance</h3>
+        <p class = "introParagraph">
+            type : french,dutch, german
+            location : holland
+            rating : 5 stars
+            opening time : 15:30 - 18:10
        </p>
-       <input type="submit" value="Reserve Now" />
+       <a href=/Views/dance/dance.php class = 'btn btn-md' role='button'>Book now</a>
            </article>
 
            <article class="article1">
-               <img src="Img/Fris.png" alt="product 2" title ="image of castle game"/>
-       <h3> Haarelm Jazz</h3>
-       <p>
-        type : french,dutch, german
-        location : holland
-        rating : 5 stars
-        opening time : 15:30 - 18:10
+           <div class = "eventImg">
+               <img src="Img/jazz1.jpg" alt="product 2" title ="image of castle game"/>
+            </div>
+       <h3>Jazz</h3>
+       <p class = "introParagraph">
+            type : french,dutch, german
+            location : holland
+            rating : 5 stars
+            opening time : 15:30 - 18:10
        </p>
-       <input type="submit" value="Reserve Now" />
+       <a href='/Views/jazz/jazz.php' class = 'btn btn-md' role='button'>Book now</a>
            </article>
 
            <article class="article1">
-               <img src="Img/Dance.jpg" alt=" product 3"  title ="image of super mario"/>
-       <h3> Haarlem History</h3>
-       <p>
-        type : french,dutch, german
-        location : holland
-        rating : 5 stars
-        opening time : 15:30 - 18:10
+           <div class = "eventImg">
+               <img src="Img/h.jpg" alt=" product 3"  title ="image of super mario"/>
+            </div>
+       <h3>History</h3>
+       <p class = "introParagraph">
+            type : french,dutch, german
+            location : holland
+            rating : 5 stars
+            opening time : 15:30 - 18:10
        </p>
-       <input type="submit" value="Reserve Now" />
+       <a href='#' class = 'btn btn-md' role='button'>Book now</a>
            </article>
 
            <article class="article1">
-               <img src="Img/h.jpg" alt=" product 4"  title ="image of poker"/>
-       <h3> Haarlem Food</h3>
-       <p>
-        type : french,dutch, german
-        location : holland
-        rating : 5 stars
-        opening time : 15:30 - 18:10
+           <div class = "eventImg">
+               <img src="Img/food.jpg" alt=" product 4"  title ="image of poker"/>
+            </div>
+       <h3>Food</h3>
+       <p class = "introParagraph">
+            type : french,dutch, german
+            location : holland
+            rating : 5 stars
+            opening time : 15:30 - 18:10
        </p>
-       <input type="submit" value="Reserve Now" />
+       <a href='#' class = 'btn btn-md' role='button'>Book now</a>
            </article>
 <?php endblock('main') ?>
