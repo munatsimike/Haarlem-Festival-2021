@@ -49,7 +49,7 @@ class EventOption
 							<td class='ticketImage'></td>
 							<input type ='hidden' class ='id'  value =".$row->ID.">
 							<td class = 'title'>".$row->getTitle()
-							."<p>Access to all shows for one day</P></td>
+							."<p>".$row->getDescription()."</p></td>
 							<td class = 'price'>€ ".$row->price."</td>";
 							AddToCart::addToCart($row);
 						"</tr>";
