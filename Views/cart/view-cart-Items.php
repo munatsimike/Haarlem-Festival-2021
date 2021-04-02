@@ -47,7 +47,7 @@
         <div class="row">
             <div class='col-9'></div>
             <div class='col-3'>
-              <h5>Total:<span class="price"><?php echo '€'. Cart::getCartTotal()?></span></h5>
+              <h5>Total:<span id="price"><?php echo '€'. Cart::getCartTotal()?></span></h5>
             </div>
         </div>
       </div>
