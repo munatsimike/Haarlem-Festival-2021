@@ -103,9 +103,13 @@
 				type : 'post',
 				url : '/Controllers/CartController/CartController.php?action='+$action,
 				data : {'var': $var},
-			}).done(function () {
-				//alert(http_response_code);
-				location.reload();
+			}).done(function (response) {
+				data = JSON.parse(response);
+				if (data.action === 'delete') {
+					$('#price').text(data.total);
+				} else {
+					location.reload();
+				}
 			}).fail(function (jqXHR, textStatus, errorMessage) {
 				alert($error);
 			})
