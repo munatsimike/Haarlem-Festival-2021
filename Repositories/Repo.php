@@ -1,5 +1,5 @@
 <?php	
-	 class Repo
+	 abstract class Repo
 	{
 		protected PDO $pdo;
 
