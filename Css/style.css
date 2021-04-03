@@ -8,7 +8,7 @@
 body{
 		width:100%;
 }
-p.introduction,h3{
+p.introduction,h3, .otherEventsH4{
 	margin-top:15px;
 	text-align:center;
 }
@@ -45,7 +45,7 @@ width:100%;
 li {
 	display: inline-block;
 	width:12em;
-	height:4em;
+	height: 3.7em;
 	float: right;
 }
 
@@ -58,6 +58,14 @@ li a {
 }
 
 li a:hover {
+  color: #94CBEF;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+#nav a.active{
   background-color: #fff;
   color: #cc6011;
 }

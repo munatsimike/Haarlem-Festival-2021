@@ -47,7 +47,7 @@
 
 					<div class = "row justify-content-center" >
 						<div class = "col-11">
-						<a href = "../dance.php"><h4 class = "otherEventsH4">Dance</h4></a>
+						<a href = "../dance/dance.php"><h4 class = "otherEventsH4">Dance</h4></a>
 						<article class="article1">
 							<div class = "eventImg">
 								<a href = "../dance.php" class = "otherEventsLink"><img src="../../Img/d22.jpg" alt="product 1"  title ="image of rubiks  cub"/></a>

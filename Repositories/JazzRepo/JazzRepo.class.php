@@ -5,7 +5,7 @@
 		{
 			// fetches JazzTickets from database
 			if ($this->pdo instanceof PDO) {
-				return $this->createJazzTickets( $this->pdo->query("SELECT E.ID, E.price, E.date, E.start, E.end, artist, E.seats, V.venue, V.address FROM jazz_ticket AS J 
+				return $this->createJazzTickets( $this->pdo->query("SELECT E.ID, E.price, E.date, TIME_FORMAT(E.start, '%H:%i') AS start, TIME_FORMAT(E.end,'%H:%i')AS end, artist, E.seats, V.venue, V.address FROM jazz_ticket AS J 
 												JOIN event AS E ON E.ID = J.event_id
 												JOIN venue AS V ON V.venue = E.venue_id
 												ORDER BY date,start")->fetchAll(PDO::FETCH_ASSOC));

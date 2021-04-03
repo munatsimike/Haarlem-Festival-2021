@@ -25,7 +25,6 @@
 			$this->ID = $ID;
 			$this->price = $price;
 			$this->seats = $seats;
-
 		}
 
 		public function __construct7(int $ID, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
