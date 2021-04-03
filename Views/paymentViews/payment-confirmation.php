@@ -26,12 +26,12 @@ if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
         </div>
         <div class="modal-body text-center">
           <?php
-           echo "<p>Payment was processed successfuly. A receipt will be sent to ".$_SESSION['customer']->email."</p>
+           echo "<p>Payment was processed successfuly. A receipt will be sent to<strong> ".$_SESSION['customer']->email."</strong></p>
                  <P>Thank you for your purchase.</p>";
             ?>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary btn-block" onclick="location.href='/Views/paymentViews/pdfReceipt.php'" type="button" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary btn-block" onclick="location.href='/Views/paymentViews/pdfReceipt.php?payment=success'" type="button" data-dismiss="modal">Close</button>
 
         </div>
       </div>

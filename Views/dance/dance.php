@@ -1,12 +1,18 @@
 <?php
 	include_once '../base.php';
 
-	try {
-		$tickets = DanceController::danceController()->fetchDanceTickets();
-		$BundleTickets = BundleTicketController::bundleTicketController()->fetchBundleTickets(EventName::DANCE);
-	} catch (ConnectionFailedExecption $mesg) {
+	$bundleTicketController = new BundleTicketController(EventName::DANCE());
+	$danceController = new DanceController();
 
+	try {
+		$tickets = $danceController->fetchDanceTickets();
+		$bundleTickets = $bundleTicketController->fetchBundleTickets();
+	} catch (Exception $error) {
+		new ErrorLog($error->getMessage());
+		echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
+		return;
 	}
+
 
 	$date = $_GET['date'] ?? null;
 ?>
@@ -27,7 +33,7 @@
 					<div class = "timeTable row justify-content-center mt-3 ">
 						<h4>Promo Tickets</h4>
 						<div class = "row p-4">
-						<?php EventOption::displayMultipleEventTickets($BundleTickets)?>
+						<?php EventOption::displayMultipleEventTickets($bundleTickets)?>
 					</div>
 					
 					</div>

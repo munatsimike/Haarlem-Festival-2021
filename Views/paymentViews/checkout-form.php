@@ -1,6 +1,10 @@
 <?php
 	require_once $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
 	if ( ! isset($_SESSION)) session_start();
+
+	if (Cart::getCartTotal() === 0) {
+		header("location: /../index.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,14 +12,13 @@
 		<?php require_once '../partials/head.php';
 			 require_once '../alert.php';
 		?>
-
 		<title>checkout form</title>
 	</head>
 	<header>
 		<?php
-			if (isset($_SESSION['paymentError'])) {
+			if (isset($_GET['error']) && $_GET['error'] === 'error') {
 				echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
-			}	unset($_SESSION['paymentError']);
+			}
 		?>
 	</header>
 	<body >
@@ -45,15 +48,17 @@
 						</thead>
 
 						<?php
-						$tax = Cart::getCartTotal() * $_SESSION['taxRate'];
-						$total = $tax + Cart::getCartTotal(); 
-						$_SESSION['total'] = $total;
-						$_SESSION['tax'] = $tax;
+
+						$_SESSION['subtotal'] = Cart::getCartTotal();
+						$_SESSION['tax'] = $_SESSION['subtotal'] * $_SESSION['taxRate'];
+						$_SESSION['total'] = $_SESSION['tax'] + $_SESSION['subtotal']; 
+						
 						foreach (Cart::getCartItems() as $item) {
 						echo  "<tr>
 								<td>$item->quantity</td>
 								<td>" . $item->title . "" . $item->description . "</td>
 								<td>€ $item->unitPrice</td>
+								<td>€". $item->getSubTotal()."</td>
 							</tr>";
 							}
 						?>
@@ -61,19 +66,19 @@
 						<tr class='no-bottom-border'>
 							<td colspan ='2'></td>
 							<td>SubTotal</td>
-							<td><h6><?php echo "€".(Cart::getCartTotal())?></h6></td>
+							<td><h6><?php echo "€".$_SESSION['subtotal']?></h6></td>
 						</tr>
 
 						<tr class='no-bottom-border'>
 							<td colspan ='2'></td>
 							<td>Tax 15%</td>
-							<td><h6><?php echo "€".$tax?></h6></td>
+							<td><h6><?php echo "€".$_SESSION['tax']?></h6></td>
 						</tr>
 
 						<tr class='no-bottom-border'>
 							<td colspan ='2'></td>
 							<td>Total</td>
-							<td><h6><?php echo "€".$total?><h6></td>
+							<td><h6><?php echo "€".$_SESSION['total']?><h6></td>
 						</tr>
 					</table>
 				</div>	
@@ -90,11 +95,11 @@
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstname">First name</label>
-								<input type="text" name = "firstname" class="form-control" id="firstname" placeholder="" value="">
+								<input type="text" name = "firstname" class="form-control" id="firstname" placeholder="">
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="lastname">Last name</label>
-								<input type="text" name ="lastname" class="form-control" id="lastname" placeholder="" value="">
+								<input type="text" name ="lastname" class="form-control" id="lastname" placeholder="">
 							</div>
 						</div>
 
@@ -122,10 +127,12 @@ $(function() {
 		rules: {
 			firstname: "required",
 			lastname: "required",
+
 			email: {
 				required: true,
 				email: true
 			},
+
 			confirm_email: {
 				required: true,
 				equalTo: "#email"
@@ -133,9 +140,19 @@ $(function() {
 		},
 		// Specify validation error messages
 		messages: {
-				firstname: "Please enter your first name",
-				lastname: "Please enter your last name",
-				confirm_email: "Emails do not match"
+
+			firstname: "Please enter your first name",
+			lastname: "Please enter your last name",
+
+			email: {
+				required:"Please enter your email so that we can send you your receipt",
+				email: "Invalid email format"
+			},
+				
+			confirm_email: {
+				equalTo: "Emails do not match",
+				required: "Please confirm your email address"
+			} 
 		},
 
 		// Make sure the form is submitted to the destination defined

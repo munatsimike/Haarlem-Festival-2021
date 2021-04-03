@@ -178,10 +178,15 @@ a:hover{
 .eventsProgram:hover {
   background-color: #FAF8F3;
 }
+
+.promoHeading {
+  background-color: #84C7F0
+  width: 270px;
+}
 /**************************Ticket**************************/
 /*single tickets spacing padding and line height*/
 .ticket td {
-  padding: 15px;
+  padding: 13px;
   line-height: 22px;
 }
 /*cell containt ticket prices*/

@@ -20,18 +20,18 @@
 			}
     	}
 
+		// multiple event ticket constructor
 		public function __construct3(int $ID, float $price , string $seats)
 		{
 			$this->ID = $ID;
 			$this->price = $price;
 			$this->seats = $seats;
-
 		}
 
+		// single event ticket constructor
 		public function __construct7(int $ID, float $price , string $date, string $start, string $end, Venue $venue, string $seats) 
 		{ 
 			$this->__construct3($ID, $price , $seats);
-
 			$this->date = $date;
 			$this->start = $start;
 			$this->end = $end;

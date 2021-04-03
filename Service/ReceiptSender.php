@@ -25,42 +25,28 @@ class ReceiptSender
 
    public function sendReceipt() {
 
-         $mail = new PHPMailer(TRUE);
+      $mail = new PHPMailer(TRUE);
 
-         try {
+      $mail->isSMTP();
+      $mail->Host = 'smtp.gmail.com';
+      $mail->Port = 587;
+      $mail->SMTPAuth = true;
+      $mail->SMTPSecure = 'tls';
+      $mail->Username = self::SENDER;
+      
+      /* App password. */
+      $mail->Password = self::PASSWORD;
+   
+      // sender
+      $mail->setFrom(self::SENDER, 'Haarlem Festival Team');
+      // recipient
+      $mail->addAddress($this->recipientEmail, $this->recipientName);
+      $mail->Subject = 'Haarmel Festival Receipt';
+      $mail->Body = 'Dear'.$this->recipientName.'Please find attached an invoice for Haarlem festival';
+      $mail->AddStringAttachment($this->file, 'Haarlem Festival Receipt.pdf');
+      // send invoice
+       $mail->send();
 
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 587;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'tls';
-            $mail->Username = self::SENDER;
-            
-            /* App password. */
-            $mail->Password = self::PASSWORD;
-         
-            // sender
-            $mail->setFrom(self::SENDER, 'Haarlem Festival Team');
-            // recipient
-            $mail->addAddress($this->recipientEmail, $this->recipientName);
-            $mail->Subject = 'Haarmel Festival Receipt';
-            $mail->Body = 'Dear'.$this->recipientName.'Please find attached an invoice for [insert amount]';
-            $mail->AddStringAttachment($this->file, 'Haarlem Festival Receipt.pdf');
-
-            // send invoice
-             $mail->send();
-
-         }
-         catch (Exception $e)
-         {
-            /* PHPMailer exception. */
-            echo $e->errorMessage();
-         }
-         catch (\Exception $e)
-         {
-            /* PHP exception (note the backslash to select the global namespace Exception class). */
-            echo $e->getMessage();
-         }
    }
 }
 

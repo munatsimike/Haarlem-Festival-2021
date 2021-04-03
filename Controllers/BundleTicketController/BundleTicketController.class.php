@@ -2,31 +2,22 @@
 	 class BundleTicketController
 	{
 		private BundleTicketRepo $repo;
-		private BundleTicketController $controller;
+		private EventName $eventType;
 
-		public function __construct()
+		public function __construct(EventName $eventType)
 		{
-			$this->repo ?? $this->repo = new BundleTicketRepo();
+			$this->repo = new BundleTicketRepo();
+			$this->eventType= $eventType;
 		}
 
-		public function fetchBundleTickets(EventName $eventType) : array
+		public function fetchBundleTickets() : array
 		{
 			try {
-				return $this->repo->fetchBundleTickets($eventType);
-
-			} catch (ConnectionFailureException $msg) {
-					
+				return $this->repo->fetchBundleTickets($this->eventType);
+			} catch (Exception $msg) {
+				throw $msg;
 			}
 		}
 
-		public function updateNumberOfSeats(int $id, int $quantity) 
-		{
-			return $this->repo->updateNumberOfSeats($id, $quantity);
-		}
-
-		public static function bundleTicketController() : BundleTicketController
-		{
-			return $controller ?? $controller = new BundleTicketController();
-		}
 	}
 ?>

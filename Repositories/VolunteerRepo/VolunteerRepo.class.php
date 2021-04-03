@@ -9,7 +9,7 @@
 		    return $stmt->fetchColumn();
 		}
 
-		// save new volunteer
+		// save new volunteer account
 		public function storeVolunteer(Volunteer $volunteer) : void
 		{
 				$this->pdo->prepare("INSERT INTO volunteer (email, password, employee_type) VALUES (:email, :password, :employee_type)")

@@ -128,20 +128,20 @@
 		$("#login").validate({
 		// Specify validation rules
 		rules: {
+			password: "required",
 			email: {
 				required: true,
 				email: true
-			},
-			password: "required"
+			}
+			
 		},
 		// Specify validation error messages
 		messages: {
+				password: "Enter your password",
 				email: {
-					email: "Enter a valid email",
+					email: "Enter a valid email format e.g name@example.com",
 					require: "Enter your email"
-				},
-
-				password: "Enter your password"
+				}
 		},
 
 		// Make sure the form is submitted to the destination defined

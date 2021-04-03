@@ -2,43 +2,39 @@
 	 class VolunteerController
 	{
 		private VolunteerRepo $repo;
-		private VolunteerController $controller;
+		private Volunteer $volunteer;
 
-		public function __construct()
+		public function __construct(Volunteer $volunteer)
 		{
-			$this->repo ?? $this->repo = new VolunteerRepo();
+			$this->repo = new VolunteerRepo();
+			$this->volunteer = $volunteer;
 		}
 
-		public function storeVolunteer(Volunteer $volunteer) : void
+		public function createNewVolunteerAccounnt() : void
 		{
 			try {
-				$this->repo->storeVolunteer($volunteer);
-			} catch (PDOException $errorMsg) {
+				$this->repo->storeVolunteer($this->volunteer);
+			} catch (Exception $errorMsg) {
 				throw $errorMsg;
 			}
 		}
 
-		public function IsUsernamePasswordValid(Volunteer $volunteer) : bool
+		public function IsUsernamePasswordValid() : bool
 		{
 			try {
-				return $this->repo->IsUsernamePasswordValid($volunteer);
-			} catch (PDOException $errorMsg) {
+				return $this->repo->IsUsernamePasswordValid($this->volunteer);
+			} catch (Exception $errorMsg) {
 				throw $errorMsg;
 			}
 		}
 
-		public function isEmailAvailable(Volunteer $volunteer) : bool
+		public function isEmailAvailable() : bool
 		{
 			try {
-				return $this->repo->isEmailAvailable($volunteer);
-			} catch (PDOException $errorMsg) {
+				return $this->repo->isEmailAvailable($this->volunteer);
+			} catch (Exception $errorMsg) {
 				throw $errorMsg;
 			}
-		}
-	
-		public static function VolunteerController() : VolunteerController
-		{
-			return $controller ?? $controller = new VolunteerController();
 		}
 	}
 ?>

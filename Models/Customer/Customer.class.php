@@ -8,13 +8,18 @@
     public function __construct(string $firstName, string $lastName, string $email)
     {
         $this->firstName = $firstName;
-        $this->lastName = $lastName;
+        $this->lastName =  $lastName;
         $this->email = $email;
-
     }
 
     public function __toString()
     {
-        return "{$firstName} {$lastName} \n {$email}";
+        return $this->CapitalizeFirstLetter($this->firstName)." ". $this->CapitalizeFirstLetter($this->lastName);
+    }
+
+    public function CapitalizeFirstLetter(string $str)
+    {
+        return ucfirst(strtolower($str));
+
     }
 }

@@ -7,10 +7,13 @@
 		{ 
 			//gets database connection instance from Connection class
 			try{
-				$this->pdo = Connection::DBConnection();
-			} catch (ConnectionFailureException $errorMsg) {}
+				$this->pdo = Connection::getInstance();
+			} catch (Exception $error) {
+				throw $error;
+			}
 		}
-
+		
+		// update number of seats after every successfuly transaction
 		public function updateNumberOfSeats(int $ticketId , int $quantity) : void
 		{
 				$this->pdo->prepare("UPDATE event SET seats = (seats - :quantity) WHERE id = :id")

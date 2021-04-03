@@ -1,11 +1,16 @@
 <?php
 	include_once '../base.php';
 
-	try {
-		$tickets = JazzController::jazzController()->fetchJazzTickets();
-		$BundleTickets = BundleTicketController::bundleTicketController()->fetchBundleTickets(EventName::JAZZ());
-	} catch (ConnectionFailedExecption $mesg) {
+	$bundleTicketController = new BundleTicketController(EventName::JAZZ());
+	$jazzController = new JazzController();
 
+	try {
+		$tickets = $jazzController->fetchJazzTickets();
+		$bundleTickets = $bundleTicketController->fetchBundleTickets();
+	} catch (Exception $error) {
+		new ErrorLog($error->getMessage());
+		echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
+		return;
 	}
 
 	$date = $_GET['date'] ?? null;
@@ -25,9 +30,9 @@
 
 				<div class = "col-4 ml-4">
 					<div class = "timeTable row justify-content-center mt-3 ">
-						<h3>Promo Tickets</h3>
+						<p><h3>Promo Tickets</h3></p>
 					<div class = "row p-4">
-						<?php EventOption::displayMultipleEventTickets($BundleTickets)?>
+						<?php EventOption::displayMultipleEventTickets($bundleTickets)?>
 					</div>
 				</div>
 
@@ -50,7 +55,7 @@
 						<a href = "../dance/dance.php"><h4 class = "otherEventsH4">Dance</h4></a>
 						<article class="article1">
 							<div class = "eventImg">
-								<a href = "../dance.php" class = "otherEventsLink"><img src="../../Img/d22.jpg" alt="product 1"  title ="image of rubiks  cub"/></a>
+								<a href = "../dance/dance.php" class = "otherEventsLink"><img src="../../Img/d22.jpg" alt="product 1"  title ="image of dance"/></a>
 							</div>
 						</article>
 						</div>
@@ -59,7 +64,7 @@
 						<a href= "#"><h4 class = "otherEventsH4">Food</h4></a>
 						<article class="article1">
 							<div class = "eventImg">
-								<a href= "#" class = "otherEventsLink" ><img src="../../Img/food.jpg" alt="product 1"  title ="image of rubiks  cub"/></a>
+								<a href= "#" class = "otherEventsLink" ><img src="../../Img/food.jpg" alt="product 1"  title ="image of food"/></a>
 							</div>
 						</article>
 						</div>
@@ -68,7 +73,7 @@
 						<a href = "#"><h4 class = "otherEventsH4">Historic Tour</h4></a>	
 						<article class="article1">
 							<div class = "eventImg">
-							<a href = "#"class = "otherEventsLink" ><img src="../../Img/h.jpg" alt="product 1"  title ="image of rubiks  cub"/></a>							</div>
+							<a href = "#"class = "otherEventsLink" ><img src="../../Img/h.jpg" alt="product 1"  title ="image of Grote Markte"/></a>							</div>
 						</article>
 						</div>
 

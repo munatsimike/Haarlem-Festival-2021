@@ -1,25 +1,30 @@
 <?php
 declare(strict_types=1);
 
-class Connection
+class Connection extends PDO
 {
-  private PDO $conn;
+  private static $instance = null;
  
   private const SERVER   =  "mysql:host=localhost;dbname=hfitteam4_db";
   private const USERNAME =  "root";
   private const PASSWORD =  "";
-  private const OPTIONS  =  [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
 
-  public static function DBConnection() : PDO
+  private function __construct()
   {
-    try {
-          return $conn ?? $conn = new PDO(self::SERVER, self::USERNAME, self::PASSWORD, self::OPTIONS);
-
-      } catch (PDOException $e) {
-
-         throw ConnectionFailedException::database();
-    }
+        parent::__construct(self::SERVER, self::USERNAME, self::PASSWORD);
+        parent::setAttribute(PDO::ERRMODE_EXCEPTION, PDO::FETCH_ASSOC);
   }
+ 
+    public static function getInstance()
+    {
+      if (self::$instance == null)
+      {
+        self::$instance = new Connection();
+      }
+  
+      return self::$instance;
+    }
+  
 }
 
 ?>

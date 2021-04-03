@@ -27,16 +27,14 @@ if ( ! isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 		<!--for background image-->
 			<?php
 			// check if volunteer acc is created and display appropriate message
-				if (isset($_SESSION['registration'])) {
-				   if ($_SESSION['registration'] === true) {
+				if (isset($_GET['registration']) && $_GET['registration'] === "true") {
 						echo "<script> showAlert('Success ! Account successfully created','success');</script>";
-				   }else {
-					   // log exception message to email;
-						error_log($_SESSION['registration'], 1, "hfestival21@gmail.com");
-						echo "<script> showAlert('Internal error ! account not created contact support','error');</script>";
-				   }
-					unset($_SESSION['registration']);
 				} 
+
+				if (isset($_GET['registration']) && $_GET['registration'] === "false")
+				{
+						echo "<script> showAlert('Internal error ! account not created contact support','error');</script>";
+				}
 			?>
 		</header>
 	<body>
@@ -73,12 +71,12 @@ $(function() {
 			confirm_email: "Emails do not match",
 
 			password: {
-				require: "Please enter your password",
+				required: "Password field cannot be empty.",
 				minlength:jQuery.validator.format("At least {0} characters are required for a strong password!")
 			},
 
 			email: {
-				required: "Please enter your email address",
+				required: "Email field cannot be empty",
 				email: "Your email address must be in the format of name@domain.com"
 			}
 		},
@@ -110,9 +108,9 @@ $(function() {
 		}).done(function (response) {
 
 			if(JSON.parse(response)) {
-				styleEmailField("form_success", "error", "Email is taken");
+				styleEmailField("form_success", "error", "Account already exist");
 			} else {
-				styleEmailField("error", "form_success", "Email is available");
+				styleEmailField("error", "form_success", "");
 			}
 
         }).fail(function (jqXHR, textStatus, errorMessage) {
