@@ -48,14 +48,17 @@ class Cart
     
     public function updateQuantity(int $id, int $qty) : void
     { 
-        foreach(self::getCartItems() as $key=>$item){
+        /*foreach(self::getCartItems() as $key=>$item){
             if($key === $id){
                 $this->cartItems[] = new CartItem($item->id, $item->description, $qty, $item->unitPrice, $item->seats);
             }
             else{
                 $this->cartItems[] = new CartItem($item->id, $item->description ." ". $id, $item->quantity, $item->unitPrice, $item->seats);
             }
-        }
+        }*/
+
+        $this->cartItems = self::getCartItems();
+        $this->cartItems[$id]->quantity = $qty;
         $this->updateCart();  
  
     }
