@@ -103,23 +103,22 @@
 				type : 'post',
 				url : '/Controllers/CartController/CartController.php?action='+$action,
 				data : {'var': $var},
-<<<<<<< HEAD
-			}).done(function () {
-				//alert(http_response_code);
-=======
 			}).done(function (response) {
 				data = JSON.parse(response);
-				if (data.action === 'delete') {
-					$('#price').text(data.total);
-				} else {
+				if (data.action === 'addToCart') {
 					location.reload();
+				} else {
+					$('#price').text(data.total);
 				}
->>>>>>> 217cc3ca1659d422dad5ee2960616be6f12696b0
 			}).fail(function (jqXHR, textStatus, errorMessage) {
 				alert($error);
 			})
         });
 
+		//refreshes page on cart close
+		$('#cart-modal').on('hidden.bs.modal', function (e) {
+			location.reload();
+		})
 		// show cart ,login or login
 	$('.footer').click(function($event){
 		 $event.preventDefault();

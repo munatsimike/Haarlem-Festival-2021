@@ -2,7 +2,7 @@
 	 class BundleTicketRepo extends Repo
 	{
 
-		public function fetchBundleTickets(EventName $eventType) : array
+		public function fetchBundleTickets($eventType) : array
 		{
 			// converts pdo array to jazzTickets array
 			$Bundletickets = [];
@@ -13,7 +13,7 @@
 			return $Bundletickets;
 		}
 
-		private function fetchTickets(EventName $event) : array
+		private function fetchTickets($event) : array
 		{
 			// fetches JazzTickets from database
 			if ($this->pdo instanceof PDO) {

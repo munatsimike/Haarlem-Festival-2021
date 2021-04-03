@@ -22,11 +22,12 @@
                 foreach (Cart::getCartItems() as $key=>$item) {
             echo  "<tr>
                         <input type ='hidden' class ='id'  value = '$item->id'>
-                        <td class='cartId'>". ($key+1) ."</td>
+                        <input type ='hidden' class ='cartId'  value = '$key'>
+                        <td class='rowid'>". ($key+1) ."</td>
                         <td>$item->description</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
-                              <input type='number' class ='quantity' name ='cartQuantity' value=$item->quantity />
+                              <input type='number' class ='cartQuantity' name ='cartQuantity' value=$item->quantity />
                           <div class='value-button' id='increase' onclick='increaseValue()' value='Increase Value'></div>
                         </td>
                         <td>€ $item->unitPrice</td>

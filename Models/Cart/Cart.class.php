@@ -46,6 +46,20 @@ class Cart
       $this->updateCart();
     }
     
+    public function updateQuantity(int $id, int $qty) : void
+    { 
+        foreach(self::getCartItems() as $key=>$item){
+            if($key === $id){
+                $this->cartItems[] = new CartItem($item->id, $item->description, $qty, $item->unitPrice, $item->seats);
+            }
+            else{
+                $this->cartItems[] = new CartItem($item->id, $item->description ." ". $id, $item->quantity, $item->unitPrice, $item->seats);
+            }
+        }
+        $this->updateCart();  
+ 
+    }
+
     public function updateCart() : void
     { 
         $_SESSION['cartItems'] = $this->cartItems;

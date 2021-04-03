@@ -9,7 +9,9 @@
 			$this->repo ?? $this->repo = new BundleTicketRepo();
 		}
 
-		public function fetchBundleTickets(EventName $eventType) : array
+	 	//use with EventType enum
+		//fetches all bundle tickets for the given event type
+		public function fetchBundleTickets($eventType) : array
 		{
 			try {
 				return $this->repo->fetchBundleTickets($eventType);
