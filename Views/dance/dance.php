@@ -39,6 +39,8 @@
 					<div class = "row pl-3" >
 						<?php EventOption::displayTimeTable($tickets);?>
 					</div>
+
+					<a class="twitter-timeline" data-lang="en" data-height="2100" href="https://twitter.com/tiesto?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 				</div>
 			</div>
 		<?php endblock('main') ?>
