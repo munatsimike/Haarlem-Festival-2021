@@ -7,32 +7,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $redirectToPage = "../../Views/CMS/cms.php";
 
     if (isset($_POST['form-name']) && $_POST['form-name'] === FormName::LOGIN()->getValue()) {
-       $volunteer = (new Volunteer(trim($_POST['email']), trim($_POST['password'])));
-       try {
-            $volunteerController = new VolunteerController($volunteer);
-            $validLoginCredentials = $volunteerController->IsUsernamePasswordValid();
-       } catch (Exception $error) {
-             new ErrorLog($error->getMessage());
-            header("Location: $redirectToPage");
+        $volunteer = (new Volunteer(trim($_POST['email'])));
+        try {
+                $volunteerController = new VolunteerController($volunteer);
+                $fetchedData = $volunteerController->fetchPasswordEmployeeType();
+        } catch (Exception $error) {
+                new ErrorLog($error->getMessage());
+                header("Location: $redirectToPage");
        }
 
-       if ($validLoginCredentials) {
-            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-                header("Location: $redirectToPage");
-                exit;
-            }
-
+       // check if password is valid
+       if (password_verify(trim($_POST['password']), $fetchedData['password'])) {
             // Store data in session variables
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $volunteer->email;
+            $_SESSION["employeeType"] = $fetchedData["employee_type"];
             header("Location: $redirectToPage");
-
        } else {
-           
              $_SESSION['validCredentials'] = false;
              header("Location: $redirectToPage");
        }
     } 
+
     // new volunteer registration
     if (isset($_POST['form-name']) && $_POST['form-name'] === FormName::REGISTRATION()->getValue()) {
         try {
@@ -41,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ".$redirectToPage."?registration=true");
         } catch (Exception $error) {
            new ErrorLog($error);
-           header("Location: ".$redirectToPage."?registration=true");
+           header("Location: ".$redirectToPage."?registration=false");
         }
     }
 
-    // check if account already exists ajax call
+    // check if account already exist ajax call
     if (isset($_REQUEST['email'])) {
         $volunteerContorller = new VolunteerController(new Volunteer($_REQUEST['email']));
-       die(jason_encode($volunteerContorller->isEmailAvailable()));
+       die(json_encode($volunteerContorller->isEmailAvailable()));
     }
 
 } else {

@@ -38,9 +38,7 @@ ul {
   float:right;
 }
 
-img{
-width:100%;
-}
+img{width:100%;}
 
 li {
 	display: inline-block;
@@ -381,7 +379,7 @@ article{
  }
 
  .progress-bar{
-   background-color: #ff9800;
+   background-color: #0089ff;
  }
 
 /********************Footer**************************/
@@ -445,6 +443,11 @@ article{
 #login-icon{
   display: none;
   font-size: 1.2em;
+}
+
+#checkoutIcon{
+  font-size: 1em;
+  margin-right: 6px;
 }
 /**********************forms*******************************************/
 select {

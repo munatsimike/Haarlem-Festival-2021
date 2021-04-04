@@ -19,10 +19,10 @@
 			}
 		}
 
-		public function IsUsernamePasswordValid() : bool
+		public function fetchPasswordEmployeeType() : array
 		{
 			try {
-				return $this->repo->IsUsernamePasswordValid($this->volunteer);
+				return $this->repo->fetchPasswordEmployeeType($this->volunteer);
 			} catch (Exception $errorMsg) {
 				throw $errorMsg;
 			}

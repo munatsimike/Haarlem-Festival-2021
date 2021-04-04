@@ -25,10 +25,11 @@
 	  	<div class='container-fluid'>
 			<div class="py-2 text-center">
 			<div class="progress">
-			<div class="progress-bar progress-bar-striped active" role="progressbar"
+			<div class="progress-bar progress-bar-striped active  progress-bar-animated" role="progressbar"
 				aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:70%">
 				70%
 			</div>
+				<img class="Logoright" src="/Img/logo.png" alt="logo"  title ="logo"/>
 			</div class="row justify-content-center">
 				<h2>Haarlem Festival</h2>
 			</div>
@@ -112,7 +113,7 @@
 							<label for="confirm-email">Confirm Email</label>
 							<input type="email" name="confirm_email" id="confirm-email" class="form-control" id="confirm-email" placeholder="you@example.com">
 						</div>
-						<button class="btn text-white btn-lg btn-block btn-primary" type="submit">Continue to checkout</button>
+						<button class="btn text-white btn-lg btn-block btn-primary" type="submit"><i class="bi bi-credit-card-fill" id="checkoutIcon"></i>Proceed to checkout</button>
 						<button onclick ="location.href='../../index.php'" class="btn btn-lg btn-block mb-3 cancel-btn" type="button">Cancel</button>
 					</form>
 				</div>

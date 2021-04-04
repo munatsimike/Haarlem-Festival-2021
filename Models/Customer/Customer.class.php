@@ -1,4 +1,5 @@
 <?php
+
  class Customer
 {
     public string $firstName;

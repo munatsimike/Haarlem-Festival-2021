@@ -16,17 +16,17 @@
 						   ->execute(['email' => $volunteer->email, 'password' => $volunteer->password, 'employee_type' => $volunteer->employeeType]);
 		}
 
-		public function IsUsernamePasswordValid(Volunteer $volunteer) : bool
+		public function fetchPasswordEmployeeType(Volunteer $volunteer) : array
 		{
-			if ($this->isEmailAvailable($volunteer)) {
-				$stmt = $this->pdo->prepare("SELECT password FROM volunteer WHERE email = :email");
-				$stmt->execute(['email' => "$volunteer->email"]);
-				$hashed_password = $stmt->fetchColumn();
+			$output = [];
 
-				return password_verify($volunteer->password, $hashed_password);
+			if ($this->isEmailAvailable($volunteer)) {
+				$stmt = $this->pdo->prepare("SELECT password, employee_type FROM volunteer WHERE email = :email");
+				$stmt->execute(['email' => "$volunteer->email"]);
+				return  $stmt->fetch(PDO::FETCH_ASSOC);
 			}
 
-			return false;
+			return $output;
 		}
 	}
 

@@ -19,7 +19,7 @@ if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
   <body>
   <!-- Modal -->
   <div class="modal show" id="payment-confirmation" role="dialog">
-    <div class="modal-dialog">
+  <div class="modal-dialog modal-m modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header justify-content-center">
           <h4 class="modal-title"><i class="bi bi-check-circle-fill" style = "color:#007DFF; font-size:1.4em;"></i> Payment Success</h4>
@@ -43,7 +43,7 @@ if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
   </body>
 </html>
 <script>
-$(function(){
+$(function() {
   $(window).on('load', function() {
     $('#payment-confirmation').modal('show');
     });

@@ -43,7 +43,7 @@
 	// highlight active page on the nav menu
 	$('#nav li a').each(function () {
 			path = $(this).prop('href');
-            if (path == window.location.href && path.substr(-1) != "#") {
+            if (path === window.location.href && path.substr(-1) !== "#") {
                 $(this).addClass('active');
             }
         });
@@ -131,7 +131,7 @@
 			password: "required",
 			email: {
 				required: true,
-				email: true
+				   email: true
 			}
 			
 		},
@@ -140,7 +140,7 @@
 				password: "Enter your password",
 				email: {
 					email: "Enter a valid email format e.g name@example.com",
-					require: "Enter your email"
+				  require: "Enter your email"
 				}
 		},
 
