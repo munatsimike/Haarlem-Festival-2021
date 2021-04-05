@@ -105,16 +105,20 @@
 				data : {'var': $var},
 			}).done(function (response) {
 				data = JSON.parse(response);
-				if (data.action === 'delete') {
-					$('#price').text(data.total);
-				} else {
+				if (data.action === 'addToCart') {
 					location.reload();
+				} else {
+					$('#price').text(data.total);
 				}
 			}).fail(function (jqXHR, textStatus, errorMessage) {
 				alert($error);
 			})
         });
 
+		//refreshes page on cart close
+		$('#cart-modal').on('hidden.bs.modal', function (e) {
+			location.reload();
+		})
 		// show cart ,login or login
 	$('.footer').click(function($event){
 		 $event.preventDefault();
