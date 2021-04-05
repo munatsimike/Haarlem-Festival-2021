@@ -1,13 +1,13 @@
 <?php
 	include_once '../base.php';
 
-	$bundleTicketController = new BundleTicketController(EventName::JAZZ());
+	$bundleTicketController = new BundleTicketController();
 	$jazzController = new JazzController();
 
 	try {
 		$tickets = $jazzController->fetchJazzTickets();
-		$bundleTickets = $bundleTicketController->fetchBundleTickets();
-	} catch (Exception $error) {
+		$bundleTickets = $bundleTicketController->fetchBundleTickets(EventName::JAZZ());
+	} catch (ConnectionFailedException | Exception $error) {
 		new ErrorLog($error->getMessage());
 		echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
 		return;

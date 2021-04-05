@@ -5,7 +5,7 @@
         <div class="modal-body">
             <div class="tab-content">
                     <div class="row justify-content-center">
-                        <div class ="row"></i></div>
+                        <div class ="row"> <i class="bi bi-person-circle icons"></i></div>
                     </div>
 
                     <div class="row justify-content-center">
@@ -29,7 +29,13 @@
                                 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                             </div>
  
-                            
+                            <div class="form-group">
+                                <label for="employee-type">Employee Type:</label>
+                                <select name="employee-type" id="employee-type">
+                                    <option value="regular">Regular</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
                             <div class="mb-2">
                                  <button id = "submitbtn" type="submit" class="btn btn-primary btn-block">Create account</button>
                             </div>

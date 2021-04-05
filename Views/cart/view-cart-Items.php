@@ -27,7 +27,7 @@
                         <td>$item->description</td>
                         <td>
                           <div class='value-button' id='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
-                              <input type='number' class ='quantity' name ='cartQuantity' value=$item->quantity />
+                              <input type='number' class ='quantity' name ='quantity' value=$item->quantity />
                           <div class='value-button' id='increase' onclick='increaseValue()' value='Increase Value'></div>
                         </td>
                         <td>€ $item->unitPrice</td>

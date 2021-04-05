@@ -210,6 +210,8 @@ button.added-to-cart-btn:focus, .event-date:focus, .quantity:focus, .cartQuantit
 
  button.added-to-cart-btn {
    background-color: #fff;
+   color: #000;
+   border: #fff;
  }
 
 h5.dateHeading {
