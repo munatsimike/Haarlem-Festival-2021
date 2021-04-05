@@ -26,6 +26,7 @@
 			require_once '../partials/head.php'; 
 			require_once '../alert.php';
 			require_once 'CMSEventOptions.php';
+			require_once '../ti.php';
 		?>
 		<title>Haarlem festival CMS</title>
 	</head>
@@ -53,8 +54,14 @@
 				}
 			?>
 		</header>
+		
 	<body>
-			 
+			
+			<div class = "row justify-content-center">
+				<div class = "col-7 single-tickets">
+					<?php CMSEventOptions::displayTickets($CMSEvents);?>
+				</div>
+			</div>
 		<?php 
 			require_once "logout-modal.php"; 
 			/// account registration form
@@ -63,12 +70,6 @@
 
 
 		?>
-
-			<div class = "row justify-content-center">
-				<div class = "col-7 single-tickets">
-					<?php CMSEventOptions::displayTickets($CMSEvents);?>
-				</div>
-			</div>
 
 	</body>
 </html>
