@@ -7,6 +7,17 @@
 		header("location: ../../index.php");
 		exit;
 	}
+
+	
+	$CMSController = new CMSController();
+
+	try {
+		$CMSEvents = $CMSController->fetchEvents();
+	} catch (Exception $error) {
+		new ErrorLog($error->getMessage());
+		echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
+		return;
+	}
 ?>
 
 <html>
@@ -14,6 +25,7 @@
 		<?php 
 			require_once '../partials/head.php'; 
 			require_once '../alert.php';
+			require_once 'CMSEventOptions.php';
 		?>
 		<title>Haarlem festival CMS</title>
 	</head>
@@ -51,6 +63,12 @@
 
 
 		?>
+
+			<div class = "row justify-content-center">
+				<div class = "col-7 single-tickets">
+					<?php CMSEventOptions::displayTickets($CMSEvents);?>
+				</div>
+			</div>
 
 	</body>
 </html>

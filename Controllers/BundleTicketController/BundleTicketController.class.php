@@ -4,8 +4,11 @@
 		private BundleTicketRepo $repo;
 
 		public function __construct()
-		{
-			$this->repo = new BundleTicketRepo();
+		{ 	try{
+				$this->repo = new BundleTicketRepo();
+			}catch(Exception $e){
+				
+			}
 		}
 
 		//fetches all bundle tickets for the given event type

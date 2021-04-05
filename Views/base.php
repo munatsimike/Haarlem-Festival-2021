@@ -82,12 +82,12 @@
 			const $seats = parseInt($.trim($row.find('.seats').text()));
 
 			if ($quantity > $seats) {
-				showAlert("Not enough tickets available", "info");
+				showAlert("Not enough tickets available", "warning");
 				return;
 			}
 
 			if ($quantity < 1) {
-				showAlert("Quantity should be atleast 1", "info");
+				showAlert("Quantity should be atleast 1", "warning");
 				return;
 			}
 

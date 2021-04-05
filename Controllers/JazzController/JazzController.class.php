@@ -3,8 +3,11 @@
 	{
 		private JazzRepo $repo;
 		public function __construct()
-		{	
-			$this->repo = new JazzRepo();
+		{	try{
+				$this->repo = new JazzRepo();
+			}catch(Exception $e){
+				throw
+			}
 		}
 
 		public function fetchJazzTickets() : array
