@@ -71,11 +71,14 @@
 		//change quantity
 		 if ($(this).attr('name') === 'cartQuantity') {
 			
-			const $qty = $.trim($row.find('.cartQuantity').val());
-			const $cartId = $.trim($row.find('.cartId').val());
+			const $qty = parseInt($.trim($row.find('.cartQuantity').val()));
+			const $cartId = parseInt($.trim($row.find('.cartId').val()));
+			const $unitPrice = parseFloat($row.find('.unitPrice').text().substring(2));
 			$action = 'updateItemQuantity';
 			$error = "something went wrong";
 			$var = JSON.stringify({'cartId':$cartId, 'quantity':$qty});
+			$str = "#subTotal"+$cartId;
+			$($str).text("€ " + ($qty*$unitPrice));
 		 }
 
 		//delete an item

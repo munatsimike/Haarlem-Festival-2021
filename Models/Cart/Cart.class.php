@@ -56,7 +56,7 @@ class Cart
                 $this->cartItems[] = new CartItem($item->id, $item->description ." ". $id, $item->quantity, $item->unitPrice, $item->seats);
             }
         }*/
-
+        
         $this->cartItems = self::getCartItems();
         $this->cartItems[$id]->quantity = $qty;
         $this->updateCart();  

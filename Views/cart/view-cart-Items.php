@@ -1,5 +1,5 @@
 <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
         <h5 class="modal-title" id="exampleModalLabel">Your Shopping Cart</h5>
@@ -30,8 +30,8 @@
                               <input type='number' class ='cartQuantity' name ='cartQuantity' value=$item->quantity />
                           <div class='value-button' id='increase' onclick='increaseValue()' value='Increase Value'></div>
                         </td>
-                        <td>€ $item->unitPrice</td>
-                        <td>€ " . $item->getSubTotal() . "</td>
+                        <td class = 'unitPrice'>€ $item->unitPrice</td>
+                        <td id='subTotal$key'>€ " . $item->getSubTotal() . "</td>
                         <td>
                             <a href='#' class='trash btn btn-danger btn-sm' name ='trash'>
                             <i class='bi bi-trash-fill' style='font-size: 1.2rem; color: white;'></i>
