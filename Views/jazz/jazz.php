@@ -7,7 +7,7 @@
 	try {
 		$tickets = $jazzController->fetchJazzTickets();
 		$bundleTickets = $bundleTicketController->fetchBundleTickets(EventName::JAZZ());
-	} catch (Exception $error) {
+	} catch (ConnectionFailedException | Exception $error) {
 		new ErrorLog($error->getMessage());
 		echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
 		return;

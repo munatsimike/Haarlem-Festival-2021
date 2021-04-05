@@ -38,7 +38,7 @@
 	</body>
 </html>
 <script>
-  $(function(){	  
+  $(function() {	  
 	
 	// highlight active page on the nav menu
 	$('#nav li a').each(function () {
@@ -47,22 +47,6 @@
                 $(this).addClass('active');
             }
         });
-
-	  // check for valid quantity. greater than 0 and less than available seats
-	  $('.quantity').change(function() {
-		const $row = $(this).closest('tr');
-		const $seats = parseInt($row.find('.seats').text());
-	  	const $qty = $(this).val();
-
-		if ($qty > $seats) {
-			$(this).val($seats);
-			alert("not enough tickets available");
-		} 
-		else if ($qty <= 0) {
-			$(this).val(1);
-		}
-		
-	  });
 
 	  $('.add-to-cart-btn, .trash, .cartQuantity').click(function ($event) {
 		const $row = $(this).closest('tr');
@@ -96,6 +80,16 @@
 			const $price = $.trim($row.find('.price').text()).substr(1);
 			const $quantity = $.trim($row.find('.quantity').val());
 			const $seats = parseInt($.trim($row.find('.seats').text()));
+
+			if ($quantity > $seats) {
+				showAlert("Not enough tickets available", "info");
+				return;
+			}
+
+			if ($quantity < 1) {
+				showAlert("Quantity should be atleast 1", "info");
+				return;
+			}
 
 			$var = JSON.stringify({'id':$id, 'title':$title, 'quantity':$quantity,  'price':$price, 'seats':$seats});
 			$action = 'addToCart';

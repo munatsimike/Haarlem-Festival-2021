@@ -8,7 +8,7 @@
 			//gets database connection instance from Connection class
 			try{
 				$this->pdo = Connection::getInstance();
-			} catch (Exception $error) {
+			} catch (PDOException $error) {
 				throw $error;
 			}
 		}

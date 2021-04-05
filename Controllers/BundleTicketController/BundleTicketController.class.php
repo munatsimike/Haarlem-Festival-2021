@@ -9,7 +9,7 @@
 		}
 
 		//fetches all bundle tickets for the given event type
-		public function fetchBundleTickets($eventType) : array
+		public function fetchBundleTickets(EventName $eventType) : array
 		{
 			try {
 				return $this->repo->fetchBundleTickets($eventType);
