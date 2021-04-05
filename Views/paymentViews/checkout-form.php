@@ -2,7 +2,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
 	if ( ! isset($_SESSION)) session_start();
 
-	if (Cart::getCartTotal() === 0) {
+	if (Cart::getCartItems() ==  null) {
 		header("location: /../index.php");
 	}
 ?>
@@ -127,32 +127,31 @@ $(function() {
 		// Specify validation rules
 		rules: {
 			firstname: "required",
-			lastname: "required",
+			 lastname: "required",
 
 			email: {
 				required: true,
-				email: true
+				   email: true
 			},
 
 			confirm_email: {
 				required: true,
-				equalTo: "#email"
+				 equalTo: "#email"
 			},
 		},
 		// Specify validation error messages
-		messages: {
-
+	messages: {
 			firstname: "Please enter your first name",
-			lastname: "Please enter your last name",
+			 lastname: "Please enter your last name",
 
 			email: {
 				required:"Please enter your email so that we can send you your receipt",
-				email: "Invalid email format"
+			  	   email: "Invalid email format"
 			},
 				
 			confirm_email: {
-				equalTo: "Emails do not match",
-				required: "Please confirm your email address"
+						equalTo: "Emails do not match",
+					   required: "Please confirm your email address"
 			} 
 		},
 

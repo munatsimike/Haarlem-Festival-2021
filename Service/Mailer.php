@@ -7,24 +7,24 @@ require '../../Service/PHPMailer/src/Exception.php';
 require '../../Service/PHPMailer/src/PHPMailer.php';
 require '../../Service/PHPMailer/src/SMTP.php';
 
-class ReceiptSender
+class Mailer
 {
    private const SENDER  = "hfestival21@gmail.com";
    private const PASSWORD = 'pnvwpmyzrznrlsjo';
 
-   private $recipientEmail;
-   private $recipientName;
-   private $file;
+   private string $recipient;
+   private string $subject;
+   private string $message;
 
-   function __construct(string $recipientEmail, string $recipientName, string $file) 
+   function __construct(string $recipient, string $subject, string $message) 
    {
-      $this->recipientEmail = $recipientEmail;
-      $this->recipientName = $recipientName;
-      $this->file = $file;
+      $this->recipient = $recipient;
+      $this->subject = $subject;
+      $this->message = $message;
    }
 
-   public function sendReceipt() {
-
+   public function sendEmail(string $file="", string $fileName="", string $extension="") 
+   {
       $mail = new PHPMailer(TRUE);
 
       $mail->isSMTP();
@@ -33,20 +33,20 @@ class ReceiptSender
       $mail->SMTPAuth = true;
       $mail->SMTPSecure = 'tls';
       $mail->Username = self::SENDER;
-      
       /* App password. */
       $mail->Password = self::PASSWORD;
-   
       // sender
       $mail->setFrom(self::SENDER, 'Haarlem Festival Team');
-      // recipient
-      $mail->addAddress($this->recipientEmail, $this->recipientName);
-      $mail->Subject = 'Haarmel Festival Receipt';
-      $mail->Body = 'Dear'.$this->recipientName.'Please find attached an invoice for Haarlem festival';
-      $mail->AddStringAttachment($this->file, 'Haarlem Festival Receipt.pdf');
-      // send invoice
-       $mail->send();
+      $mail->addAddress($this->recipient);
+      $mail->Subject = $this->subject;
+      $mail->Body = $this->message;
+      $mail->IsHTML(true);  
 
+      if ($file !== "") {
+         $mail->AddStringAttachment($file,  $fileName.'.'.$extension);
+      }
+
+      $mail->send();
    }
 }
 

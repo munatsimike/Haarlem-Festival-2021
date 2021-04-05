@@ -1,8 +1,10 @@
 
 <?php
+require_once '../myAutoLoader.php';
 try {
-    require_once '../myAutoLoader.php';
-    if (Cart::getCartTotal() > 0 && isset($_GET['payment']) && $_GET['payment'] = "success") {
+    
+        $cartItems = Cart::getCartItems();
+    if ($cartItems !== null && isset($_GET['payment']) && $_GET['payment'] = "success") {
         $customer = $_SESSION['customer'];
       } else {
         header("location: ../../index.php");
@@ -10,10 +12,10 @@ try {
     
       //save transaction
       $transaction = new TransactionController();
-      $transactionId = $transaction->storeTransaction(new Transaction(Cart::getCartItems()));
+      $transactionId = $transaction->storeTransaction(new Transaction($cartItems));
       
       // display pdf invoice
-    require_once('../../Service/fpdf/fpdf.php');
+     require_once('../../Service/fpdf/fpdf.php');
 
       //create fpdf object with parameters
       $pdf = new fpdf('p','mm','A4');
@@ -77,13 +79,11 @@ try {
 
       $pdf->setFont('Arial','',11);
       // display items
-      if (Cart::getCartItems() !== []) {
-        foreach (Cart::getCartItems() as $row) {
+        foreach ($cartItems as $row) {
           $pdf->Cell(10, 5, $row->quantity, 1, 0, 'C');
           $pdf->Cell(134, 5, $row->description, 1, 0);
           $pdf->Cell(20, 5, number_format($row->unitPrice, 2), 1, 0, 'C');
           $pdf->Cell(30, 5, number_format($row->getSubtotal(), 2), 1, 1, 'R');
-        }
       }
       // add qrcode to the invoice
         $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($transactionId), 138, 34, 30, 30, "png");
@@ -107,10 +107,10 @@ try {
       $pdf->Cell(130,5,'NB:',0,1);
       $pdf->Cell(130,5,'Visit www.haarlemfestival.com/tickets to print your ticket(s)',0,1);
 
-      // email receipt to the customer
-      $sender = new ReceiptSender($customer->email, (string)$customer, $pdf->Output("", "S"));
-      
-      $sender->sendReceipt();
+       // email receipt to the customer
+      $message = "Dear ". (string)$customer." Please find attached your haarlem festival invoice, Thank you for your purchase";
+      $sender = new Mailer($customer->email, "Haarlem festival receipt", $message );
+      $sender->sendEmail($pdf->Output("", "S"), 'Receipt', 'pdf');
         // php mailer exception
   }
   catch (Exception $e) 

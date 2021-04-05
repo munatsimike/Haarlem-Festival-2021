@@ -21,7 +21,7 @@ class Cart
         return $total;
     }
 
-    public static function getCartItems() : array
+    public static function getCartItems() : ?array
     {  
         return $_SESSION['cartItems']; 
     }

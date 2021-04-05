@@ -2,38 +2,46 @@
 	 class VolunteerController
 	{
 		private VolunteerRepo $repo;
-		private Volunteer $volunteer;
 
-		public function __construct(Volunteer $volunteer)
+		public function __construct()
 		{
 			$this->repo = new VolunteerRepo();
-			$this->volunteer = $volunteer;
 		}
 
-		public function createNewVolunteerAccounnt() : void
+		public function createNewVolunteerAccounnt(Volunteer $volunteer) : void
 		{
 			try {
-				$this->repo->storeVolunteer($this->volunteer);
+				$this->repo->storeVolunteer($volunteer);
 			} catch (Exception $errorMsg) {
 				throw $errorMsg;
 			}
 		}
 
-		public function fetchPasswordEmployeeType() : array
+		public function fetchPasswordEmployeeType(Volunteer $volunteer) : array
 		{
 			try {
-				return $this->repo->fetchPasswordEmployeeType($this->volunteer);
+				return $this->repo->fetchPasswordEmployeeType($volunteer);
 			} catch (Exception $errorMsg) {
 				throw $errorMsg;
 			}
 		}
 
-		public function isEmailAvailable() : bool
+		public function isEmailAvailable(Volunteer $volunteer) : bool
 		{
 			try {
-				return $this->repo->isEmailAvailable($this->volunteer);
+				return $this->repo->isEmailAvailable($volunteer);
 			} catch (Exception $errorMsg) {
 				throw $errorMsg;
+			}
+		}
+
+		public function resetVolunteerPassword(Volunteer $volunteer) : void
+		{
+			try{
+				 $this->repo->resetVolunteerPassword($volunteer);
+	
+			} catch (Exception $error){
+				throw $error;
 			}
 		}
 	}

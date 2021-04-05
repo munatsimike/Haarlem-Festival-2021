@@ -5,12 +5,12 @@ if (!isset($_SESSION)) session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $redirectToPage = "../../Views/CMS/cms.php";
+    $volunteerController = new VolunteerController();
 
     if (isset($_POST['form-name']) && $_POST['form-name'] === FormName::LOGIN()->getValue()) {
         $volunteer = (new Volunteer(trim($_POST['email'])));
         try {
-                $volunteerController = new VolunteerController($volunteer);
-                $fetchedData = $volunteerController->fetchPasswordEmployeeType();
+                $fetchedData = $volunteerController->fetchPasswordEmployeeType($volunteer);
         } catch (Exception $error) {
                 new ErrorLog($error->getMessage());
                 header("Location: $redirectToPage");
@@ -32,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // new volunteer registration
     if (isset($_POST['form-name']) && $_POST['form-name'] === FormName::REGISTRATION()->getValue()) {
         try {
-            $volunteerContorller = new VolunteerController(new Volunteer(trim($_POST['email']), password_hash(trim($_POST['password']), PASSWORD_DEFAULT), trim($_POST['employee-type'])));
-            $volunteerContorller->createNewVolunteerAccounnt();
+            $volunteerController->createNewVolunteerAccounnt(new Volunteer(trim($_POST['email']), password_hash(trim($_POST['password']), PASSWORD_DEFAULT), trim($_POST['employee-type'])));
             header("Location: ".$redirectToPage."?registration=true");
         } catch (Exception $error) {
            new ErrorLog($error);
@@ -43,8 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // check if account already exist ajax call
     if (isset($_REQUEST['email'])) {
-        $volunteerContorller = new VolunteerController(new Volunteer($_REQUEST['email']));
-       die(json_encode($volunteerContorller->isEmailAvailable()));
+       die(json_encode($volunteerController->isEmailAvailable(new Volunteer($_REQUEST['email']))));
     }
 
 } else {

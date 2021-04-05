@@ -47,6 +47,9 @@
 			require_once "logout-modal.php"; 
 			/// account registration form
 			require_once "registration-modal.php"; 
+			require_once "password-reset.php"; 
+
+
 		?>
 
 	</body>
@@ -54,7 +57,7 @@
 
 <script>
 $(function() {
-	$("#registration-form").validate({
+	$("#registration-form, #password-reset").validate({
 		// Specify validation rules
 		rules: {
 			password: {
@@ -113,7 +116,7 @@ $(function() {
 
 		// check if account exist
 		$.ajax({
-			url: '../../Service/CMS/admin.php',
+			url: '../../Service/CMS/login-registration.php',
 			type: 'post',
 			data: {'email': email},
 		}).done(function (response) {

@@ -11,7 +11,7 @@
                     <div class="row justify-content-center">
                         <div class = "row"><h5 class="modal-title">Create Volunteer Account</h5></div>
                     </div>
-                     <form action="/Service/CMS/admin.php" id ="registration-form" method = "POST">
+                     <form action="/Service/CMS/login-registration.php" id ="registration-form" method = "POST">
                             <input type="hidden" name="form-name" value = "registration">
                             <div class="form-group">
                                 <label for="email">Email:</label>
@@ -36,8 +36,9 @@
                                     <option value="admin">Admin</option>
                                 </select>
                             </div>
-
-                            <button id = "submitbtn" type="submit" class="btn btn-primary btn-block">Create account</button>
+                            <div class="mb-2">
+                                 <button id = "submitbtn" type="submit" class="btn btn-primary btn-block">Create account</button>
+                            </div>
                         </form>
                 </div>
             </div>

@@ -28,6 +28,20 @@
 
 			return $output;
 		}
+
+		public function resetVolunteerPassword(Volunteer $volunteer) : void
+		{
+			$paswordResetRepo = new PasswordResetRepo;
+			$this->pdo->prepare("UPDATE volunteer SET password = :password WHERE email = :email")
+					  ->execute(['email' => $volunteer->email, "password" => $volunteer->password]);
+
+			try {
+				$paswordResetRepo->deletePasswordResetCredentials($volunteer->email);
+			} catch (Exception $error) {
+				throw $error;
+			}
+		}	
 	}
+
 
 ?>

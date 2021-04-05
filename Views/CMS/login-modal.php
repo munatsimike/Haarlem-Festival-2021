@@ -13,7 +13,7 @@
             <div class="row justify-content-center">
                  <div class = "row"><h5 class="modal-title">Volunteer Login</h5></div>
             </div>
-                    <form action = "/Service/CMS/admin.php" id = "login" method = "POST">
+                    <form action = "/Service/CMS/login-registration.php" id = "login" method = "POST">
                         <input type="hidden" name="form-name" value = "login">
                         <div class="form-group">
                             <label for="email">Email:</label>
@@ -24,6 +24,10 @@
                             <input type="password" class="form-control" id="password" placeholder="Volunteer password" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+                        <div class="forgot-link mt-2">
+                            <a href="#forgot" data-toggle="modal" data-target="#forgot-password">Forgot password?</a>
+                         </div>
                     </form>
                 </div>
             </div>
