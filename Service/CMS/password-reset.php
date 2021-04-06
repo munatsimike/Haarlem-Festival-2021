@@ -35,6 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $mailer = new Mailer($email, $subject, $message);
          //send link
          $mailer->sendEmail(); 
+        
+         header("location: $redirectToPage?linkSent=true"); 
+
       } catch (Exception $error) {
           new ErrorLog($error->getMessage());
           header("location: $redirectToPage?linkSent=false"); 
@@ -53,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               
               $volunteerController->resetVolunteerPassword(new Volunteer($passwordReset->email, password_hash($_POST['new-password'], PASSWORD_DEFAULT)));
           }
+          header("location: $redirectToPage"); 
         } catch (PasswordResetCredentialsNotFound) {
           header("location: $redirectToPage?tokenFound=false"); 
 

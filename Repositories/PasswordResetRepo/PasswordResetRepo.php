@@ -4,7 +4,8 @@ class PasswordResetRepo extends Repo
 {
 	public function storeResetPasswordCredentials(PasswordReset $passwordReset) 
 	{
-		$stm = $this->pdo->prepare("INSERT INTO password_reset (email,token,selector,expiry_date) VALUES (:email, :token, :selector, :expiryDate)");
+		$stm = $this->pdo->prepare('INSERT INTO password_reset (email,token,selector,expiry_date) VALUES (:email, :token, :selector, :expiryDate) 
+									ON DUPLICATE KEY UPDATE token = :token, selector = :selector, expiry_date = :expiryDate');
 			         $stm->execute(['email'=> $passwordReset->email, 'token' => $passwordReset->token, 'selector'=>$passwordReset->selector, 'expiryDate'=>$passwordReset->tokenExpiryDate]);
 	}
 

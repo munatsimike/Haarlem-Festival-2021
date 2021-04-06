@@ -59,6 +59,11 @@
 						echo "<script> showAlert('internal error password reset link not sent. try again','error');</script>";
 				}
 
+				if (isset($_GET['linkSent']) && $_GET['linkSent'] === "true")
+				{
+						echo "<script> showAlert('Password reset link sent to your email address','success');</script>";
+				}
+
 				if (isset($_GET['tokenFound']) && $_GET['tokenFound'] === "false")
 				{
 						echo "<script> showAlert('Token not found send another reset link','error');</script>";
