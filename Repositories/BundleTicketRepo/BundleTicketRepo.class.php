@@ -8,7 +8,7 @@
 			$Bundletickets = [];
 			try {
 					foreach($this->fetchTickets($eventType) as $row) {
-						$Bundletickets[] = new BundleTicket($row['ID'], $row['price'], $row['seats'], $row['title'], $row['description']);
+						$Bundletickets[] = new BundleTicket($row['ID'], $row['price'], 0, $row['title'], $row['description']);
 					}
 				} catch (Excetpion $error) {
 					throw $error;
