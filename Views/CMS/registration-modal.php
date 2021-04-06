@@ -20,13 +20,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="confirm_email">Confirm Email:</label>
-                                <input type="text" class="form-control" id="confirm_email" placeholder="Confirm email" name="confirm_email">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                                <label for="confirm_password">Confirm Password:</label>
+                                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password">
                             </div>
  
                             

@@ -32,11 +32,11 @@
             <div class="row justify-content-center">
                  <div class = "row"><h5 class="modal-title">New password form</h5></div>
             </div>
-                    <form action = "/Service/CMS/password-reset.php" id = "reset-password" method = "POST">
+                    <form action = <?php echo "/Service/CMS/password-reset.php?token=$token&selector=$selector";?> id = "reset-password" method = "POST">
                         <input type="hidden" name="form-name" value = "new-password">
                         <div class="form-group">
                             <label for="pwd">New password:</label>
-                            <input type="password" class="form-control" id="reset-password" placeholder="new password" name="reset-password">
+                            <input type="password" class="form-control" id="new-password" placeholder="new password" name="new-password">
                         </div>
 
                         <div class="form-group">

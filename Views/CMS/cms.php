@@ -23,7 +23,8 @@
 		<li id = "loggedEmail"> <?php echo "<span>".$_SESSION['email']." "."<i class='bi bi-person-circle' style='font-size: 1.6rem'></i>";?></li>
 		<?php
 			if (isset($_SESSION['employeeType']) && $_SESSION['employeeType'] === EmployeeType::ADMIN()->getValue()) {
-				echo "<li><a href='#'  data-target='#registration-modal' data-toggle = 'modal' >Add Volunteer</a></li>";
+				echo "<li><a href='#' data-target='#passwordResetModal' data-toggle='modal'>Reset Password</a></li>
+					  <li><a href='#' data-target='#registration-modal' data-toggle='modal'>Add Volunteer</a></li>";
 			}
 		?>
 	</ul>
@@ -39,6 +40,16 @@
 				{
 						echo "<script> showAlert('Internal error ! account not created contact support','error');</script>";
 				}
+
+				if (isset($_GET['linkSent']) && $_GET['linkSent'] === "false")
+				{
+						echo "<script> showAlert('internal error password reset link not sent. try again','error');</script>";
+				}
+
+				if (isset($_GET['tokenFound']) && $_GET['tokenFound'] === "false")
+				{
+						echo "<script> showAlert('Token not found send another reset link','error');</script>";
+				}
 			?>
 		</header>
 	<body>
@@ -48,8 +59,6 @@
 			/// account registration form
 			require_once "registration-modal.php"; 
 			require_once "password-reset.php"; 
-
-
 		?>
 
 	</body>
@@ -57,7 +66,7 @@
 
 <script>
 $(function() {
-	$("#registration-form, #password-reset").validate({
+	$("#registration-form, #password-reset-form").validate({
 		// Specify validation rules
 		rules: {
 			password: {
@@ -70,15 +79,18 @@ $(function() {
 				   email: true
 			},
 
-  	 confirm_email: {
+  	 confirm_password: {
 				required: true,
-				 equalTo: "#email"
+				 equalTo: "#password"
 			},
 		},
 
 		// Specify validation error messages
 	 messages: {
-			confirm_email: "Emails do not match",
+			confirm_email: {
+								required: "Confirm your Password",
+								 equalTo: "Passwords do not much"
+						   },
 
 			     password: {
 								required: "Password field cannot be empty.",

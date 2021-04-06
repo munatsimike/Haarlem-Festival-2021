@@ -9,10 +9,10 @@ class PasswordResetController
 		$this->repo = new PasswordResetRepo();
 	}
 
-	public function storeResetPasswordCredentials(PasswordReset $passwordReset) : bool
+	public function storeResetPasswordCredentials(PasswordReset $passwordReset)
 	{
 		try{
-			return $this->repo->storeResetPasswordCredentials($passwordReset);
+			 $this->repo->storeResetPasswordCredentials($passwordReset);
 
 		} catch (Exception $error){
 			throw $error;
@@ -24,7 +24,7 @@ class PasswordResetController
 		try{
 			return $this->repo->fetchResetPasswordCredentials($selector);
 
-		} catch (Exception $error) {
+		} catch (PasswordResetCredentialsNotFound | Exception $error) {
 			throw $error;
 		}
 	}

@@ -1,8 +1,4 @@
-<div class="container">
-  <a href="#" data-target="#passwordResetModal" data-toggle="modal">Forgot my password</a>
-</div>
 
-<!-- Login --->
 <div class="modal fade" id="passwordResetModal" role="dialog">
   <div class="modal-dialog modal-m">
     <div class="modal-content">
