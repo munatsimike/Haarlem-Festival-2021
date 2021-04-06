@@ -5,8 +5,8 @@ use MyCLabs\Enum\Enum;
 
  class EventName extends Enum
 {
-    const JAZZ = "jazz";
-    const DANCE = "dance";
+    const JAZZ = "Jazz";
+    const DANCE = "Dance";
 }
 
 ?>

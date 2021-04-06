@@ -10,7 +10,7 @@ function autoload($className)
                     'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/TransactionController', 'Models/Volunteer',
                     'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service', 'Repositories/VolunteerRepo', 'Models/BundleTicket',
                     'Controllers/BundleTicketController', 'Repositories/BundleTicketRepo', 'Repositories', 'Controllers/DanceController', 'Repositories/DanceRepo', 'Models/Dance', 'Enums', 'StringObject',
-                    'Models/PasswordReset', 'Repositories/PasswordResetRepo', 'Controllers/PasswordResetController'
+                    'Models/PasswordReset', 'Repositories/PasswordResetRepo', 'Controllers/PasswordResetController', 'Repositories/CMSRepo', 'Controllers/CMSController'
                    ];
     //list of comma separated file format
     $fileExtensions = ['%s.php', '%s.class.php'];

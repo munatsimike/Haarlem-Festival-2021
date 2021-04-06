@@ -7,6 +7,17 @@
 		header("location: ../../index.php");
 		exit;
 	}
+
+	
+	$CMSController = new CMSController();
+
+	try {
+		$CMSEvents = $CMSController->fetchEvents();
+	} catch (Exception $error) {
+		new ErrorLog($error->getMessage());
+		echo "<script> showAlert('Error ! failed to connect to remote server. Try again or contact support','error');</script>";
+		return;
+	}
 ?>
 
 <html>
@@ -14,6 +25,8 @@
 		<?php 
 			require_once '../partials/head.php'; 
 			require_once '../alert.php';
+			require_once 'CMSEventOptions.php';
+			require_once '../ti.php';
 		?>
 		<title>Haarlem festival CMS</title>
 	</head>
@@ -52,8 +65,14 @@
 				}
 			?>
 		</header>
+		
 	<body>
-			 
+			
+			<div class = "row justify-content-center">
+				<div class = "col-7 single-tickets">
+					<?php CMSEventOptions::displayTickets($CMSEvents);?>
+				</div>
+			</div>
 		<?php 
 			require_once "logout-modal.php"; 
 			/// account registration form
@@ -65,8 +84,49 @@
 </html>
 
 <script>
+// pass data for editing djs
+/*$('#djs-modal').click(function ($event) {
+	$var = JSON.stringify({'djs':$cartId});
+        
+		$.ajax({
+			url: '../../Service/CMS/',
+			type: 'post',
+			data: {'var': $var},
+		}).done(function (response) {
+			if(JSON.parse(response)) {
+				DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
+			} else {
+				DisplayAlert("error", "form_success", "");
+			}
+
+        }).fail(function (jqXHR, textStatus, errorMessage) {
+             alert(errorMessage);
+        })
+});*/
+
+$('.save, .reset, .delete').click(function ($event) {
+	$var = JSON.stringify({'djs':$cartId});
+	if ($(this).attr('name') === 'savebtn') {
+		
+		$.ajax({
+			url: '../../Service/CMS/',
+			type: 'post',
+			data: {'var': $var},
+		}).done(function (response) {
+			if(JSON.parse(response)) {
+				DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
+			} else {
+				DisplayAlert("error", "form_success", "");
+			}
+
+        }).fail(function (jqXHR, textStatus, errorMessage) {
+             alert(errorMessage);
+        })
+});
 $(function() {
-	$("#registration-form, #password-reset-form").validate({
+	
+
+	$("#registration-form, #password-reset").validate({
 		// Specify validation rules
 		rules: {
 			password: {

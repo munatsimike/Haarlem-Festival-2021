@@ -1,7 +1,7 @@
 <?php	
 	 class JazzTicket extends Ticket
 	{
-		private string $artist;
+		public string $artist;
 		
 		public function __construct(int $id, float $price , string $date, string $start, string $end, Venue $venue, string $seats, string $artist)
 		{
