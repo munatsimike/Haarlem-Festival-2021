@@ -75,7 +75,48 @@
 </html>
 
 <script>
+// pass data for editing djs
+/*$('#djs-modal').click(function ($event) {
+	$var = JSON.stringify({'djs':$cartId});
+        
+		$.ajax({
+			url: '../../Service/CMS/',
+			type: 'post',
+			data: {'var': $var},
+		}).done(function (response) {
+			if(JSON.parse(response)) {
+				DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
+			} else {
+				DisplayAlert("error", "form_success", "");
+			}
+
+        }).fail(function (jqXHR, textStatus, errorMessage) {
+             alert(errorMessage);
+        })
+});*/
+
+$('.save, .reset, .delete').click(function ($event) {
+	$var = JSON.stringify({'djs':$cartId});
+	if ($(this).attr('name') === 'savebtn') {
+		
+		$.ajax({
+			url: '../../Service/CMS/',
+			type: 'post',
+			data: {'var': $var},
+		}).done(function (response) {
+			if(JSON.parse(response)) {
+				DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
+			} else {
+				DisplayAlert("error", "form_success", "");
+			}
+
+        }).fail(function (jqXHR, textStatus, errorMessage) {
+             alert(errorMessage);
+        })
+});
 $(function() {
+	
+
 	$("#registration-form, #password-reset").validate({
 		// Specify validation rules
 		rules: {
