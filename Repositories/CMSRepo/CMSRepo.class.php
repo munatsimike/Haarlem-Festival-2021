@@ -96,7 +96,7 @@
 						->execute(['customerId'=>$customerId, 'eventId'=>$item->id, 'quantity'=>$item->quantity]);
 
 				$this->jazzRepo->updateNumberOfSeats($item->id, $item->quantity);
-				}
+				
 
 			} catch (Exception $error) {
 				throw $error;

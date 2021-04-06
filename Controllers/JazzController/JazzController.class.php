@@ -3,10 +3,10 @@
 	{
 		private JazzRepo $repo;
 		public function __construct()
-		{	try{
+		{	
+			try{
 				$this->repo = new JazzRepo();
 			}catch(Exception $e){
-				throw
 			}
 		}
 
