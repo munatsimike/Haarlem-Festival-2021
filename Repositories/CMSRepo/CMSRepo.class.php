@@ -86,6 +86,33 @@
             }
 			throw ConnectionFailureException::database();
 		}
+
+        public function addTicket(Ticket $event)
+		{	
+
+			try {
+
+				$this->pdo->prepare("INSERT INTO transaction(customer_Id, event_Id, quantity) VALUES (:customerId, :eventId, :quantity)")
+						->execute(['customerId'=>$customerId, 'eventId'=>$item->id, 'quantity'=>$item->quantity]);
+
+				$this->jazzRepo->updateNumberOfSeats($item->id, $item->quantity);
+				}
+
+			} catch (Exception $error) {
+				throw $error;
+			}
+			
+			return $customerId;
+		}
+        
+        private function addDanceTicket(DanceTicket $event){
+            $this->pdo->prepare("INSERT INTO transaction(customer_Id, event_Id, quantity) VALUES (:customerId, :eventId, :quantity)")
+						->execute(['customerId'=>$customerId, 'eventId'=>$item->id, 'quantity'=>$item->quantity]);
+        }
+
+        private function addJazzTicket(JazzTicket $event){
+
+        }
 	}
 
 ?>
