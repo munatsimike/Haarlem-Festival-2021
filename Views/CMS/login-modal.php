@@ -24,10 +24,6 @@
                             <input type="password" class="form-control" id="password" placeholder="Volunteer password" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
-
-                        <div class="forgot-link mt-2">
-                            <a href="#forgot" data-toggle="modal" data-target="#forgot-password">Forgot password?</a>
-                         </div>
                     </form>
                 </div>
             </div>

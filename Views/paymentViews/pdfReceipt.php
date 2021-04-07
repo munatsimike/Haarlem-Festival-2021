@@ -115,14 +115,9 @@ try {
   }
   catch (Exception $e) 
   {
-     /* PHPMailer exception. */
     new ErrorLog($e->errorMessage());
   }
-  catch (\Exception $e) 
-  {
-     /* PHP exception (note the backslash to select the global namespace Exception class). */
-     new ErrorLog($e->getMessage());
-  }
+  
   // display receipt to the browser
   $pdf->Output();
  
