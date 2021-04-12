@@ -2,7 +2,7 @@
 	require_once $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
 	if ( ! isset($_SESSION)) session_start();
 
-	if (Cart::getCartItems() ==  null) {
+	if (Cart::getCartItems() ==  null || Cart::getCartTotal() == 0) {
 		header("location: /../index.php");
 	}
 ?>

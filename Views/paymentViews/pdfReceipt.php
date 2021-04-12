@@ -113,9 +113,13 @@ try {
       $sender->sendEmail($pdf->Output("", "S"), 'Receipt', 'pdf');
         // php mailer exception
   }
-  catch (Exception $e) 
+  catch (phpmailerException $e) 
   {
     new ErrorLog($e->errorMessage());
+
+  } catch (Exception $e) {
+    
+    echo $e->getMessage(); 
   }
   
   // display receipt to the browser

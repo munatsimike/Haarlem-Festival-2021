@@ -16,7 +16,7 @@
                         <input type="hidden" name="form-name" value = "reset-password">
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="text" class="form-control" id="email" placeholder="Volunteer email" name="email">
+                            <input type="text" class="form-control" id="reset-email" placeholder="Volunteer email" name="email">
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-block">Reset password</button>

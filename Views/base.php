@@ -48,7 +48,7 @@
             }
         });
 
-	  $('.add-to-cart-btn, .trash, .cartQuantity').click(function ($event) {
+	  $('.add-to-cart-btn, .trash, .cartQuantity').on('click change', function ($event) {
 		const $row = $(this).closest('tr');
 		const $id = $.trim($row.find('.id').val());
 
@@ -58,6 +58,13 @@
 			const $qty = parseInt($.trim($row.find('.cartQuantity').val()));
 			const $cartId = parseInt($.trim($row.find('.cartId').val()));
 			const $unitPrice = parseFloat($row.find('.unitPrice').text().substring(2));
+
+			if ($qty < 1) {
+				showAlert('Quantity cannot be less than 1', 'error');
+				$('.cartQuantity').val(1);
+				return;
+			}
+
 			$action = 'updateItemQuantity';
 			$error = "something went wrong";
 			$var = JSON.stringify({'cartId':$cartId, 'quantity':$qty});

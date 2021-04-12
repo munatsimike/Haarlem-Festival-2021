@@ -72,7 +72,6 @@
 		</header>
 		
 	<body>
-			
 			<div class = "row justify-content-center">
 				<div class = "col-7 single-tickets">
 					<?php CMSEventOptions::displayTickets($CMSEvents);?>
@@ -89,49 +88,61 @@
 </html>
 
 <script>
-// pass data for editing djs
-/*$('#djs-modal').click(function ($event) {
-	$var = JSON.stringify({'djs':$cartId});
-        
-		$.ajax({
-			url: '../../Service/CMS/',
-			type: 'post',
-			data: {'var': $var},
-		}).done(function (response) {
-			if(JSON.parse(response)) {
-				DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
-			} else {
-				DisplayAlert("error", "form_success", "");
-			}
-
-        }).fail(function (jqXHR, textStatus, errorMessage) {
-             alert(errorMessage);
-        })
-});*/
-
-$('.save, .reset, .delete').click(function ($event) {
-	$var = JSON.stringify({'djs':$cartId});
-	if ($(this).attr('name') === 'savebtn') {
-		
-		$.ajax({
-			url: '../../Service/CMS/',
-			type: 'post',
-			data: {'var': $var},
-		}).done(function (response) {
-			if(JSON.parse(response)) {
-				DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
-			} else {
-				DisplayAlert("error", "form_success", "");
-			}
-
-        }).fail(function (jqXHR, textStatus, errorMessage) {
-             alert(errorMessage);
-        })
-});
 $(function() {
+
+	// pass data for editing djs
+	/*$('#djs-modal').click(function ($event) {
+		$var = JSON.stringify({'djs':$cartId});
+			
+			$.ajax({
+				url: '../../Service/CMS/',
+				type: 'post',
+				data: {'var': $var},
+			}).done(function (response) {
+				if(JSON.parse(response)) {
+					DisplayAlert("form_success", "error", "djs could not be edited, refresh page or try again later");
+				} else {
+					DisplayAlert("error", "form_success", "");
+				}
+
+			}).fail(function (jqXHR, textStatus, errorMessage) {
+				alert(errorMessage);
+			})
+	});*/
+
+	$('.save, .reset, .delete').click(function ($event) {
+		const $row = $(this).closest('tr');
+		const $id = $.trim($row.find('.id').val());
+		let $action = " ";
+		
+		if ($(this).attr('name') === 'savebtn') {
+			
+			const $date = $.trim($row.find('.date').val());
+			const $price = $.trim($row.find('.price').val());
+			const $start = $.trim($row.find('.start').val());
+			const $end = $.trim($row.find('.end').val());
+			const $seats = parseInt($.trim($row.find('.seats').val()));
+			$action = 'save';
+			$var = JSON.stringify({'id':$id, 'date':$date, 'price':$price,  'start':$start, 'seats':$seats, 'end':$end});
+		}
+		
+		if ($(this).attr('name') === 'deletebtn'){
+			$action = 'delete';
+			$var = JSON.stringify({'id':$id});
+		}
+			$.ajax({
+				url: '../../Service/CMS/updateEvents.php?action='+$action,
+				type: 'post',
+				data: {'var': $var},
+			}).done(function (response) {
+				showAlert(response,'success')
+			}).fail(function (jqXHR, textStatus, errorMessage) {
+				alert(errorMessage);
+			})
+	});
 	
 
-	$("#registration-form, #password-reset").validate({
+	$("#registration-form").validate({
 		// Specify validation rules
 		rules: {
 			password: {
