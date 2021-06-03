@@ -1,6 +1,5 @@
 
 <?php
-session_start();
 require_once '../myAutoLoader.php';
 
   $pdfHandler = new PdfHandler();
@@ -9,7 +8,7 @@ require_once '../myAutoLoader.php';
   $pdfHandler->sendPdfInvoice();
   $pdfHandler->displayPdfInvoice();
 
-  session_unset();
+  session_destroy();
  ?>
  
 

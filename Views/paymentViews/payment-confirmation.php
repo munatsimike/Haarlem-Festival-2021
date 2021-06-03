@@ -1,8 +1,9 @@
 <?php 
 require_once '../myAutoLoader.php';
 if ( ! isset($_SESSION)) session_start();
+ $orderId = $_GET['orderId'];
 // check if redirect is from checkout form
-if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
+if (! isset($orderId) || ! is_numeric($orderId)) {
  header('Location:../../index.php');
 }
 ?>
@@ -31,7 +32,7 @@ if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
             ?>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary btn-block" onclick="location.href='/Views/paymentViews/pdfReceipt.php?payment=success'" type="button" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary btn-block" onclick="location.href='/Views/paymentViews/pdfHandler.php?payment=success'" type="button" data-dismiss="modal">Close</button>
 
         </div>
       </div>
@@ -43,9 +44,9 @@ if (! isset($_GET['payment']) || $_GET['payment'] !== 'success') {
   </body>
 </html>
 <script>
-$(function() {
-  $(window).on('load', function() {
-    $('#payment-confirmation').modal('show');
+    $(function() {
+      $(window).on('load', function() {
+        $('#payment-confirmation').modal('show');
+        });
     });
-});
 </script>

@@ -3,7 +3,7 @@
         startblock('main') 
   ?>
 
-  <h2 class = "introHeading">Haarelm Festival - 2021</h2>
+  <h2 class = "introHeading">Haarlem Festival - 2021</h2>
   <p class="introduction">
  famous museums, shops,
 restaurants and the beach around the corner: welcome to Haarlem,

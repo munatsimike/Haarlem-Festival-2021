@@ -92,7 +92,7 @@
 					    <h5 class="mb-2 mt-2">Your Details</h5>
 					</div>
 					<p>Details provided to this form will appear on the invoice that will be sent to the provided email address</p>
-					<form action = "../../Service/paymentGateway.php" id = "checkout-form" method = "POST">
+					<form action = "../../Service/createPayment.php" id = "checkout-form" method = "POST">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="firstname">First name</label>
