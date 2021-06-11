@@ -6,7 +6,7 @@
     public string $lastName;
     public string $email;
 
-    public function __construct(string $firstName, string $lastName, string $email)
+    function __construct(string $firstName, string $lastName, string $email)
     {
         $this->firstName = $firstName;
         $this->lastName =  $lastName;

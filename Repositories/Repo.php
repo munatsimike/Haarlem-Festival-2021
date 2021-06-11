@@ -13,12 +13,6 @@
 			}
 		}
 		
-		// update number of seats after every successfuly transaction
-		public function updateNumberOfSeats(int $ticketId , int $quantity) : void
-		{
-				$this->pdo->prepare("UPDATE event SET seats = (seats - :quantity) WHERE id = :id")
-				      	  ->execute(['id'=>$ticketId, 'quantity'=>$quantity]);
-		}
 	}
 
 ?>

@@ -1,27 +1,24 @@
-
 <?php
-require_once '../myAutoLoader.php';
-require_once '../../Service/fpdf/fpdf.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Views/myAutoLoader.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
 
-  class PdfHandler {
+  class PdfInvoiceHandler extends PdfHandler
+  {
 
-    public array $cartItems;
+    private array $orderItems;
+    private int $orderId;
     private Customer $customer;
-    private int $transactionId = 0;
 
-    public function __construct()
+    function __construct(array $orderItems, int $orderId, Customer $customer)
     {
-        $this->cartItems = Cart::getCartItems();
-        if ($this->cartItems !== null && isset($_GET['payment']) && $_GET['payment'] = "success") {
-          $this->customer = $_SESSION['customer'];
-        } else {
-          header("location: ../../index.php");
-        }
+      $this->orderItems = $orderItems;
+      $this->orderId = $orderId;
+      $this->customer =  $customer;
     }
+
       
-    public function createPdfInvoice()
+    public function createPdfInvoice() : fpdf
     {
-        
        try {
          //create fpdf object with parameters
           $pdf = new fpdf('p','mm','A4');
@@ -44,7 +41,7 @@ require_once '../../Service/fpdf/fpdf.php';
 
           $pdf->Cell(130,5,'Netherlands',0,0);
           $pdf->Cell(25,5,'Receipt #',0,0);
-          $pdf->Cell(34,5,$this->transactionId,0,1);
+          $pdf->Cell(34,5,$this->orderId,0,1);
 
           $pdf->Cell(130,5,'Phone [+31 774 163 923]',0,0);
           $pdf->Cell(25,5,'',0,0);
@@ -85,14 +82,14 @@ require_once '../../Service/fpdf/fpdf.php';
 
           $pdf->setFont('Arial','',11);
           // display items
-            foreach ($this->cartItems as $row) {
+            foreach ($this->orderItems as $row) {
               $pdf->Cell(10, 5, $row->quantity, 1, 0, 'C');
               $pdf->Cell(134, 5, $row->description, 1, 0);
               $pdf->Cell(20, 5, number_format($row->unitPrice, 2), 1, 0, 'C');
               $pdf->Cell(30, 5, number_format($row->getSubtotal(), 2), 1, 1, 'R');
           }
           // add qrcode to the invoice
-            $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($this->transactionId), 138, 34, 30, 30, "png");
+            $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($this->orderId), 138, 34, 30, 30, "png");
 
           // summary
           $pdf->Cell(144,5,'',0,0);
@@ -120,25 +117,6 @@ require_once '../../Service/fpdf/fpdf.php';
         echo $e->getMessage(); 
       }
     }
-  
-    public function sendPdfInvoice() : bool
-    {
-        try {
-        // email receipt to the customer
-          $message = "Dear ". (string)$this->customer." Please find attached your haarlem festival invoice, Thank you for your purchase";
-          $sender = new Mailer($this->customer->email, "Haarlem festival receipt", $message );
-          $sender->sendEmail($this->createPdfInvoice()->Output()("", "S"), 'Receipt', 'pdf');
-          return true;
-        } catch (phpmailerException $e) {
-            new ErrorLog($e->errorMessage());
-            return false;
-        }
-      }
-
-      public function displayPdfInvoice () 
-      {
-        $this->createPdfInvoice()->Output();
-      }
 }
   
  ?>

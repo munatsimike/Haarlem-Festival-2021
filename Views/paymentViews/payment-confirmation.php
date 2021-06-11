@@ -1,12 +1,17 @@
 <?php 
 require_once '../myAutoLoader.php';
 if ( ! isset($_SESSION)) session_start();
+
  $orderId = $_GET['orderId'];
 // check if redirect is from checkout form
 if (! isset($orderId) || ! is_numeric($orderId)) {
  header('Location:../../index.php');
 }
+  $orderController = new OrderController();
+  $orderStatus = $orderController->fetchOrderStatus($orderId);
 ?>
+
+<?php if ($orderStatus == PaymentStatus::PAID()) : ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -32,8 +37,7 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
             ?>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary btn-block" onclick="location.href='/Views/paymentViews/pdfHandler.php?payment=success'" type="button" data-dismiss="modal">Close</button>
-
+          <button class="btn btn-primary btn-block" onclick="location.href='/Service/pdfHandler.php?status=paid'" type="button" data-dismiss="modal">Display Invoice</button>
         </div>
       </div>
       
@@ -43,6 +47,7 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
 </div>
   </body>
 </html>
+<?php endif; ?>
 <script>
     $(function() {
       $(window).on('load', function() {

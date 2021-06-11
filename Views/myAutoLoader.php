@@ -7,8 +7,8 @@ function autoload($className)
     //list comma separated directory name
     $directories = [
                     'Controllers/VolunteerController', 'Models/Jazz', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', "Enums", "Exceptions",
-                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/TransactionController', 'Models/Volunteer',
-                    'Repositories/TransactionRepo', 'Models/Transaction', 'Repositories/CustomerRepo', 'Service', 'Repositories/VolunteerRepo', 'Models/BundleTicket',
+                    'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/OrderController', 'Models/Volunteer',
+                    'Repositories/OrderRepo', 'Models/Order', 'Models/Pdf', 'Repositories/CustomerRepo', 'Service', 'Service/NumberGenerator', 'Repositories/VolunteerRepo', 'Models/BundleTicket',
                     'Controllers/BundleTicketController', 'Repositories/BundleTicketRepo', 'Repositories', 'Controllers/DanceController', 'Repositories/DanceRepo', 'Models/Dance', 'Enums', 'StringObject',
                     'Models/PasswordReset', 'Repositories/PasswordResetRepo', 'Controllers/PasswordResetController', 'Repositories/CMSRepo', 'Controllers/CMSController'
                    ];
