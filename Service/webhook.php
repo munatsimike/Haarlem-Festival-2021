@@ -22,8 +22,19 @@ try {
 
     if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
         $orderController->updateNumberOfTickets($orderId);
+
+        $customer = unserialize($payment->metadata->customer);
+        $pdfInvoiceHandler = new PdfInvoiceHandler($orderController->fetchOrderItems($orderId), $orderId, $customer);
+        $pdfInvoice = $pdfInvoiceHandler->createPdfInvoice();
+
+        // email pdf invoice
+        $subject = "Haarlem Festival Invoice";
+        $message = "Dear ". (string)$customer." Please find attached your haarlem festival invoice, Thank you for your purchase";
+        $pdfInvoiceHandler->emailPdfDocument($pdfInvoice, $subject, $message, $customer->email);
     } 
 
+    http_response_code(200);
+    
 } catch (\Mollie\Api\Exceptions\ApiException $e) {
     echo "API call failed: " . htmlspecialchars($e->getMessage());
 }

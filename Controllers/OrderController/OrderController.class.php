@@ -35,5 +35,10 @@
 		{
 			$this->orderItemRepo->updateNumberOfTickets($orderId);
 		}
+
+		public function fetchOrderItems(int $orderId) : array
+		{
+			return $this->orderItemRepo->fetchOrderItems($orderId);
+		}
 	}
 ?>

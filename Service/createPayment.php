@@ -1,15 +1,14 @@
 <?php
 if ( ! isset($_SESSION)) session_start();
 require_once '../Views/myAutoLoader.php';
-require_once('mollie/vendor/autoload.php');
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $_SESSION['customer'] = new Customer(trim($_POST['firstname']), trim($_POST['lastname']), trim($_POST['email']));
+    $customer = serialize($_SESSION['customer']);
     $amount =  number_format($_SESSION['total'], 2);
 
-    $orderController = new OrderController();
-    $orderNum = new OrderNumberGenerator();    
-    $orderNumber = $orderNum->generateOrderNumber();
+    $orderNumGenerator = OrderNumberGenerator::getInstance();    
+    $orderNumber = $orderNumGenerator->generateOrderNumber();
 
 try{
     require "initializeMollie.php";
@@ -21,14 +20,16 @@ try{
 
         "description" => "Haarlem Festival Order : {$orderNumber}",
         "redirectUrl" => "http://localhost/Views/paymentViews/payment-confirmation.php?orderId=$orderNumber",
-         "webhookUrl" => "https://29181eca8a79.ngrok.io/Service/webhook.php",
+         "webhookUrl" => "https://ab5f18f60034.ngrok.io/Service/webhook.php",
            "metadata" => [
-           "order_id" => $orderNumber,
+           "order_id" => $orderNumber, 
+            'customer'=> $customer
         ],
     ]);
     
      $status = PaymentStatus::fromString($payment->status);
      $order = new Order($orderNumber, Cart::getCartItems(), $status);
+     $orderController = new OrderController();
      $orderController->storeOrder($order);
       /*
      * Send the customer off to complete the payment.

@@ -3,10 +3,10 @@
 class Order
 {
     public PaymentStatus $status;
-    public iterable $orderItems;
+    public array $orderItems;
     public int $orderNumber;
 
-    function __construct(int $orderNumber, iterable $orderItems, PaymentStatus $status)
+    function __construct(int $orderNumber, array $orderItems, PaymentStatus $status)
     {
        $this->orderNumber = $orderNumber;
        $this->status = $status;

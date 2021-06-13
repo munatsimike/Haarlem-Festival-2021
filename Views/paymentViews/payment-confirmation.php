@@ -7,11 +7,17 @@ if ( ! isset($_SESSION)) session_start();
 if (! isset($orderId) || ! is_numeric($orderId)) {
  header('Location:../../index.php');
 }
+  $modalTitle = $modalMessage = $redirectUrl = $email = null;
   $orderController = new OrderController();
   $orderStatus = $orderController->fetchOrderStatus($orderId);
-?>
 
-<?php if ($orderStatus == PaymentStatus::PAID()) : ?>
+if ($orderStatus == PaymentStatus::PAID()) {
+  $modalTitle = "Payment Success";
+  $modalMessage = "Payment was processed successfuly. A receipt will be sent to : ";
+  $redirectUrl = //'/Service/pdfHandler.php?status=paid';
+  $email = $_SESSION['customer']->email;
+} 
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -28,16 +34,18 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
   <div class="modal-dialog modal-m modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header justify-content-center">
-          <h4 class="modal-title"><i class="bi bi-check-circle-fill" style = "color:#007DFF; font-size:1.4em;"></i> Payment Success</h4>
+          <h4 class="modal-title"><i class="bi bi-check-circle-fill" style = "color:#007DFF; font-size:1.4em;"></i><?php echo $modalTitle ?></h4>
         </div>
         <div class="modal-body text-center">
-          <?php
-           echo "<p>Payment was processed successfuly. A receipt will be sent to<strong> ".$_SESSION['customer']->email."</strong></p>
-                 <P>Thank you for your purchase.</p>";
-            ?>
+           <p><?php echo $modalMessage ?><strong><?php echo $email?></strong></p>
+           <P>Thank you for your purchase.</p>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary btn-block" onclick="location.href='/Service/pdfHandler.php?status=paid'" type="button" data-dismiss="modal">Display Invoice</button>
+          <form action="/Service/pdfHandler.php?status=paid">
+            <input type="hidden" id="custId" name="custId" value="3487">
+            <input type="hidden" id="custId" name="custId" value="3487">  
+           <button class="btn btn-primary btn-block" type="submit" data-dismiss="modal">Proceed</button>
+          </form>
         </div>
       </div>
       
@@ -47,7 +55,6 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
 </div>
   </body>
 </html>
-<?php endif; ?>
 <script>
     $(function() {
       $(window).on('load', function() {

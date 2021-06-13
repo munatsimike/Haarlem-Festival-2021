@@ -83,10 +83,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
           $pdf->setFont('Arial','',11);
           // display items
             foreach ($this->orderItems as $row) {
-              $pdf->Cell(10, 5, $row->quantity, 1, 0, 'C');
-              $pdf->Cell(134, 5, $row->description, 1, 0);
-              $pdf->Cell(20, 5, number_format($row->unitPrice, 2), 1, 0, 'C');
-              $pdf->Cell(30, 5, number_format($row->getSubtotal(), 2), 1, 1, 'R');
+              $pdf->Cell(10, 5, $row['quantity'], 1, 0, 'C');
+              $pdf->Cell(134, 5, $row['description'], 1, 0);
+              $pdf->Cell(20, 5, number_format($row['unitPrice'], 2), 1, 0, 'C');
+              $pdf->Cell(30, 5, number_format(90, 2), 1, 1, 'R');
           }
           // add qrcode to the invoice
             $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($this->orderId), 138, 34, 30, 30, "png");
