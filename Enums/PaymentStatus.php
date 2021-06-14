@@ -9,6 +9,7 @@ use MyCLabs\Enum\Enum;
     private const FAILED = "failed";
     private const CANCELED = "cancelled";
     private const EXPIRED = "expired";
+    private const PENDING = "pending";
 
     public static function fromString (string $value) : self
     {

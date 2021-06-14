@@ -81,12 +81,18 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
           $pdf->Cell(30,5,'Total (Euro)',1,1,'C');
 
           $pdf->setFont('Arial','',11);
+          $total = 0;
           // display items
             foreach ($this->orderItems as $row) {
-              $pdf->Cell(10, 5, $row['quantity'], 1, 0, 'C');
+              $quantity = $row['quantity'];
+              $price = $row['price'];
+              $subTotal = $price * $quantity;
+              $total += $subTotal;
+
+              $pdf->Cell(10, 5, $quantity , 1, 0, 'C');
               $pdf->Cell(134, 5, $row['description'], 1, 0);
-              $pdf->Cell(20, 5, number_format($row['unitPrice'], 2), 1, 0, 'C');
-              $pdf->Cell(30, 5, number_format(90, 2), 1, 1, 'R');
+              $pdf->Cell(20, 5, number_format($price, 2), 1, 0, 'C');
+              $pdf->Cell(30, 5, number_format($subTotal, 2), 1, 1, 'R');
           }
           // add qrcode to the invoice
             $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($this->orderId), 138, 34, 30, 30, "png");
@@ -94,17 +100,17 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
           // summary
           $pdf->Cell(144,5,'',0,0);
           $pdf->Cell(20,5,'Subtotal',0,0);
-          $pdf->Cell(30,5,number_format($_SESSION['subtotal'], 2),1,1, 'R');
+          $pdf->Cell(30,5,number_format($total, 2),1,1, 'R');
           $pdf->Cell(144,5,'',0,0);
           $pdf->Cell(20,5,'Tax 15%', 0,0);
-          $pdf->Cell(30,5,number_format($_SESSION['tax'],2),1,1, 'R');
+          $pdf->Cell(30,5,number_format(0.15 * $total, 2),1,1, 'R');
 
           // set set
           $pdf->setFont('Arial','B',12);
 
           $pdf->Cell(144,5,'',0,0);
           $pdf->Cell(20,5,'Total',0,0);
-          $pdf->Cell(30,5,number_format($_SESSION['total'], 2),1,1, 'R');
+          $pdf->Cell(30,5,number_format($total * 1.15, 2),1,1, 'R');
 
           $pdf->Cell(189,15,'',0,1);
           $pdf->Cell(130,5,'NB:',0,1);

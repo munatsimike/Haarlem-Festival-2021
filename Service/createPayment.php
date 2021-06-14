@@ -20,7 +20,7 @@ try{
 
         "description" => "Haarlem Festival Order : {$orderNumber}",
         "redirectUrl" => "http://localhost/Views/paymentViews/payment-confirmation.php?orderId=$orderNumber",
-         "webhookUrl" => "https://ab5f18f60034.ngrok.io/Service/webhook.php",
+         "webhookUrl" => "https://831b1fc3898a.ngrok.io/Service/webhook.php",
            "metadata" => [
            "order_id" => $orderNumber, 
             'customer'=> $customer

@@ -23,11 +23,11 @@ try {
     if ($payment->isPaid() && ! $payment->hasRefunds() && ! $payment->hasChargebacks()) {
         $orderController->updateNumberOfTickets($orderId);
 
+        // email pdf invoice
         $customer = unserialize($payment->metadata->customer);
         $pdfInvoiceHandler = new PdfInvoiceHandler($orderController->fetchOrderItems($orderId), $orderId, $customer);
         $pdfInvoice = $pdfInvoiceHandler->createPdfInvoice();
 
-        // email pdf invoice
         $subject = "Haarlem Festival Invoice";
         $message = "Dear ". (string)$customer." Please find attached your haarlem festival invoice, Thank you for your purchase";
         $pdfInvoiceHandler->emailPdfDocument($pdfInvoice, $subject, $message, $customer->email);
