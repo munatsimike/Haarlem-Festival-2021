@@ -42,11 +42,7 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
   <head>
     <meta charset="utf-8">
     <title>Payment</title>
-    <?php  require_once "../partials/head.php";
-         if ($orderStatus == PaymentStatus::OPEN() || $orderStatus == PaymentStatus::PENDING()) {
-          echo "<meta http-equiv='refresh' content='5'>";
-        }
-    ?>
+    <?php  require_once "../partials/head.php";?>
     <link rel="stylesheet" href="../../Service/Spinner/loading.css" />
     <script src="/path/to/../../Service/Spinner/loading.js"></script>
   </head>
@@ -77,6 +73,9 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
       $(window).on('load', function() {
         if ($('#order_status').text() == "open" || $('#order_status').text() == "pending") {
           $.loading.start('Processing payment...');
+          setTimeout(function() {
+             window.location.reload();
+           }, 5000);
         } else {
           $('#payment-confirmation').modal('show');
         }
