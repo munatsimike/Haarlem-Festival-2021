@@ -85,8 +85,8 @@
 .spin-dot-item {
     position: absolute;
     display: block;
-    width: 9px;
-    height: 9px;
+    width: 40px !important;
+    height: 40px !important;
     background-color: #1890ff;
     border-radius: 100%;
     -webkit-transform: scale(.75);
@@ -100,8 +100,9 @@
     animation: antSpinMove 1s infinite linear alternate;
 }
 .tips{
-    font-size: 0.3rem;
+        font-size: 1.3rem;
     margin-bottom: 30%;
-    margin-top: 0.5rem;
+      margin-top: 2rem;
+            color: #000;
 }
 @keyframes antRotate{to{-webkit-transform:rotate(405deg)}}

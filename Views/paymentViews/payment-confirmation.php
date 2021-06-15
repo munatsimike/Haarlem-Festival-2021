@@ -42,8 +42,8 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
   <head>
     <meta charset="utf-8">
     <title>Payment</title>
-    <?php  require_once "../partials/head.php";?>
     <link rel="stylesheet" href="../../Service/Spinner/loading.css" />
+    <?php  require_once "../partials/head.php";?>
     <script src="/path/to/../../Service/Spinner/loading.js"></script>
   </head>
   <body>
@@ -72,7 +72,7 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
     $(function() {
       $(window).on('load', function() {
         if ($('#order_status').text() == "open" || $('#order_status').text() == "pending") {
-          $.loading.start('Processing payment...');
+          $.loading.start('Please wait, we are processing your order ....');
           setTimeout(function() {
              window.location.reload();
            }, 5000);
