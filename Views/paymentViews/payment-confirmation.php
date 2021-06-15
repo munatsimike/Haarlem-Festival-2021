@@ -29,9 +29,9 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
     case PaymentStatus::EXPIRED():
       $modalTitle = "Payment expired";
       break;
-    case PaymentStatus::CANCELED():
-      $modalTitle = "Payment Canceled";
-      $modalMessage = "Payment was Canceled successfuly";
+    case PaymentStatus::CANCELLED():
+      $modalTitle = "Payment Cancelled";
+      $modalMessage = "Payment was Cancelled successfuly";
       $redirectUrl = "../../index.php";
       break;
 } 

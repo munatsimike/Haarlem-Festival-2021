@@ -7,7 +7,7 @@ use MyCLabs\Enum\Enum;
     private const OPEN = "open";
     private const PAID = "paid";
     private const FAILED = "failed";
-    private const CANCELED = "cancelled";
+    private const CANCELLED = "cancelled";
     private const EXPIRED = "expired";
     private const PENDING = "pending";
 
