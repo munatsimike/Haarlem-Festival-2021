@@ -2,7 +2,7 @@
 if ( ! isset($_SESSION)) session_start();
 require_once '../Views/myAutoLoader.php';
 
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
+if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_SESSION['total'])) {
     $_SESSION['customer'] = new Customer(trim($_POST['firstname']), trim($_POST['lastname']), trim($_POST['email']));
     $customer = serialize($_SESSION['customer']);
     $amount =  number_format($_SESSION['total'], 2);
