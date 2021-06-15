@@ -6,10 +6,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
   {
 
     private array $orderItems;
-    private int $orderId;
+    private OrderNumber $orderId;
     private Customer $customer;
 
-    function __construct(array $orderItems, int $orderId, Customer $customer)
+    function __construct(array $orderItems, OrderNumber $orderId, Customer $customer)
     {
       $this->orderItems = $orderItems;
       $this->orderId = $orderId;
@@ -41,7 +41,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
 
           $pdf->Cell(130,5,'Netherlands',0,0);
           $pdf->Cell(25,5,'Receipt #',0,0);
-          $pdf->Cell(34,5,$this->orderId,0,1);
+          $pdf->Cell(34,5,$this->orderId->getValue(),0,1);
 
           $pdf->Cell(130,5,'Phone [+31 774 163 923]',0,0);
           $pdf->Cell(25,5,'',0,0);
@@ -95,7 +95,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
               $pdf->Cell(30, 5, number_format($subTotal, 2), 1, 1, 'R');
           }
           // add qrcode to the invoice
-            $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($this->orderId), 138, 34, 30, 30, "png");
+            $pdf->image('http://localhost/Service/QrGenerator/qrcodegen.php?paymentId='.md5($this->orderId->getValue()), 138, 34, 30, 30, "png");
 
           // summary
           $pdf->Cell(144,5,'',0,0);
@@ -119,7 +119,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/Service/fpdf/fpdf.php';
           return $pdf;
 
       } catch (Exception $e) {
-          
         echo $e->getMessage(); 
       }
     }

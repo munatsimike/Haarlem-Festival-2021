@@ -12,7 +12,7 @@ try {
         * Retrieve the payment's current state.
         */
         $payment = $mollie->payments->get($_POST["id"]);
-        $orderId = $payment->metadata->order_id;
+        $orderId = new OrderNumber(strval($payment->metadata->order_id));
         $orderController = new OrderController();
 
         /*

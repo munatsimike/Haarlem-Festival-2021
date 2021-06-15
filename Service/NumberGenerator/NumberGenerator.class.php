@@ -2,10 +2,13 @@
 
 abstract class NumberGenerator
 {
-    protected function generateNum()
+    protected function generateUnixTimeStamp() : string
     {
-        //return rand(100000, 999999);
-         
-        return (int)time();
+        return time();
+    }
+
+    public function isValidUnixTimestamp(string $timestamp) : bool
+    {
+       return ( is_numeric($timestamp) && (int)$timestamp == $timestamp );
     }
 }

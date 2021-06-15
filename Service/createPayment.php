@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_SESSION['total'])) {
 
     $orderNumGenerator = OrderNumberGenerator::getInstance();    
     $orderNumber = $orderNumGenerator->generateOrderNumber();
+    $intOrderNum = $orderNumber->getValue();
 
 try{
     require "initializeMollie.php";
@@ -18,11 +19,11 @@ try{
                "value" => "$amount"
         ],
 
-        "description" => "Haarlem Festival Order : {$orderNumber}",
-        "redirectUrl" => "http://localhost/Views/paymentViews/payment-confirmation.php?orderId=$orderNumber",
-         "webhookUrl" => "https://831b1fc3898a.ngrok.io/Service/webhook.php",
+        "description" => "Haarlem Festival Order : {$intOrderNum}",
+        "redirectUrl" => "http://localhost/Views/paymentViews/payment-confirmation.php?orderId=$intOrderNum",
+         "webhookUrl" => "https://d23528e12489.ngrok.io/Service/webhook.php",
            "metadata" => [
-           "order_id" => $orderNumber, 
+           "order_id" => $intOrderNum, 
             'customer'=> $customer
         ],
     ]);
@@ -39,9 +40,6 @@ try{
 
     }catch (InvalidPaymentStatusException $status) {
             echo InvalidPaymentStatusException::forValue($status);
-    }catch (Throwable $msg) {
-        new ErrorLog($msg->getMessage());
-        header("location: ../Views/paymentViews/checkout-form.php?error=error");
     }
 }
     ?>

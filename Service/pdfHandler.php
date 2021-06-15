@@ -7,7 +7,7 @@ if (! isset($_GET['id']) || ! isset($_SESSION['customer'])) {
     header("location: ../../index.php");
   } 
   
-  $orderId = $_GET['id'];
+  $orderId = new OrderNumber($_GET['id']);
   $orderController = new OrderController();
   $pdfInvoiceHandler = new PdfInvoiceHandler($orderController->fetchOrderItems($orderId), $orderId, unserialize(serialize($_SESSION['customer'])));
   $pdfInvoice = $pdfInvoiceHandler->createPdfInvoice();

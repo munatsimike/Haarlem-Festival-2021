@@ -8,7 +8,7 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
  header('Location:../../index.php');
 }
   $orderController = new OrderController();
-  $orderStatus = $orderController->fetchOrderStatus($orderId);
+  $orderStatus = $orderController->fetchOrderStatus(new OrderNumber($orderId));
 
   $modalTitle = $email = null;
   $modalMessage = "Payment was not processed. Try again or use a different payment method";
@@ -29,9 +29,9 @@ if (! isset($orderId) || ! is_numeric($orderId)) {
     case PaymentStatus::EXPIRED():
       $modalTitle = "Payment expired";
       break;
-    case PaymentStatus::CANCELLED():
-      $modalTitle = "Payment Cancelled";
-      $modalMessage = "Payment was Cancelled successfuly";
+    case PaymentStatus::CANCELED():
+      $modalTitle = "Payment Canceled";
+      $modalMessage = "Payment was Canceled successfuly";
       $redirectUrl = "../../index.php";
       break;
 } 

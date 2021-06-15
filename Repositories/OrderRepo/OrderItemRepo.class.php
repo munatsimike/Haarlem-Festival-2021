@@ -8,8 +8,9 @@
 			parent::__construct();
 		}
 
-		public function storeOrderItems(int $orderNumber, array $orderItems) 
-		{	//die(print_r($orderItems));
+		public function storeOrderItems(OrderNumber $orderNum, array $orderItems) 
+		{	
+			$orderNumber = $orderNum->getValue();
 			try {			
 				foreach (unserialize(serialize($orderItems)) as $item) {
 				$this->pdo->prepare("INSERT INTO order_item(order_id, event_id, description, quantity, price) VALUES (:orderId,  :eventId, :description, :quantity, :price)")
@@ -21,15 +22,17 @@
 			}
 		}
 
-		public function fetchOrderItems(int $orderId) : array
+		public function fetchOrderItems(OrderNumber $orderId) : array
 		{
-			return $this->pdo->query("SELECT description, quantity, price FROM order_item WHERE order_id = '$orderId'")->fetchAll();
+			$orderNum = $orderId->getValue();
+			return $this->pdo->query("SELECT description, quantity, price FROM order_item WHERE order_id = '$orderNum'")->fetchAll();
 		}
 
 		// update number of seats after every successfuly transaction
-		public function updateNumberOfTickets(int $orderId) : void
+		public function updateNumberOfTickets(OrderNumber $orderId) : void
 		{
-			$data = $this->pdo->query("SELECT event_id, quantity FROM order_item WHERE order_id = '$orderId'")->fetchAll();
+			$orderNum = $orderId->getValue();
+			$data = $this->pdo->query("SELECT event_id, quantity FROM order_item WHERE order_id = '$orderNum'")->fetchAll();
 
 			foreach($data as $row) {
 				$this->pdo->prepare("UPDATE event SET seats = (seats - :quantity) WHERE id = :id")

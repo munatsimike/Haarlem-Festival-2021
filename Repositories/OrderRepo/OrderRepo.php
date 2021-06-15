@@ -13,30 +13,33 @@ class OrderRepo extends Repo
     public function storeOrder(Order $order) : void
     {    
         $status = (string)$order->status;
-        $orderNumber = $order->orderNumber;
+        $orderNumber = $order->orderNumber->getValue();
 
         $this->pdo->query("INSERT INTO order_table (ID, status) VALUES ('$orderNumber','$status')");
-        $this->orderItemRepo->storeOrderItems($orderNumber, $order->orderItems);
+        $this->orderItemRepo->storeOrderItems($order->orderNumber, $order->orderItems);
     }
 
-    public function updateOrderStatus(int $orderId, PaymentStatus $status) : void
+    public function updateOrderStatus(OrderNumber $orderId, PaymentStatus $status) : void
     {   
         $paymentStatus = (string) $status;
-        $this->pdo->query("UPDATE order_table SET status = '$paymentStatus' WHERE ID =$orderId");
+        $orderNum = $orderId->getValue();
+        $this->pdo->query("UPDATE order_table SET status = '$paymentStatus' WHERE ID =$orderNum");
     }
 
-    public function orderIdExist(int $orderId) : bool
+    public function orderIdExist(OrderNumber $orderId) : bool
     {
+        $orderNum = $orderId->getValue();
         $stmt = $this->pdo->prepare("SELECT status FROM order_table WHERE ID = :id");
-			         $stmt->execute([':id' => $orderId]);
+			         $stmt->execute([':id' => $orderNum]);
        
         return $stmt->fetchColumn();
      }
 
-     public function fetchOrderStatus( int $orderId) : PaymentStatus
+     public function fetchOrderStatus(OrderNumber $orderId) : PaymentStatus
      {
+         $orderNum = $orderId->getValue();
          $stmt = $this->pdo->prepare("SELECT status FROM order_table WHERE ID = :id");
-                 $stmt->execute([':id' => $orderId]);
+                 $stmt->execute([':id' => $orderNum]);
         
          return PaymentStatus::fromString($stmt->fetchColumn());
     }

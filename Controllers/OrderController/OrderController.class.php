@@ -16,27 +16,27 @@
 			$this->orderRepo->storeOrder($order);
 		}
 
-		public function orderIdExist(int $orderId) : bool
+		public function orderIdExist(OrderNumber $orderId) : bool
 		{
 			return $this->orderRepo->orderIdExist($orderId);
 		}
 
-		public function updateOrderStatus(int $orderId, PaymentStatus $status) : void
+		public function updateOrderStatus(OrderNumber $orderId, PaymentStatus $status) : void
 		{
 			$this->orderRepo->updateOrderStatus($orderId, $status);
 		}
 
-		public function fetchOrderStatus(int $orderId) : PaymentStatus
+		public function fetchOrderStatus(OrderNumber $orderId) : PaymentStatus
 		{
 			return $this->orderRepo->fetchOrderStatus($orderId);
 		}
 
-		public function updateNumberOfTickets(int $orderId) : void
+		public function updateNumberOfTickets(OrderNumber $orderId) : void
 		{
 			$this->orderItemRepo->updateNumberOfTickets($orderId);
 		}
 
-		public function fetchOrderItems(int $orderId) : array
+		public function fetchOrderItems(OrderNumber $orderId) : array
 		{
 			return $this->orderItemRepo->fetchOrderItems($orderId);
 		}
