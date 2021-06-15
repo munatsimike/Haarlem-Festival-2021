@@ -4,28 +4,29 @@ class OrderNumberGenerator extends NumberGenerator
 {
     private OrderController $orderController;
     private static $instance = null;
-    private int $orderNum;
+    private OrderNumber $orderNum;
 
     private function __construct()
     {
         $this->orderController = new OrderController();
     }
 
-    public static function getInstance()
+    public static function getInstance() : OrderNumberGenerator
     {
         if ( ! self::$instance) {
             self::$instance = new OrderNumberGenerator();
-
             return self::$instance;
         }
+
+        return self::$instance;
     }
 
-    public function generateOrderNumber() : int
+    public function generateOrderNumber() : OrderNumber
     {
         do {
-            $this->orderNum = $this->generateNum();
+            $this->orderNum = new OrderNumber($this->generateUnixTimeStamp());
         } while ($this->orderController->orderIdExist($this->orderNum));
-
+        
         return $this->orderNum;
     }
 }
