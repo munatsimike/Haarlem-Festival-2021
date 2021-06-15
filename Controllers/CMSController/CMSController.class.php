@@ -17,5 +17,10 @@
 				throw $msg;
 			}
 		}
+
+		public function updateEvent(Ticket $event)
+		{
+			$repo->updateEvent($ticket);
+		}
 	}
 ?>

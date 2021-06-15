@@ -20,9 +20,12 @@ class AddToCart
                     if ($row->price > 0 ) {
             echo "<section>
                         <div class='value-button' class='decrease' onclick='decreaseValue()' value='Decrease Value'></div>
-                            <input type='number' min='1' max='$row->seats' class ='quantity' value='$quantity' ".$btnData['state']."/>
-                            Seats: <span class ='seats'>$row->seats</span>
-                        <div class='value-button' class='increase' onclick='increaseValue()' value='Increase Value'></div>
+                            <input type='number' min='1' max='$row->seats' class ='quantity' value='$quantity' ".$btnData['state']."/>";
+                            if($row instanceof BundleTicket)
+                            { echo "<span class ='seats' style=\"visibility: hidden\"> 100 </span>";}
+                            else
+                            { echo "Seats: <span class ='seats'>$row->seats</span>";}
+                        echo "<div class='value-button' class='increase' onclick='increaseValue()' value='Increase Value'></div>
                     </section>";
                     } else {
                         echo "<p>FREE EVENT</p>";

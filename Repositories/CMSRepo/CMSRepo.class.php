@@ -8,7 +8,7 @@
 			$result = $this->fetchTickets();
             $events = [];
             foreach($result as $row){
-                $events[] = $this->createEvent($row);
+                $events[] = $this->fetchEvent($row);
             }
             return $events;
 		}
@@ -25,7 +25,7 @@
 			throw ConnectionFailureException::database();
 		}
 
-        private function createEvent($row) : Ticket
+        private function fetchEvent($row) : Ticket
 		{
             
 			// converts pdo array to DanceTickets array
@@ -87,29 +87,27 @@
 			throw ConnectionFailureException::database();
 		}
 
-        public function addTicket(Ticket $event)
+
+				//TO DO
+		public function updateEvent(Ticket $event)
 		{	
-
 			try {
-
-				$this->pdo->prepare("INSERT INTO transaction(customer_Id, event_Id, quantity) VALUES (:customerId, :eventId, :quantity)")
-						->execute(['customerId'=>$customerId, 'eventId'=>$item->id, 'quantity'=>$item->quantity]);
-
-				$this->jazzRepo->updateNumberOfSeats($item->id, $item->quantity);
-				
-
+				$this->pdo->prepare("	UPDATE event 
+										SET date = :date, start = :start, end = :end, price = :price, seats = :seats 
+										WHERE event.ID = :id")
+						->execute(['id' => $event.ID, 'date'=> $event->date, 'start'=>$event->start, 'end'=>$event->end, 'price'=>$event->price, 'seats'=>$event->seats]);				
 			} catch (Exception $error) {
 				throw $error;
 			}
-			
-			return $customerId;
 		}
         
+				//TO DO
         private function addDanceTicket(DanceTicket $event){
-            $this->pdo->prepare("INSERT INTO transaction(customer_Id, event_Id, quantity) VALUES (:customerId, :eventId, :quantity)")
+            $this->pdo->prepare("INSERT INTO dance_ticket(customer_Id, event_Id, quantity) VALUES (:customerId, :eventId, :quantity)")
 						->execute(['customerId'=>$customerId, 'eventId'=>$item->id, 'quantity'=>$item->quantity]);
         }
 
+				//TO DO
         private function addJazzTicket(JazzTicket $event){
 
         }
