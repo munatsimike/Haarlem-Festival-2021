@@ -17,7 +17,7 @@ use MyCLabs\Enum\Enum;
             return new self($value);
         }
         
-        throw InvalidPaymentStatusException::forValue($value);
+        throw InvalidEnumException::forPaymentStatus($value);
     }
 }
 

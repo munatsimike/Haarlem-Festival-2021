@@ -1,6 +1,6 @@
 <?php
 
-class OrderNumberGenerator extends NumberGenerator
+class OrderNumberGenerator extends AGenerator
 {
     private OrderController $orderController;
     private static $instance = null;
@@ -26,7 +26,6 @@ class OrderNumberGenerator extends NumberGenerator
         do {
             $this->orderNum = new OrderNumber($this->generateUnixTimeStamp());
         } while ($this->orderController->orderIdExist($this->orderNum));
-        
         return $this->orderNum;
     }
 }

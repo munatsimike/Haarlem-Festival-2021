@@ -8,7 +8,7 @@ function autoload($className)
     $directories = [
                     'Controllers/VolunteerController', 'Models/Jazz', 'Models/Cart', 'Models/Customer', 'Controllers/JazzController', "Enums", "Exceptions",
                     'Models', 'Views', 'Controllers', 'Config', 'Repositories/JazzRepo', 'Controllers/OrderController', 'Models/Volunteer',
-                    'Repositories/OrderRepo', 'Models/Order', 'Models/Pdf', 'Repositories/CustomerRepo', 'Service', 'Service/NumberGenerator', 'Repositories/VolunteerRepo', 'Models/BundleTicket',
+                    'Repositories/OrderRepo', 'Models/Order', 'Models/Pdf', 'Repositories/CustomerRepo', 'Service', 'Service/Generator', 'Repositories/VolunteerRepo', 'Models/BundleTicket',
                     'Controllers/BundleTicketController', 'Repositories/BundleTicketRepo', 'Repositories', 'Controllers/DanceController', 'Repositories/DanceRepo', 'Models/Dance', 'Enums', 'StringObject',
                     'Models/PasswordReset', 'Repositories/PasswordResetRepo', 'Controllers/PasswordResetController', 'Repositories/CMSRepo', 'Controllers/CMSController'
                    ];

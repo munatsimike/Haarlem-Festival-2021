@@ -9,9 +9,7 @@ use MyCLabs\Enum\Enum;
 
     public static function fromString (string $value) : self
     {
-        $values = self::values();
-
-        if ($values->isValid($value)) {
+        if (self::isValid($value)) {
             return new self($value);
         }
 
