@@ -9,7 +9,7 @@
 				return $this->createDanceTickets( $this->pdo->query("	SELECT E.ID, E.price, E.date, TIME_FORMAT(E.start, '%H:%i') AS start, TIME_FORMAT(E.end,'%H:%i')AS end, E.seats, V.venue, V.address, D.session FROM dance_ticket AS D 
 																		JOIN event AS E ON E.ID = D.event_id
 																		JOIN venue AS V ON V.venue = E.venue_id
-																		ORDER BY date,start")->fetchAll(PDO::FETCH_ASSOC));
+																		ORDER BY E.date,start")->fetchAll(PDO::FETCH_ASSOC));
 			}
 			throw ConnectionFailureException::database();
 		}

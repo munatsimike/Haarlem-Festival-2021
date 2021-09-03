@@ -23,7 +23,21 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUEST
             $id = intval($var['id']);
             $subTotal = 0;
         
+            if($price < 0){
+                throw new exception("invalid price detected.");
+            }
+            
+            if($quantity < 0){
+                throw new exception("invalid quantity input.");
+            }
+            
+            if($seats < $quantity){
+                throw new exception("insufficient tickets available.");
+            }
+
+            if((int)$quantity > 0){
             $cart->addToCart(new CartItem($id, $var['title'], $quantity, $price, $seats)); 
+            }
             die(json_encode(['action'=> 'addToCart']));
          
         } elseif ($_REQUEST['action'] === 'deleteCartItem') { 
@@ -32,10 +46,14 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ! empty($_SERVER['HTTP_X_REQUEST
             die(json_encode(['action'=> 'deleteCartItem', 'total'=>"€".Cart::getCartTotal()]));
          
         } elseif ($_REQUEST['action'] === 'updateItemQuantity') { 
-            $cart->updateQuantity(intval($var['cartId']), intval($var['quantity']));
+            $quantity =  intval($var['quantity']);
+            if($quantity > 0){
+                $cart->updateQuantity(intval($var['cartId']), $quantity);
+            }
             die(json_encode(['action'=> 'updateItemQuantity', 'total'=>"€".Cart::getCartTotal()]));
 
        }
+
 } 
 }
 

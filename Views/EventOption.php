@@ -32,11 +32,11 @@ class EventOption
         });
     }
 
-	public static function displayEventDates(array $tickets) : void
+	public static function displayEventDates(array $tickets, string $url) : void
 	{
-		echo "<a href='jazz.php' class = 'btn btn-md mr-3 event-date' role='button'>All Tickets</a>";
+		echo "<a href='$url' class = 'btn btn-md mr-3 event-date' role='button'>All Tickets</a>";
 		foreach (self::eventDates($tickets) as $date) {
-			echo "<a href='jazz.php?date=$date' class = 'btn btn-md mr-3 event-date' role='button'>".date('D d M Y', strtotime($date))."</a>";
+			echo "<a href='$url?date=$date' class = 'btn btn-md mr-3 event-date' role='button'>".date('D d M Y', strtotime($date))."</a>";
 		}
 	}
 

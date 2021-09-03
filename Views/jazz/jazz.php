@@ -21,7 +21,7 @@
 
 		<?php startblock('main') ?>
 			<div class = "row justify-content-center m-3">
-				<?php EventOption::displayEventDates($tickets)?>
+				<?php EventOption::displayEventDates($tickets,"jazz.php")?>
 			</div>
 			<div class = "row justify-content-center">
 				<div class = "col-7 single-tickets">
