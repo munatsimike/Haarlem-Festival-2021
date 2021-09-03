@@ -21,7 +21,7 @@ try{
 
         "description" => "Haarlem Festival Order : {$intOrderNum}",
         "redirectUrl" => "http://localhost/Views/paymentViews/payment-confirmation.php?orderId=$intOrderNum",
-         "webhookUrl" => "https://d23528e12489.ngrok.io/Service/webhook.php",
+         "webhookUrl" => "https://6917b593ff2b.ngrok.io/Service/webhook.php",
            "metadata" => [
            "order_id" => $intOrderNum, 
             'customer'=> $customer
@@ -38,8 +38,11 @@ try{
      */
      header("Location: " . $payment->getCheckoutUrl(), true, 303);
 
-    }catch (InvalidPaymentStatusException $status) {
-            echo InvalidPaymentStatusException::forValue($status);
+    } catch (InvalidEnumException $status) {
+            echo InvalidEnumException::forPaymentStatus($status);
+    } catch (Throwable $msg) {
+        new ErrorLog($msg->getMessage());
+        header("location: ../Views/paymentViews/checkout-form.php?error=error");
     }
 }
     ?>
